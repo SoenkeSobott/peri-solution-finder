@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D2CE731291D14B400C369D4 /* PeriSolutionFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */; };
+		2D2CE733291D14B400C369D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE732291D14B400C369D4 /* ContentView.swift */; };
+		2D2CE735291D14B500C369D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2CE734291D14B500C369D4 /* Assets.xcassets */; };
+		2D2CE738291D14B500C369D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */; };
+		2D2CE742291D14B500C369D4 /* PeriSolutionFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE741291D14B500C369D4 /* PeriSolutionFinderTests.swift */; };
+		2D2CE74C291D14B500C369D4 /* PeriSolutionFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE74B291D14B500C369D4 /* PeriSolutionFinderUITests.swift */; };
+		2D2CE74E291D14B500C369D4 /* PeriSolutionFinderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE74D291D14B500C369D4 /* PeriSolutionFinderUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2D2CE73E291D14B500C369D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D2CE725291D14B400C369D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D2CE72C291D14B400C369D4;
+			remoteInfo = PeriSolutionFinder;
+		};
+		2D2CE748291D14B500C369D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D2CE725291D14B400C369D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D2CE72C291D14B400C369D4;
+			remoteInfo = PeriSolutionFinder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeriSolutionFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriSolutionFinderApp.swift; sourceTree = "<group>"; };
+		2D2CE732291D14B400C369D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2D2CE734291D14B500C369D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2D2CE73D291D14B500C369D4 /* PeriSolutionFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeriSolutionFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D2CE741291D14B500C369D4 /* PeriSolutionFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriSolutionFinderTests.swift; sourceTree = "<group>"; };
+		2D2CE747291D14B500C369D4 /* PeriSolutionFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeriSolutionFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D2CE74B291D14B500C369D4 /* PeriSolutionFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriSolutionFinderUITests.swift; sourceTree = "<group>"; };
+		2D2CE74D291D14B500C369D4 /* PeriSolutionFinderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriSolutionFinderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D2CE72A291D14B400C369D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D2CE73A291D14B500C369D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D2CE744291D14B500C369D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D2CE724291D14B400C369D4 = {
+			isa = PBXGroup;
+			children = (
+				2D2CE72F291D14B400C369D4 /* PeriSolutionFinder */,
+				2D2CE740291D14B500C369D4 /* PeriSolutionFinderTests */,
+				2D2CE74A291D14B500C369D4 /* PeriSolutionFinderUITests */,
+				2D2CE72E291D14B400C369D4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D2CE72E291D14B400C369D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */,
+				2D2CE73D291D14B500C369D4 /* PeriSolutionFinderTests.xctest */,
+				2D2CE747291D14B500C369D4 /* PeriSolutionFinderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D2CE72F291D14B400C369D4 /* PeriSolutionFinder */ = {
+			isa = PBXGroup;
+			children = (
+				2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */,
+				2D2CE732291D14B400C369D4 /* ContentView.swift */,
+				2D2CE734291D14B500C369D4 /* Assets.xcassets */,
+				2D2CE736291D14B500C369D4 /* Preview Content */,
+			);
+			path = PeriSolutionFinder;
+			sourceTree = "<group>";
+		};
+		2D2CE736291D14B500C369D4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2D2CE740291D14B500C369D4 /* PeriSolutionFinderTests */ = {
+			isa = PBXGroup;
+			children = (
+				2D2CE741291D14B500C369D4 /* PeriSolutionFinderTests.swift */,
+			);
+			path = PeriSolutionFinderTests;
+			sourceTree = "<group>";
+		};
+		2D2CE74A291D14B500C369D4 /* PeriSolutionFinderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2D2CE74B291D14B500C369D4 /* PeriSolutionFinderUITests.swift */,
+				2D2CE74D291D14B500C369D4 /* PeriSolutionFinderUITestsLaunchTests.swift */,
+			);
+			path = PeriSolutionFinderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D2CE72C291D14B400C369D4 /* PeriSolutionFinder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D2CE751291D14B500C369D4 /* Build configuration list for PBXNativeTarget "PeriSolutionFinder" */;
+			buildPhases = (
+				2D2CE729291D14B400C369D4 /* Sources */,
+				2D2CE72A291D14B400C369D4 /* Frameworks */,
+				2D2CE72B291D14B400C369D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeriSolutionFinder;
+			productName = PeriSolutionFinder;
+			productReference = 2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D2CE73C291D14B500C369D4 /* PeriSolutionFinderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D2CE754291D14B500C369D4 /* Build configuration list for PBXNativeTarget "PeriSolutionFinderTests" */;
+			buildPhases = (
+				2D2CE739291D14B500C369D4 /* Sources */,
+				2D2CE73A291D14B500C369D4 /* Frameworks */,
+				2D2CE73B291D14B500C369D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D2CE73F291D14B500C369D4 /* PBXTargetDependency */,
+			);
+			name = PeriSolutionFinderTests;
+			productName = PeriSolutionFinderTests;
+			productReference = 2D2CE73D291D14B500C369D4 /* PeriSolutionFinderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2D2CE746291D14B500C369D4 /* PeriSolutionFinderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D2CE757291D14B500C369D4 /* Build configuration list for PBXNativeTarget "PeriSolutionFinderUITests" */;
+			buildPhases = (
+				2D2CE743291D14B500C369D4 /* Sources */,
+				2D2CE744291D14B500C369D4 /* Frameworks */,
+				2D2CE745291D14B500C369D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D2CE749291D14B500C369D4 /* PBXTargetDependency */,
+			);
+			name = PeriSolutionFinderUITests;
+			productName = PeriSolutionFinderUITests;
+			productReference = 2D2CE747291D14B500C369D4 /* PeriSolutionFinderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D2CE725291D14B400C369D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					2D2CE72C291D14B400C369D4 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					2D2CE73C291D14B500C369D4 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 2D2CE72C291D14B400C369D4;
+					};
+					2D2CE746291D14B500C369D4 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 2D2CE72C291D14B400C369D4;
+					};
+				};
+			};
+			buildConfigurationList = 2D2CE728291D14B400C369D4 /* Build configuration list for PBXProject "PeriSolutionFinder" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2D2CE724291D14B400C369D4;
+			productRefGroup = 2D2CE72E291D14B400C369D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D2CE72C291D14B400C369D4 /* PeriSolutionFinder */,
+				2D2CE73C291D14B500C369D4 /* PeriSolutionFinderTests */,
+				2D2CE746291D14B500C369D4 /* PeriSolutionFinderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D2CE72B291D14B400C369D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D2CE738291D14B500C369D4 /* Preview Assets.xcassets in Resources */,
+				2D2CE735291D14B500C369D4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D2CE73B291D14B500C369D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D2CE745291D14B500C369D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D2CE729291D14B400C369D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D2CE733291D14B400C369D4 /* ContentView.swift in Sources */,
+				2D2CE731291D14B400C369D4 /* PeriSolutionFinderApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D2CE739291D14B500C369D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D2CE742291D14B500C369D4 /* PeriSolutionFinderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D2CE743291D14B500C369D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D2CE74C291D14B500C369D4 /* PeriSolutionFinderUITests.swift in Sources */,
+				2D2CE74E291D14B500C369D4 /* PeriSolutionFinderUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2D2CE73F291D14B500C369D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D2CE72C291D14B400C369D4 /* PeriSolutionFinder */;
+			targetProxy = 2D2CE73E291D14B500C369D4 /* PBXContainerItemProxy */;
+		};
+		2D2CE749291D14B500C369D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D2CE72C291D14B400C369D4 /* PeriSolutionFinder */;
+			targetProxy = 2D2CE748291D14B500C369D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2D2CE74F291D14B500C369D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2D2CE750291D14B500C369D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2D2CE752291D14B500C369D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PeriSolutionFinder/Preview Content\"";
+				DEVELOPMENT_TEAM = N4388UP3D6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soenkesobott.PeriSolutionFinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2D2CE753291D14B500C369D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PeriSolutionFinder/Preview Content\"";
+				DEVELOPMENT_TEAM = N4388UP3D6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soenkesobott.PeriSolutionFinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2D2CE755291D14B500C369D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N4388UP3D6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soenkesobott.PeriSolutionFinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PeriSolutionFinder.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PeriSolutionFinder";
+			};
+			name = Debug;
+		};
+		2D2CE756291D14B500C369D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N4388UP3D6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soenkesobott.PeriSolutionFinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PeriSolutionFinder.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PeriSolutionFinder";
+			};
+			name = Release;
+		};
+		2D2CE758291D14B500C369D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N4388UP3D6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soenkesobott.PeriSolutionFinderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PeriSolutionFinder;
+			};
+			name = Debug;
+		};
+		2D2CE759291D14B500C369D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N4388UP3D6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soenkesobott.PeriSolutionFinderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PeriSolutionFinder;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D2CE728291D14B400C369D4 /* Build configuration list for PBXProject "PeriSolutionFinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D2CE74F291D14B500C369D4 /* Debug */,
+				2D2CE750291D14B500C369D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D2CE751291D14B500C369D4 /* Build configuration list for PBXNativeTarget "PeriSolutionFinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D2CE752291D14B500C369D4 /* Debug */,
+				2D2CE753291D14B500C369D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D2CE754291D14B500C369D4 /* Build configuration list for PBXNativeTarget "PeriSolutionFinderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D2CE755291D14B500C369D4 /* Debug */,
+				2D2CE756291D14B500C369D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D2CE757291D14B500C369D4 /* Build configuration list for PBXNativeTarget "PeriSolutionFinderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D2CE758291D14B500C369D4 /* Debug */,
+				2D2CE759291D14B500C369D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2D2CE725291D14B400C369D4 /* Project object */;
+}

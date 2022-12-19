@@ -11,7 +11,7 @@ import SwiftUI
 struct PeriSolutionFinderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProjectListView()
         }
     }
 }

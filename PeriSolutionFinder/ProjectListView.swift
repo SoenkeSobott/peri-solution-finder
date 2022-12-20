@@ -7,14 +7,9 @@
 
 import SwiftUI
 
-let projects = [
-    Project(projectNumber: "number-123", projectName: "xy-solution-long-name-asdsasdasdsadsdsadd"),
-    Project(projectNumber: "number-911", projectName: "Top-solution"),
-    Project(projectNumber: "number-918", projectName: "Best-solution"),
-    Project(projectNumber: "number-910", projectName: "Best-solution"),
-]
-
 struct ProjectListView: View {
+    @EnvironmentObject var network: Network
+
     var body: some View {
         VStack() {
             ZStack() {
@@ -24,7 +19,7 @@ struct ProjectListView: View {
                     .offset(x: 0 , y: -UIScreen.main.bounds.height)
 
                 VStack {
-                    Text("We found XY projects with your seach criteria")
+                    Text("We found \(network.projects.count) projects with your search criteria")
                         .multilineTextAlignment(.center)
                         .font(Font.system(size: 20, weight: .bold
                                           , design: .default))
@@ -41,11 +36,14 @@ struct ProjectListView: View {
                         .padding(.leading, UIScreen.main.bounds.width*0.05)
                         .padding(.trailing, UIScreen.main.bounds.width*0.05)
 
-                    List(projects, id: \.projectNumber) { project in
+                    List(network.projects, id: \.projectNumber) { project in
                         ProjectRow(project: project)
                     }
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
+                    .onAppear {
+                        network.getProjects()
+                    }
                 }
             }
         }
@@ -55,5 +53,6 @@ struct ProjectListView: View {
 struct ProjectListView_Previews: PreviewProvider {
     static var previews: some View {
         ProjectListView()
+            .environmentObject(Network())
     }
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct PeriSolutionFinderApp: App {
+    var network = Network()
+
     var body: some Scene {
         WindowGroup {
             ProjectListView()
+                .environmentObject(network)
         }
     }
 }

@@ -11,6 +11,12 @@
 		2D25097829506E4200F8D30A /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25097729506E4200F8D30A /* ProjectListView.swift */; };
 		2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25097C29506EFB00F8D30A /* ProjectRow.swift */; };
 		2D2509802951AC9400F8D30A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25097F2951AC9400F8D30A /* Network.swift */; };
+		2D2509822951B64500F8D30A /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2509812951B64500F8D30A /* ProjectView.swift */; };
+		2D250984295305B600F8D30A /* TwoDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D250983295305B600F8D30A /* TwoDView.swift */; };
+		2D2509872954B29700F8D30A /* PDFKitRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2509862954B29700F8D30A /* PDFKitRepresentedView.swift */; };
+		2D25098D2954B8D400F8D30A /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25098C2954B8D400F8D30A /* TextExtension.swift */; };
+		2D25098F2954BF4D00F8D30A /* BQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25098E2954BF4D00F8D30A /* BQView.swift */; };
+		2D2509912954BF6800F8D30A /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2509902954BF6800F8D30A /* PhotoView.swift */; };
 		2D2CE731291D14B400C369D4 /* PeriSolutionFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */; };
 		2D2CE735291D14B500C369D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2CE734291D14B500C369D4 /* Assets.xcassets */; };
 		2D2CE738291D14B500C369D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */; };
@@ -43,6 +49,12 @@
 		2D25097729506E4200F8D30A /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
 		2D25097C29506EFB00F8D30A /* ProjectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRow.swift; sourceTree = "<group>"; };
 		2D25097F2951AC9400F8D30A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		2D2509812951B64500F8D30A /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		2D250983295305B600F8D30A /* TwoDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDView.swift; sourceTree = "<group>"; };
+		2D2509862954B29700F8D30A /* PDFKitRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitRepresentedView.swift; sourceTree = "<group>"; };
+		2D25098C2954B8D400F8D30A /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
+		2D25098E2954BF4D00F8D30A /* BQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BQView.swift; sourceTree = "<group>"; };
+		2D2509902954BF6800F8D30A /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeriSolutionFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriSolutionFinderApp.swift; sourceTree = "<group>"; };
 		2D2CE734291D14B500C369D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				2D25097C29506EFB00F8D30A /* ProjectRow.swift */,
+				2D250983295305B600F8D30A /* TwoDView.swift */,
+				2D25098E2954BF4D00F8D30A /* BQView.swift */,
+				2D2509902954BF6800F8D30A /* PhotoView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -104,6 +119,14 @@
 				2D25097F2951AC9400F8D30A /* Network.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		2D2509852954B26C00F8D30A /* UIViewRepresentables */ = {
+			isa = PBXGroup;
+			children = (
+				2D2509862954B29700F8D30A /* PDFKitRepresentedView.swift */,
+			);
+			path = UIViewRepresentables;
 			sourceTree = "<group>";
 		};
 		2D2CE724291D14B400C369D4 = {
@@ -129,6 +152,7 @@
 		2D2CE72F291D14B400C369D4 /* PeriSolutionFinder */ = {
 			isa = PBXGroup;
 			children = (
+				2D2509852954B26C00F8D30A /* UIViewRepresentables */,
 				2D25097E2951AC7D00F8D30A /* Network */,
 				2D25097929506E9500F8D30A /* Components */,
 				2D250974294C7DAD00F8D30A /* Entity */,
@@ -139,6 +163,7 @@
 				2DB1157F292C1AD30043872E /* SearchView.swift */,
 				2DB11581292C261B0043872E /* FooterView.swift */,
 				2D25097729506E4200F8D30A /* ProjectListView.swift */,
+				2D25098C2954B8D400F8D30A /* TextExtension.swift */,
 			);
 			path = PeriSolutionFinder;
 			sourceTree = "<group>";
@@ -147,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */,
+				2D2509812951B64500F8D30A /* ProjectView.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -298,13 +324,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2509872954B29700F8D30A /* PDFKitRepresentedView.swift in Sources */,
+				2D2509912954BF6800F8D30A /* PhotoView.swift in Sources */,
+				2D25098F2954BF4D00F8D30A /* BQView.swift in Sources */,
 				2DB11582292C261B0043872E /* FooterView.swift in Sources */,
 				2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */,
 				2DB11580292C1AD30043872E /* SearchView.swift in Sources */,
+				2D25098D2954B8D400F8D30A /* TextExtension.swift in Sources */,
 				2D250976294C7DBB00F8D30A /* Project.swift in Sources */,
 				2D25097829506E4200F8D30A /* ProjectListView.swift in Sources */,
 				2D2509802951AC9400F8D30A /* Network.swift in Sources */,
+				2D2509822951B64500F8D30A /* ProjectView.swift in Sources */,
 				2D2CE731291D14B400C369D4 /* PeriSolutionFinderApp.swift in Sources */,
+				2D250984295305B600F8D30A /* TwoDView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

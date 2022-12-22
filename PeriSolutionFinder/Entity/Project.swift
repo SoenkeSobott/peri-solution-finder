@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct Project: Identifiable, Decodable {
+struct Project: Identifiable, Decodable, Hashable {
+    static func == (lhs: Project, rhs: Project) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
     var id: String
     var projectNumber : String
     var projectName: String

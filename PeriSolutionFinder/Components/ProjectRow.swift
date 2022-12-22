@@ -44,9 +44,6 @@ struct ProjectRow : View {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color("PeriRed"), lineWidth: isSelected ? 1 : 0)
         )
-        .onTapGesture {
-            self.isSelected = !self.isSelected
-        }
     }
 }
 

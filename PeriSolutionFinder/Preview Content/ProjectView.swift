@@ -40,7 +40,7 @@ struct ProjectView: View {
                 if selectedView == 0 {
                     TwoDView(viewLink: project.drawingLink ?? "")
                 } else if selectedView == 1 {
-                    BQView()
+                    BQView(billOfQuantity: project.billOfQuantity ?? [])
                 } else if selectedView == 2 {
                     PhotoView()
                 }

@@ -9,6 +9,7 @@ import SwiftUI
 import PDFKit
 
 struct PDFKitRepresentedView: UIViewRepresentable {
+
     var url: String
     @Binding var pdfDocument: PDFDocument
     @Binding var pdfIsLoading: Bool
@@ -33,10 +34,14 @@ struct PDFKitRepresentedView: UIViewRepresentable {
         dispatchQueue.async{
             let url = URL(string: url)
             if url == nil { return }
-            let doc = PDFDocument(url: url!)!
-            DispatchQueue.main.async{
-                self.pdfDocument = doc
-                self.pdfIsLoading = false
+            let doc = PDFDocument(url: url!)
+            if (doc != nil) {
+                DispatchQueue.main.async{
+                    self.pdfDocument = doc!
+                    self.pdfIsLoading = false
+                }
+            } else {
+                SharedLogger.shared().error("PDF document is nil")
             }
         }
     }

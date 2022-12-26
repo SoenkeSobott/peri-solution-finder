@@ -42,7 +42,7 @@ struct ProjectView: View {
                 } else if selectedView == 1 {
                     BQView(billOfQuantity: project.billOfQuantity ?? [])
                 } else if selectedView == 2 {
-                    PhotoView()
+                    PhotoView(photoUrls: project.pictures ?? [])
                 }
             }
 

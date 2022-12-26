@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct User: Identifiable {
-    let id = UUID()
-    var name: String
-    var score: String
-}
-
 struct BQView: View {
 
     let billOfQuantity: [BillOffQuantityEntry]

@@ -18,6 +18,8 @@
 		2D25098F2954BF4D00F8D30A /* BQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25098E2954BF4D00F8D30A /* BQView.swift */; };
 		2D2509912954BF6800F8D30A /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2509902954BF6800F8D30A /* PhotoView.swift */; };
 		2D2509932958A04F00F8D30A /* BQListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2509922958A04F00F8D30A /* BQListHeader.swift */; };
+		2D2509952958B92300F8D30A /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2509942958B92300F8D30A /* PageControl.swift */; };
+		2D25099C2959B39E00F8D30A /* SharedLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25099B2959B39E00F8D30A /* SharedLogger.swift */; };
 		2D2CE731291D14B400C369D4 /* PeriSolutionFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */; };
 		2D2CE735291D14B500C369D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2CE734291D14B500C369D4 /* Assets.xcassets */; };
 		2D2CE738291D14B500C369D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		2D25098E2954BF4D00F8D30A /* BQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BQView.swift; sourceTree = "<group>"; };
 		2D2509902954BF6800F8D30A /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2D2509922958A04F00F8D30A /* BQListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BQListHeader.swift; sourceTree = "<group>"; };
+		2D2509942958B92300F8D30A /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		2D25099B2959B39E00F8D30A /* SharedLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLogger.swift; sourceTree = "<group>"; };
 		2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeriSolutionFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriSolutionFinderApp.swift; sourceTree = "<group>"; };
 		2D2CE734291D14B500C369D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		2D25097929506E9500F8D30A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2DB11581292C261B0043872E /* FooterView.swift */,
 				2D25097C29506EFB00F8D30A /* ProjectRow.swift */,
 				2D250983295305B600F8D30A /* TwoDView.swift */,
 				2D25098E2954BF4D00F8D30A /* BQView.swift */,
@@ -128,8 +133,17 @@
 			isa = PBXGroup;
 			children = (
 				2D2509862954B29700F8D30A /* PDFKitRepresentedView.swift */,
+				2D2509942958B92300F8D30A /* PageControl.swift */,
 			);
 			path = UIViewRepresentables;
+			sourceTree = "<group>";
+		};
+		2D2509962959B2AB00F8D30A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2D25098C2954B8D400F8D30A /* TextExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2D2CE724291D14B400C369D4 = {
@@ -155,6 +169,7 @@
 		2D2CE72F291D14B400C369D4 /* PeriSolutionFinder */ = {
 			isa = PBXGroup;
 			children = (
+				2D2509962959B2AB00F8D30A /* Extensions */,
 				2D2509852954B26C00F8D30A /* UIViewRepresentables */,
 				2D25097E2951AC7D00F8D30A /* Network */,
 				2D25097929506E9500F8D30A /* Components */,
@@ -164,9 +179,9 @@
 				2D2CE734291D14B500C369D4 /* Assets.xcassets */,
 				2D2CE736291D14B500C369D4 /* Preview Content */,
 				2DB1157F292C1AD30043872E /* SearchView.swift */,
-				2DB11581292C261B0043872E /* FooterView.swift */,
+				2D2509812951B64500F8D30A /* ProjectView.swift */,
 				2D25097729506E4200F8D30A /* ProjectListView.swift */,
-				2D25098C2954B8D400F8D30A /* TextExtension.swift */,
+				2D25099B2959B39E00F8D30A /* SharedLogger.swift */,
 			);
 			path = PeriSolutionFinder;
 			sourceTree = "<group>";
@@ -175,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				2D2CE737291D14B500C369D4 /* Preview Assets.xcassets */,
-				2D2509812951B64500F8D30A /* ProjectView.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -328,10 +342,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D2509872954B29700F8D30A /* PDFKitRepresentedView.swift in Sources */,
+				2D25099C2959B39E00F8D30A /* SharedLogger.swift in Sources */,
 				2D2509912954BF6800F8D30A /* PhotoView.swift in Sources */,
 				2D25098F2954BF4D00F8D30A /* BQView.swift in Sources */,
 				2DB11582292C261B0043872E /* FooterView.swift in Sources */,
 				2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */,
+				2D2509952958B92300F8D30A /* PageControl.swift in Sources */,
 				2DB11580292C1AD30043872E /* SearchView.swift in Sources */,
 				2D25098D2954B8D400F8D30A /* TextExtension.swift in Sources */,
 				2D250976294C7DBB00F8D30A /* Project.swift in Sources */,

@@ -40,6 +40,6 @@ struct BillOffQuantityEntry: Identifiable, Decodable {
     var articleNumber: String
     var description: String
     var unit: String?
-    var quantity: Float?
+    var quantity: Int?
     var weightPerUnit: Float?
 }

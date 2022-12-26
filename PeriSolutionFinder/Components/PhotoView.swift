@@ -24,7 +24,9 @@ struct PhotoView: View {
                         .frame(width: UIScreen.main.bounds.width*0.9)
                         .frame(maxHeight: .infinity)
                 } placeholder: {
+                    Spacer()
                     Text("Loading...")
+                    Spacer()
                 }
 
                 Spacer()

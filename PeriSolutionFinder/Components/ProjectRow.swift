@@ -14,7 +14,7 @@ struct ProjectRow : View {
     var body: some View {
         ZStack() {
             RoundedRectangle(cornerRadius: 15)
-                .fill(isSelected ? Color.white : Color.gray.opacity(0.05))
+                .fill(isSelected ? Color.white : Color("PeriLightGray"))
                 .frame(width: UIScreen.main.bounds.width*0.9, height: 80)
 
             HStack() {

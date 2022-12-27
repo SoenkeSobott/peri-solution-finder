@@ -7,15 +7,18 @@
 
 import SwiftUI
 
-struct SearchView: View {
+enum SearchCriteria {
+    case product
+    case structure
+}
 
-    // Definitions
+struct SearchView: View {
     @State private var searchTerm: String = ""
+    @State private var selectedCriteria: SearchCriteria = SearchCriteria.product
     private let searchViewHeight: CGFloat = UIScreen.main.bounds.height*0.3
 
     var body: some View {
         NavigationStack {
-
             ZStack(alignment: .top) {
                 Image("Ellipse")
                     .resizable()
@@ -29,16 +32,15 @@ struct SearchView: View {
                             .foregroundColor(Color.black)
                             .fontWeight(.bold)
                             .font(Font.system(size: 22, weight: .medium, design: .default))
-                            .padding(.top, 20)
                             .padding(.bottom, 20)
 
-                        SearchCriteriaView(searchTerm: $searchTerm)
+                        SearchCriteriaView(searchTerm: $searchTerm,
+                                           selectedCriteria: $selectedCriteria)
                         
                     }
                     .frame(height: searchViewHeight)
 
-
-                    Text("Sort By Projects")
+                    Text(getHeadlineForSelectedSearchCriteria())
                         .foregroundColor(Color.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .fontWeight(.bold)
@@ -47,78 +49,83 @@ struct SearchView: View {
                         .padding(.leading, UIScreen.main.bounds.width*0.05)
                         .padding(.trailing, UIScreen.main.bounds.width*0.05)
 
+
+                    if (selectedCriteria == SearchCriteria.product) {
+                        HStack {
+                            ZStack(alignment: .top) {
+                                RoundedRectangle(cornerRadius: 30)
+                                    .fill(Color("PeriLightGray"))
+                                    .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.width*0.4)
+
+                                VStack {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .fill(.white)
+                                            .frame(width: UIScreen.main.bounds.width*0.4-10, height: 120)
+
+                                        Image("duo-imperial-sized-column")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 110)
+                                    }
+                                    .padding(.top, 5)
+
+                                    HStack {
+                                        Text("DUO")
+                                            .multilineTextAlignment(.leading)
+                                            .fontWeight(.semibold)
+                                            .padding(.leading, 20)
+
+                                        Spacer()
+                                    }
+                                    .frame(width: UIScreen.main.bounds.width*0.4)
+                                }
+                            }
+                            .padding(.leading, UIScreen.main.bounds.width*0.05)
+
+
+                            Spacer()
+                        }
+
+                    } else {
+                        VStack {
+                            Text("Thickness")
+                            Text("Height")
+                        }
+                    }
+
                     Spacer()
 
-                    NavigationLink(destination: ProjectListView()){
+                    Button(action: {
+                        print("Add to search")
+                    }, label: {
                         Text("Add to Search")
                             .foregroundColor(Color("PeriRed"))
                             .fontWeight(.bold)
                             .frame(width: UIScreen.main.bounds.width*0.9, height: 60)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color("PeriRed"), lineWidth: 2)
+                                    .stroke(Color("PeriRed"), lineWidth: 3)
                             )
                             .background(Color.white)
                             .cornerRadius(50)
-                            .shadow(color: .red.opacity(0.2), radius: 50, y: 30)
+                            .shadow(color: Color("PeriRed").opacity(0.2), radius: 10, y: 5)
                             .padding(.bottom, 20)
-                    }
+                    })
 
                     FooterView()
                 }
             }
-
-
         }
     }
-}
-
-
-struct SearchCriteriaView: View {
-    @Binding var searchTerm: String
-
-    var body: some View {
-        ZStack(alignment: .leading) {
-            TextField("Search Projects", text: $searchTerm)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .frame(height: 40)
-                .padding(EdgeInsets(top: 10, leading: 60, bottom: 10, trailing: 10))
-                .background(Color.white)
-                .cornerRadius(50)
-                .shadow(color: .black.opacity(0.05), radius: 50)
-
-
-            Image(systemName: "magnifyingglass.circle.fill")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 40, height: 40, alignment: .center)
-                .foregroundColor(Color("PeriRed"))
-                .padding(.leading, 10)
-
-        }
-        .padding(.leading, UIScreen.main.bounds.width*0.05)
-        .padding(.trailing, UIScreen.main.bounds.width*0.05)
-
-        HStack {
-            Text("Product")
-                .foregroundColor(Color("PeriRed"))
-                .frame(width: UIScreen.main.bounds.width*0.4, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color("PeriRed"), lineWidth: 2)
-                )
-                .background(Color.white)
-                .cornerRadius(50)
-
-            Text("Structure")
-                .foregroundColor(Color("PeriRed"))
-                .frame(width: UIScreen.main.bounds.width*0.4, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color("PeriRed"), lineWidth: 2)
-                )
-                .background(Color.white)
-                .cornerRadius(50)
+    
+    func getHeadlineForSelectedSearchCriteria() -> String {
+        if (selectedCriteria == SearchCriteria.product) {
+            return "Search by Name"
+        } else if (selectedCriteria == SearchCriteria.structure) {
+            return "Wall"
+        } else {
+            return "No Selection"
         }
     }
 }

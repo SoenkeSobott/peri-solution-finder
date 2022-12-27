@@ -20,13 +20,7 @@ struct ProjectView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    Image(systemName: "arrow.left")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.red)
-                        .padding(20)
-                        .background(Color.white)
-                        .clipShape(Circle())
+                    BackButton()
                 }).padding(.leading, 20)
 
                 Spacer()

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProjectListView: View {
     @EnvironmentObject var network: Network
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
 
     var body: some View {
@@ -19,10 +20,22 @@ struct ProjectListView: View {
                     .ignoresSafeArea()
                     .frame(width: UIScreen.main.bounds.width, height: headingViewHeight)
 
+                HStack {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        BackButton()
+                    })
+                    .padding(.leading, 20)
+
+                    Spacer()
+                }
+
+
                 VStack {
                     Text("We found \(network.projects.count) projects with your search criteria")
                         .multilineTextAlignment(.center)
-                        .frame(height: headingViewHeight)
+                        .frame(width: UIScreen.main.bounds.width*0.5, height: headingViewHeight)
                         .font(Font.system(size: 20, weight: .bold, design: .default))
 
                     Spacer()

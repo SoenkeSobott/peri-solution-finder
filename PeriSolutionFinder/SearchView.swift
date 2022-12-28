@@ -52,41 +52,11 @@ struct SearchView: View {
 
                     if (selectedCriteria == SearchCriteria.product) {
                         HStack {
-                            ZStack(alignment: .top) {
-                                RoundedRectangle(cornerRadius: 30)
-                                    .fill(Color("PeriLightGray"))
-                                    .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.width*0.4)
-
-                                VStack {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 25)
-                                            .fill(.white)
-                                            .frame(width: UIScreen.main.bounds.width*0.4-10, height: 120)
-
-                                        Image("duo-imperial-sized-column")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 110)
-                                    }
-                                    .padding(.top, 5)
-
-                                    HStack {
-                                        Text("DUO")
-                                            .multilineTextAlignment(.leading)
-                                            .fontWeight(.semibold)
-                                            .padding(.leading, 20)
-
-                                        Spacer()
-                                    }
-                                    .frame(width: UIScreen.main.bounds.width*0.4)
-                                }
-                            }
-                            .padding(.leading, UIScreen.main.bounds.width*0.05)
-
+                            ProductSelectionBoxView()
+                                .padding(.leading, 20)
 
                             Spacer()
                         }
-
                     } else {
                         VStack {
                             Text("Thickness")
@@ -96,22 +66,24 @@ struct SearchView: View {
 
                     Spacer()
 
-                    Button(action: {
-                        print("Add to search")
-                    }, label: {
-                        Text("Add to Search")
-                            .foregroundColor(Color("PeriRed"))
-                            .fontWeight(.bold)
-                            .frame(width: UIScreen.main.bounds.width*0.9, height: 60)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color("PeriRed"), lineWidth: 3)
-                            )
-                            .background(Color.white)
-                            .cornerRadius(50)
-                            .shadow(color: Color("PeriRed").opacity(0.2), radius: 10, y: 5)
-                            .padding(.bottom, 20)
-                    })
+                    if (selectedCriteria == SearchCriteria.structure) {
+                        Button(action: {
+                            print("Add to search")
+                        }, label: {
+                            Text("Add to Search")
+                                .foregroundColor(Color("PeriRed"))
+                                .fontWeight(.bold)
+                                .frame(width: UIScreen.main.bounds.width*0.9, height: 60)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 50)
+                                        .stroke(Color("PeriRed"), lineWidth: 3)
+                                )
+                                .background(Color.white)
+                                .cornerRadius(50)
+                                .shadow(color: Color("PeriRed").opacity(0.2), radius: 10, y: 5)
+                                .padding(.bottom, 20)
+                        })
+                    }
 
                     FooterView()
                 }

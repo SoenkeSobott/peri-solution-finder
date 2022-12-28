@@ -15,8 +15,9 @@ struct TwoDView: View {
     @State private var pdfDocument: PDFDocument = PDFDocument()
 
     var body: some View {
-        Text("Loading...")
-
+        ProgressView()
+            .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+        
         PDFKitRepresentedView(url: viewLink, pdfDocument: $pdfDocument, pdfIsLoading: $pdfIsLoading)
             .opacity(self.pdfIsLoading ? 0 : 1)
             .frame(width: UIScreen.main.bounds.width*0.9)

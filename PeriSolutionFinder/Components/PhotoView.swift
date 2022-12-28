@@ -6,63 +6,40 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct PhotoView: View {
-
     let photoUrls: [String]
-    @State private var photoIndex: Int = 0
+    @State private var selectedTab = 0
 
     var body: some View {
-
         if (!photoUrls.isEmpty) {
-
-            VStack {
-                AsyncImage(url: URL(string: photoUrls[photoIndex])) { image in
-                    image
+            VStack(spacing: 0) {
+                ScrollView([.horizontal,.vertical], showsIndicators: false) {
+                    WebImage(url: URL(string: photoUrls[selectedTab]))
                         .resizable()
-                        .scaledToFit()
+                        .placeholder(Image(systemName: "photo"))
+                        .placeholder {
+                            Spacer()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+                            Spacer()
+                        }
+                        .transition(.fade(duration: 0.5))
+                        .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width*0.9)
-                        .frame(maxHeight: .infinity)
-                } placeholder: {
-                    Spacer()
-                    Text("Loading...")
-                    Spacer()
                 }
+                .cornerRadius(25, corners: [.topLeft, .topRight])
 
-                Spacer()
-
-                HStack {
-                    Button(action: {
-                        if (photoIndex > 0) {
-                            photoIndex-=1
-                        }
-                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .font(Font.system(size: 20, weight: .bold))
-                            .padding(10)
-                            .foregroundColor(Color("PeriRed"))
-                    })
-
-                    PageControl(maxPages: photoUrls.count, currentPage: photoIndex)
-
-                    Button(action: {
-                        if (photoIndex < photoUrls.count-1) {
-                            photoIndex+=1
-                        }
-                    }, label: {
-                        Image(systemName: "chevron.right")
-                            .font(Font.system(size: 20, weight: .bold))
-                            .padding(10)
-                            .foregroundColor(Color("PeriRed"))
-                    })
-                }
-                .frame(width: UIScreen.main.bounds.width*0.9, height: 80)
-
+                ImageControl(selectedTab: $selectedTab, maxImages: photoUrls.count)
+                    .frame(width: UIScreen.main.bounds.width*0.9, height: 80)
             }
         } else {
-            Text("No photos")
+            VStack(spacing: 20) {
+                Text("Sorry!")
+                Text("There are no photos for this project.")
+            }
         }
-        
     }
 }
 

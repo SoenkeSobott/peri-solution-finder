@@ -58,7 +58,10 @@ struct BQView: View {
 
             } else {
                 Spacer()
-                Text("No data")
+                VStack(spacing: 20) {
+                    Text("Sorry!")
+                    Text("There is no data for this project.")
+                }
                 Spacer()
             }
         }

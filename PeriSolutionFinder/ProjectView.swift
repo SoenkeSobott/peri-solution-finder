@@ -21,10 +21,12 @@ struct ProjectView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     BackButton()
-                }).padding(.leading, 20)
+                })
+                .padding(.leading, 20)
 
                 Spacer()
             }
+            .padding(.bottom, 10)
 
             ZStack() {
                 RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -45,7 +47,6 @@ struct ProjectView: View {
             ZStack() {
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                                .fill(.white)
-                               .frame(width: UIScreen.main.bounds.width*0.9, height: 60)
 
                 HStack() {
                     Spacer()
@@ -78,6 +79,8 @@ struct ProjectView: View {
                     Spacer()
                 }
             }
+            .frame(width: UIScreen.main.bounds.width*0.8, height: 60)
+
 
 
         }

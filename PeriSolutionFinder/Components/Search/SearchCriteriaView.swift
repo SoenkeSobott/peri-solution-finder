@@ -11,7 +11,7 @@ struct SearchCriteriaView: View {
     @Binding var searchTerm: String
     @Binding var selectedCriteria: SearchCriteria
     @Binding var structureElements: [Structure]
-    @Binding var structureElementsSelectedIndex: Int
+    @Binding var selectedStructure: Structure
     @State var isStructureDropdownOpen: Bool = false
 
     var body: some View {
@@ -50,7 +50,7 @@ struct SearchCriteriaView: View {
                     HStack {
                         Dropdown(isSelected: .constant(isStructureSelected()),
                                  structureElements: $structureElements,
-                                 selectedIndex: $structureElementsSelectedIndex,
+                                 selectedStructure: $selectedStructure,
                                  isOpen: $isStructureDropdownOpen)
                             .offset(y: 70)
                     }
@@ -74,6 +74,6 @@ struct SearchCriteriaView_Previews: PreviewProvider {
         SearchCriteriaView(searchTerm: .constant(""),
                            selectedCriteria: .constant(SearchCriteria.Structure),
                            structureElements: .constant([Structure.Wall, Structure.Slob, Structure.Column]),
-                           structureElementsSelectedIndex: .constant(0))
+                           selectedStructure: .constant(Structure.Slob))
     }
 }

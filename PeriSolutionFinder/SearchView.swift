@@ -12,7 +12,7 @@ struct SearchView: View {
     @State private var selectedCriteria: SearchCriteria = SearchCriteria.Product
     private let searchViewHeight: CGFloat = UIScreen.main.bounds.height*0.3
     @State var structureElements: [Structure] = [Structure.Wall, Structure.Column, Structure.Slob]
-    @State var structureElementsSelectedIndex: Int = 0
+    @State var selectedStructure: Structure = Structure.Wall
 
     var body: some View {
         NavigationStack {
@@ -34,10 +34,10 @@ struct SearchView: View {
                         SearchCriteriaView(searchTerm: $searchTerm,
                                            selectedCriteria: $selectedCriteria,
                                            structureElements: $structureElements,
-                                           structureElementsSelectedIndex: $structureElementsSelectedIndex)
-                        
+                                           selectedStructure: $selectedStructure)
                     }
                     .frame(height: searchViewHeight)
+                    .zIndex(10)
 
                     Text(getHeadlineForSelectedSearchCriteria())
                         .foregroundColor(Color.black)
@@ -49,20 +49,9 @@ struct SearchView: View {
                         .padding(.trailing, UIScreen.main.bounds.width*0.05)
 
 
-                    if (selectedCriteria == SearchCriteria.Product) {
-                        HStack {
-                            ProductSelectionBoxView()
-                                .padding(.leading, 20)
+                    SearchCriteriaFiltersView(selectedCriteria: $selectedCriteria, selectedStructure: $selectedStructure)
+                        .zIndex(0)
 
-                            Spacer()
-                        }
-                    } else {
-                        if (structureElements[structureElementsSelectedIndex] == Structure.Wall) {
-                            WallCriteriaView()
-                        } else {
-                            Text(structureElements[structureElementsSelectedIndex].rawValue)
-                        }
-                    }
 
                     Spacer()
 
@@ -76,7 +65,7 @@ struct SearchView: View {
         if (selectedCriteria == SearchCriteria.Product) {
             return "Search by Name"
         } else if (selectedCriteria == SearchCriteria.Structure) {
-            return structureElements[structureElementsSelectedIndex].rawValue
+            return selectedStructure.rawValue
         } else {
             return "No Selection"
         }

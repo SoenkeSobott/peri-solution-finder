@@ -10,7 +10,7 @@ import SwiftUI
 struct WallCriteriaView: View {
 
     @State private var thickness: Double = 10
-    @State private var height: Double = 10
+    @State private var height: Double = 100
 
     var body: some View {
         VStack {

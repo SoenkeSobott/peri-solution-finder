@@ -7,15 +7,12 @@
 
 import SwiftUI
 
-enum SearchCriteria {
-    case product
-    case structure
-}
-
 struct SearchView: View {
     @State private var searchTerm: String = ""
-    @State private var selectedCriteria: SearchCriteria = SearchCriteria.product
+    @State private var selectedCriteria: SearchCriteria = SearchCriteria.Product
     private let searchViewHeight: CGFloat = UIScreen.main.bounds.height*0.3
+    @State var structureElements: [Structure] = [Structure.Wall, Structure.Column, Structure.Slob]
+    @State var structureElementsSelectedIndex: Int = 0
 
     var body: some View {
         NavigationStack {
@@ -35,7 +32,9 @@ struct SearchView: View {
                             .padding(.bottom, 20)
 
                         SearchCriteriaView(searchTerm: $searchTerm,
-                                           selectedCriteria: $selectedCriteria)
+                                           selectedCriteria: $selectedCriteria,
+                                           structureElements: $structureElements,
+                                           structureElementsSelectedIndex: $structureElementsSelectedIndex)
                         
                     }
                     .frame(height: searchViewHeight)
@@ -50,7 +49,7 @@ struct SearchView: View {
                         .padding(.trailing, UIScreen.main.bounds.width*0.05)
 
 
-                    if (selectedCriteria == SearchCriteria.product) {
+                    if (selectedCriteria == SearchCriteria.Product) {
                         HStack {
                             ProductSelectionBoxView()
                                 .padding(.leading, 20)
@@ -58,32 +57,14 @@ struct SearchView: View {
                             Spacer()
                         }
                     } else {
-                        VStack {
-                            Text("Thickness")
-                            Text("Height")
+                        if (structureElements[structureElementsSelectedIndex] == Structure.Wall) {
+                            WallCriteriaView()
+                        } else {
+                            Text(structureElements[structureElementsSelectedIndex].rawValue)
                         }
                     }
 
                     Spacer()
-
-                    if (selectedCriteria == SearchCriteria.structure) {
-                        Button(action: {
-                            print("Add to search")
-                        }, label: {
-                            Text("Add to Search")
-                                .foregroundColor(Color("PeriRed"))
-                                .fontWeight(.bold)
-                                .frame(width: UIScreen.main.bounds.width*0.9, height: 60)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 50)
-                                        .stroke(Color("PeriRed"), lineWidth: 3)
-                                )
-                                .background(Color.white)
-                                .cornerRadius(50)
-                                .shadow(color: Color("PeriRed").opacity(0.2), radius: 10, y: 5)
-                                .padding(.bottom, 20)
-                        })
-                    }
 
                     FooterView()
                 }
@@ -92,10 +73,10 @@ struct SearchView: View {
     }
     
     func getHeadlineForSelectedSearchCriteria() -> String {
-        if (selectedCriteria == SearchCriteria.product) {
+        if (selectedCriteria == SearchCriteria.Product) {
             return "Search by Name"
-        } else if (selectedCriteria == SearchCriteria.structure) {
-            return "Wall"
+        } else if (selectedCriteria == SearchCriteria.Structure) {
+            return structureElements[structureElementsSelectedIndex].rawValue
         } else {
             return "No Selection"
         }

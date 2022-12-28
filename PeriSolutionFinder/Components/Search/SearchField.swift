@@ -28,7 +28,7 @@ struct SearchField: View {
                     .foregroundColor(Color("PeriRed"))
                     .background(.white)
                     .clipShape(Circle())
-                    .shadow(color: Color("PeriRed").opacity(0.4), radius: 5)
+                    .shadow(color: Color("PeriRed").opacity(0.2), radius: 5)
                     .padding(.trailing, 10)
             }
         }

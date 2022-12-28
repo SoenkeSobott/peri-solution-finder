@@ -18,13 +18,14 @@ extension Text {
             .foregroundColor(isSelected ? Color.white : Color.gray)
     }
 
-    func searchCriteriaPillStyle(isSelected: Bool) -> some View {
+    func searchCriteriaPillStyle(isSelected: Bool, height: CGFloat) -> some View {
         self.foregroundColor(isSelected ? Color("PeriRed") : .gray)
-            .frame(width: UIScreen.main.bounds.width*0.4, height: 40)
+            .frame(width: UIScreen.main.bounds.width*0.4, height: height)
             .overlay(
                 RoundedRectangle(cornerRadius: 50)
                     .stroke(isSelected ? Color("PeriRed") : .gray, lineWidth: 2)
             )
+            .font(Font.system(size: 12, weight: .bold))
             .background(Color.white)
             .cornerRadius(50)
     }

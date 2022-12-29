@@ -7,9 +7,22 @@
 
 import SwiftUI
 
-struct FooterView: View {
+struct FooterItem: Hashable {
+    var name: String
+    var systemImageName: String
+}
 
-    @State private var isSearchSelected: Bool = true
+struct FooterView: View {
+    private var footerItems = [
+        FooterItem(name: "Search", systemImageName: "magnifyingglass.circle.fill"),
+        FooterItem(name: "Product", systemImageName: "shippingbox.fill")
+    ]
+    @State private var selectedIndex: Int = 0
+    @State private var showingFeatureNotImplementedAlert: Bool = false
+
+    private func isSelected(index: Int) -> Bool {
+        return selectedIndex == index
+    }
 
     var body: some View {
         ZStack(alignment: .center) {
@@ -17,48 +30,51 @@ struct FooterView: View {
                 .frame(width: UIScreen.main.bounds.width, height: 80)
                 .background(Color("PeriRed"))
 
-            HStack() {
-                Spacer()
+            HStack {
 
-                VStack() {
-                    Button {
-                        isSearchSelected = true
-                        print("Search")
-                    } label: {
-                        Image(systemName: "magnifyingglass")
+                ForEach(Array(footerItems.enumerated()), id: \.offset) { index, item in
+                    VStack() {
+                        Button {
+                            selectedIndex = index
+                            if (item.name != "Search") {
+                                showingFeatureNotImplementedAlert = true
+                            }
+                        } label: {
+                            Image(systemName: item.systemImageName)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 20, height: 20, alignment: .center)
+                                .foregroundColor(.white)
+                        }
+                        .alert(isPresented: $showingFeatureNotImplementedAlert) {
+                            Alert(title: Text("Feature not available"),
+                                  message: Text("This feature will be added in the near future."),
+                                  dismissButton: .default(Text("Got it!")))
+                        }
+
+                        Text(item.name)
+                            .frame(height: 20)
+                            .foregroundColor(.white)
+                            .fontWeight(isSelected(index: index) ? .bold : .regular)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+
+                NavigationLink(destination: AboutView(), label: {
+                    VStack {
+                        Image(systemName: "questionmark.circle.fill")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 20, height: 20, alignment: .center)
                             .foregroundColor(.white)
-                    }
 
-                    Text("Search")
-                        .frame(height: 20)
-                        .foregroundColor(.white)
-                        .fontWeight(isSearchSelected ? .bold : .regular)
-                }
-
-                Spacer()
-
-                VStack() {
-                    Button {
-                        isSearchSelected = false
-                        print("Prodcut")
-                    } label: {
-                        Image(systemName: "shippingbox.fill")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 20, height: 20, alignment: .center)
+                        Text("About")
+                            .frame(height: 20)
                             .foregroundColor(.white)
+                            .fontWeight(.regular)
                     }
-
-                    Text("Product")
-                        .frame(height: 20)
-                        .foregroundColor(.white)
-                        .fontWeight(isSearchSelected ? .regular : .bold)
-                }
-
-                Spacer()
+                    .frame(maxWidth: .infinity)
+                })
             }
         }
     }

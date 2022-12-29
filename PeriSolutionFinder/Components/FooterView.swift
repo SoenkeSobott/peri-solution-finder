@@ -33,29 +33,30 @@ struct FooterView: View {
             HStack {
 
                 ForEach(Array(footerItems.enumerated()), id: \.offset) { index, item in
-                    VStack() {
-                        Button {
-                            selectedIndex = index
-                            if (item.name != "Search") {
-                                showingFeatureNotImplementedAlert = true
-                            }
-                        } label: {
+                    Button {
+                        selectedIndex = index
+                        if (item.name != "Search") {
+                            showingFeatureNotImplementedAlert = true
+                        }
+                    } label: {
+                        VStack() {
                             Image(systemName: item.systemImageName)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 20, height: 20, alignment: .center)
                                 .foregroundColor(.white)
-                        }
-                        .alert(isPresented: $showingFeatureNotImplementedAlert) {
-                            Alerts.shared().featureNotAvailableAlert()
-                        }
 
-                        Text(item.name)
-                            .frame(height: 20)
-                            .foregroundColor(.white)
-                            .fontWeight(isSelected(index: index) ? .bold : .regular)
+                            Text(item.name)
+                                .frame(height: 20)
+                                .foregroundColor(.white)
+                                .fontWeight(isSelected(index: index) ? .bold : .regular)
+                        }
+                        .frame(maxWidth: .infinity)
+
                     }
-                    .frame(maxWidth: .infinity)
+                    .alert(isPresented: $showingFeatureNotImplementedAlert) {
+                        Alerts.shared().featureNotAvailableAlert()
+                    }
                 }
 
                 NavigationLink(destination: AboutView(), label: {

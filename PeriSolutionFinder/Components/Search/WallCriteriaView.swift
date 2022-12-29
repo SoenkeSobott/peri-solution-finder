@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct WallCriteriaView: View {
-
-    @State private var thickness: Double = 10
-    @State private var height: Double = 100
+    @EnvironmentObject var searchModel: SearchModel
 
     var body: some View {
         VStack {
-            SliderView(sliderValue: $thickness,
-                       sliderHeader: "Thickness",
+            SliderView(sliderValue: $searchModel.thickness,
+                       sliderHeader: "Thickness (CM)",
                        startValue: 10,
                        endValue: 100,
                        step: 10)
-            SliderView(sliderValue: $height,
-                       sliderHeader: "Height",
+            SliderView(sliderValue: $searchModel.height,
+                       sliderHeader: "Height (CM)",
                        startValue: 100,
                        endValue: 1000,
                        step: 100)

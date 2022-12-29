@@ -15,7 +15,9 @@ struct ProductSelectionBoxView: View {
     private let innerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.35
     private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.32
 
-    private let outerToInnerBoxPadding: CGFloat = UIScreen.main.bounds.width*0.025
+    private func outerToInnerBoxPadding() -> CGFloat {
+        return (outerBoxWidth - innerBoxWidth)/2
+    }
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -35,7 +37,7 @@ struct ProductSelectionBoxView: View {
                         .scaledToFit()
                         .frame(height: innerBoxHeight)
                 }
-                .padding(.top, outerToInnerBoxPadding)
+                .padding(.top, outerToInnerBoxPadding())
 
                 Spacer()
 
@@ -43,7 +45,7 @@ struct ProductSelectionBoxView: View {
                     Text("DUO")
                         .multilineTextAlignment(.leading)
                         .fontWeight(.semibold)
-                        .padding(.leading, outerToInnerBoxPadding)
+                        .padding(.leading, outerToInnerBoxPadding())
 
                     Spacer()
                 }

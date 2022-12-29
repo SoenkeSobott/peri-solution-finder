@@ -8,25 +8,22 @@
 import SwiftUI
 
 struct Dropdown: View {
-    @Binding var isSelected: Bool
-    @Binding var structureElements: [Structure]
-    @Binding var selectedStructure: Structure
+    @EnvironmentObject var searchModel: SearchModel
     @Binding var isOpen: Bool
 
     var body: some View {
         VStack {
-            ForEach(structureElements, id: \.self) { structure in
+            ForEach(searchModel.structureElements, id: \.self) { structure in
                 Button(action: {
-                    selectedStructure = structure
+                    searchModel.selectedStructure = structure
                     isOpen = false
                 }, label: {
                     Text(structure.rawValue)
                         .padding(2)
-                        .foregroundColor(structure == selectedStructure ? Color("PeriRed") : .gray)
+                        .foregroundColor(structure == searchModel.selectedStructure ? Color("PeriRed") : .gray)
 
                 })
                 //.disabled(structure != Structure.Wall)
-
             }
         }
         .padding(5)
@@ -42,9 +39,6 @@ struct Dropdown: View {
 
 struct Dropdown_Previews: PreviewProvider {
     static var previews: some View {
-        Dropdown(isSelected: .constant(true),
-                 structureElements: .constant([Structure.Wall, Structure.Slob, Structure.Column]),
-                 selectedStructure: .constant(Structure.Slob),
-                 isOpen: .constant(true))
+        Dropdown(isOpen: .constant(true))
     }
 }

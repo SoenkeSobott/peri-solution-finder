@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SearchCriteriaFiltersView: View {
-    @Binding var selectedCriteria: SearchCriteria
-    @Binding var selectedStructure: Structure
-    
+    @EnvironmentObject var searchModel: SearchModel
+
     var body: some View {
         VStack {
-            if (selectedCriteria == SearchCriteria.Product) {
+            if (searchModel.selectedCriteria == SearchCriteria.Product) {
                 HStack {
                     ProductSelectionBoxView()
                         .padding(.leading, 20)
@@ -21,10 +20,10 @@ struct SearchCriteriaFiltersView: View {
                     Spacer()
                 }
             } else {
-                if (selectedStructure == Structure.Wall) {
+                if (searchModel.selectedStructure == Structure.Wall) {
                     WallCriteriaView()
                 } else {
-                    Text(selectedStructure.rawValue)
+                    Text(searchModel.selectedStructure.rawValue)
                 }
             }
         }
@@ -33,6 +32,6 @@ struct SearchCriteriaFiltersView: View {
 
 struct SearchCriteriaFiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchCriteriaFiltersView(selectedCriteria: .constant(SearchCriteria.Structure), selectedStructure: .constant(Structure.Wall))
+        SearchCriteriaFiltersView()
     }
 }

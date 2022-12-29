@@ -11,11 +11,13 @@ import OSLog
 @main
 struct PeriSolutionFinderApp: App {
     var network = Network()
+    @StateObject var searchModel = SearchModel()
 
     var body: some Scene {
         WindowGroup {
             SearchView()
                 .environmentObject(network)
+                .environmentObject(searchModel)
         }
     }
 }

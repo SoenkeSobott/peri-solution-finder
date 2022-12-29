@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SliderView: View {
-
     @Binding var sliderValue: Double
     var sliderHeader: String
     var startValue: Double
@@ -73,9 +72,9 @@ struct SliderView: View {
                                 VStack(alignment: .center) {
                                     Text(Int(value).description)
                                         .font(Font.system(size: 12))
+                                        .fixedSize(horizontal: true, vertical: false)
                                         .frame(maxWidth: .infinity)
                                         .fontWeight(isStepSelected(currentValue: value) ? .bold : .light)
-                                        .lineLimit(1)
                                     Image(systemName: "capsule.portrait.fill")
                                         .resizable()
                                         .frame(width: 5, height: 8)
@@ -103,7 +102,7 @@ struct SliderView: View {
 struct SliderView_Previews: PreviewProvider {
     static var previews: some View {
         SliderView(sliderValue: .constant(10),
-                   sliderHeader: "Thickness",
+                   sliderHeader: "Thickness (CM)",
                    startValue: 10,
                    endValue: 100,
                    step: 10)

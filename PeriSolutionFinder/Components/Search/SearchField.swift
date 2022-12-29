@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct SearchField: View {
-    @Binding var searchTerm: String
+    @EnvironmentObject var searchModel: SearchModel
 
     var body: some View {
         ZStack(alignment: .trailing) {
-            TextField("Search Projects", text: $searchTerm)
+            TextField("Search Projects", text: $searchModel.searchTerm)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 40)
                 .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 10))
                 .background(Color.white)
                 .cornerRadius(50)
                 .shadow(color: .black.opacity(0.05), radius: 50)
+                .submitLabel(.done)
 
             NavigationLink(destination: ProjectListView()){
                 Image(systemName: "magnifyingglass.circle.fill")
@@ -39,6 +40,6 @@ struct SearchField: View {
 
 struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
-        SearchField(searchTerm: .constant(""))
+        SearchField()
     }
 }

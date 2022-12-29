@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct SearchCriteriaView: View {
-    @Binding var searchTerm: String
-    @Binding var selectedCriteria: SearchCriteria
-    @Binding var structureElements: [Structure]
-    @Binding var selectedStructure: Structure
+    @EnvironmentObject var searchModel: SearchModel
     @State var isStructureDropdownOpen: Bool = false
 
     var body: some View {
         VStack {
-            SearchField(searchTerm: $searchTerm)
+            SearchField()
 
             HStack {
                 Button(action: {
-                    selectedCriteria = SearchCriteria.Product
+                    searchModel.selectedCriteria = SearchCriteria.Product
                     isStructureDropdownOpen = false
                 }, label: {
                     Text("Product")
@@ -28,14 +25,14 @@ struct SearchCriteriaView: View {
                 })
 
                 Button(action: {
-                    selectedCriteria = SearchCriteria.Structure
+                    searchModel.selectedCriteria = SearchCriteria.Structure
                 }, label: {
                     ZStack(alignment: .trailing) {
                         Text("Structure")
                             .searchCriteriaPillStyle(isSelected: isStructureSelected(), height: 40)
 
                         Button(action: {
-                            selectedCriteria = SearchCriteria.Structure
+                            searchModel.selectedCriteria = SearchCriteria.Structure
                             isStructureDropdownOpen = !isStructureDropdownOpen
                         }, label: {
                             Image(systemName: isStructureDropdownOpen ? "chevron.up.circle.fill" : "chevron.down.circle.fill")
@@ -48,10 +45,7 @@ struct SearchCriteriaView: View {
                 })
                 .overlay(
                     HStack {
-                        Dropdown(isSelected: .constant(isStructureSelected()),
-                                 structureElements: $structureElements,
-                                 selectedStructure: $selectedStructure,
-                                 isOpen: $isStructureDropdownOpen)
+                        Dropdown(isOpen: $isStructureDropdownOpen)
                             .offset(y: 70)
                     }
                 )
@@ -61,19 +55,16 @@ struct SearchCriteriaView: View {
     }
 
     func isProductSelected() -> Bool {
-        return selectedCriteria == SearchCriteria.Product
+        return searchModel.selectedCriteria == SearchCriteria.Product
     }
 
     func isStructureSelected() -> Bool {
-        return selectedCriteria == SearchCriteria.Structure
+        return searchModel.selectedCriteria == SearchCriteria.Structure
     }
 }
 
 struct SearchCriteriaView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchCriteriaView(searchTerm: .constant(""),
-                           selectedCriteria: .constant(SearchCriteria.Structure),
-                           structureElements: .constant([Structure.Wall, Structure.Slob, Structure.Column]),
-                           selectedStructure: .constant(Structure.Slob))
+        SearchCriteriaView()
     }
 }

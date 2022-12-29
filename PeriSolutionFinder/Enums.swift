@@ -17,3 +17,7 @@ enum Structure: String {
     case Column
     case Slob
 }
+
+enum Product: String {
+    case Duo
+}

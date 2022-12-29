@@ -46,5 +46,6 @@ struct WallCriteriaView: View {
 struct WallCriteriaView_Previews: PreviewProvider {
     static var previews: some View {
         WallCriteriaView()
+            .environmentObject(SearchModel())
     }
 }

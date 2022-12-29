@@ -66,5 +66,6 @@ struct SearchCriteriaView: View {
 struct SearchCriteriaView_Previews: PreviewProvider {
     static var previews: some View {
         SearchCriteriaView()
+            .environmentObject(SearchModel())
     }
 }

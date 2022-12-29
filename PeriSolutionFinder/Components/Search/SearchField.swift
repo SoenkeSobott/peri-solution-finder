@@ -41,5 +41,6 @@ struct SearchField: View {
 struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
         SearchField()
+            .environmentObject(SearchModel())
     }
 }

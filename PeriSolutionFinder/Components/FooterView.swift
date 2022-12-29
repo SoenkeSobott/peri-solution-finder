@@ -47,9 +47,7 @@ struct FooterView: View {
                                 .foregroundColor(.white)
                         }
                         .alert(isPresented: $showingFeatureNotImplementedAlert) {
-                            Alert(title: Text("Feature not available"),
-                                  message: Text("This feature will be added in the near future."),
-                                  dismissButton: .default(Text("Got it!")))
+                            Alerts.shared().featureNotAvailableAlert()
                         }
 
                         Text(item.name)

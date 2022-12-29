@@ -12,7 +12,6 @@ class SharedLogger {
 
     private let LOGGER: Logger
 
-    // Initialization
     private init() {
         self.LOGGER = Logger(subsystem: "com.soenkesobott.PeriSolutionFinder", category: "main")
     }

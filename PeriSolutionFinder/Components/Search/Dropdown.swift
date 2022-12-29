@@ -10,20 +10,27 @@ import SwiftUI
 struct Dropdown: View {
     @EnvironmentObject var searchModel: SearchModel
     @Binding var isOpen: Bool
+    @State private var showingFeatureNotImplementedAlert: Bool = false
 
     var body: some View {
         VStack {
             ForEach(searchModel.structureElements, id: \.self) { structure in
                 Button(action: {
-                    searchModel.selectedStructure = structure
-                    isOpen = false
+                    if (structure != Structure.Wall) {
+                        showingFeatureNotImplementedAlert = true
+                    } else {
+                        searchModel.selectedStructure = structure
+                        isOpen = false
+                    }
                 }, label: {
                     Text(structure.rawValue)
                         .padding(2)
                         .foregroundColor(structure == searchModel.selectedStructure ? Color("PeriRed") : .gray)
 
                 })
-                //.disabled(structure != Structure.Wall)
+                .alert(isPresented: $showingFeatureNotImplementedAlert) {
+                    Alerts.shared().featureNotAvailableAlert()
+                }
             }
         }
         .padding(5)

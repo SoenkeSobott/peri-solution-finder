@@ -15,10 +15,9 @@ struct BQListHeader: View {
         HStack(spacing: 0) {
 
             Text("Article No.")
-                .frame(width: UIScreen.main.bounds.width*0.2, height: 50)
+                .frame(width: UIScreen.main.bounds.width*0.25, height: 50)
 
-
-            HStack {
+            HStack(spacing: 0) {
                 Button(action: {
                     if columnsIndex <= 0 {
                         columnsIndex = 2
@@ -48,13 +47,13 @@ struct BQListHeader: View {
                         .foregroundColor(Color("PeriRed"))
                 })
             }
-            .frame(width: UIScreen.main.bounds.width*0.5, height: 50)
+            .frame(width: UIScreen.main.bounds.width*0.4, height: 50)
 
             Text("Qty")
-                .frame(width: UIScreen.main.bounds.width*0.2, height: 50)
+                .frame(width: UIScreen.main.bounds.width*0.25, height: 50)
 
         }
-        .font(.system(size: 14))
+        .font(.system(size: 12))
         .fontWeight(.bold)
     }
 }

@@ -23,7 +23,7 @@ struct BQView: View {
                     HStack {
                         Text(entry.articleNumber)
                             .padding(.leading, 5)
-                            .frame(width: UIScreen.main.bounds.width*0.22, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width*0.22, alignment: .center)
                             .lineLimit(1)
 
                         Divider()
@@ -66,6 +66,7 @@ struct BQView: View {
             }
         }
         .frame(width: UIScreen.main.bounds.width*0.9)
+        .cornerRadius(25)
     }
 }
 

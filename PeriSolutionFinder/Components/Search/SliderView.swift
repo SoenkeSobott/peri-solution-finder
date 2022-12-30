@@ -25,11 +25,6 @@ struct SliderView: View {
         return (outerBoxWidth-innerBoxWidth)/2
     }
 
-    func mediumImpact() {
-        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-            impactMed.impactOccurred()
-    }
-
     func isStepSelected(currentValue: Double) -> Bool {
         return currentValue == sliderValue
     }
@@ -84,13 +79,9 @@ struct SliderView: View {
                         }
                         .frame(width: innerBoxWidth-30)
 
-
                         Slider(value: $sliderValue, in: startValue...endValue, step: step)
                             .frame(width: innerBoxWidth-30)
                             .accentColor(Color("PeriRed"))
-                            .onChange(of: sliderValue) { _ in
-                                mediumImpact()
-                            }
                     }
                 }
             }

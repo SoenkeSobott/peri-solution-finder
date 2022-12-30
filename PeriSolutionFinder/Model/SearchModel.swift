@@ -17,8 +17,8 @@ class SearchModel: ObservableObject {
 
     // FilterValues
     @Published var searchTerm: String = ""
-    @Published var thickness: Double = 10
-    @Published var height: Double = 100
+    @Published var thickness: Double?
+    @Published var height: Double?
 
     func getSelectedProduct() -> Product? {
         return selectedProduct
@@ -29,12 +29,40 @@ class SearchModel: ObservableObject {
         updateSearchTerm()
     }
 
-    private func updateSearchTerm() {
+    func getThickness() -> Double? {
+        return thickness
+    }
+
+    func setThickness(thickness: Double?) {
+        self.thickness = thickness
+    }
+
+    func getHeight() -> Double? {
+        return height
+    }
+
+    func setHeight(height: Double?) {
+        self.height = height
+    }
+
+    func updateSearchTerm() {
+        // Product
         if (selectedProduct != nil) {
             searchTerm = selectedProduct!.rawValue
         } else if (selectedProduct == nil) {
             searchTerm = ""
         }
+
+        // Thickness
+        if (thickness != nil && thickness! > 0) {
+            searchTerm+=thickness!.description
+        }
+
+        // Height
+        if (height != nil && height! > 0) {
+            searchTerm+=height!.description
+        }
+
     }
 }
 

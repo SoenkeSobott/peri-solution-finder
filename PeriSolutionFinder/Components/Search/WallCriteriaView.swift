@@ -9,22 +9,36 @@ import SwiftUI
 
 struct WallCriteriaView: View {
     @EnvironmentObject var searchModel: SearchModel
+    @State var thickness: Double = -1
+    @State var height: Double = -1
 
     var body: some View {
         VStack {
-            SliderView(sliderValue: $searchModel.thickness,
+            SliderView(sliderValue: $thickness,
                        sliderHeader: "Thickness (CM)",
                        startValue: 10,
                        endValue: 100,
                        step: 10)
-            SliderView(sliderValue: $searchModel.height,
+            .onAppear {
+                if (searchModel.thickness != nil) {
+                    thickness = searchModel.thickness!
+                }
+            }
+            SliderView(sliderValue: $height,
                        sliderHeader: "Height (CM)",
                        startValue: 100,
                        endValue: 1000,
                        step: 100)
+            .onAppear {
+                if (searchModel.height != nil) {
+                    height = searchModel.height!
+                }
+            }
 
             Button(action: {
-                print("Add to search")
+                searchModel.setThickness(thickness: thickness)
+                searchModel.setHeight(height: height)
+                searchModel.updateSearchTerm()
             }, label: {
                 Text("Add to Search")
                     .foregroundColor(Color("PeriRed"))

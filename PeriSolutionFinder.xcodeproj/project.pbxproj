@@ -36,6 +36,7 @@
 		2D31158E295DB0290091D4A3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31158D295DB0290091D4A3 /* SearchModel.swift */; };
 		2D92DCA1295DD97D002B9A9A /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DCA0295DD97D002B9A9A /* AboutView.swift */; };
 		2D92DCA3295DDCC2002B9A9A /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DCA2295DDCC2002B9A9A /* Alerts.swift */; };
+		2D92DCA6295DEB6F002B9A9A /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 2D92DCA5295DEB6F002B9A9A /* Sliders */; };
 		2DB11580292C1AD30043872E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1157F292C1AD30043872E /* SearchView.swift */; };
 		2DB11582292C261B0043872E /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB11581292C261B0043872E /* FooterView.swift */; };
 		2DEE53D62959F0F90055A550 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE53D52959F0F90055A550 /* SearchField.swift */; };
@@ -109,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DEE53E1295B47FA0055A550 /* SDWebImageSwiftUI in Frameworks */,
+				2D92DCA6295DEB6F002B9A9A /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +306,7 @@
 			name = PeriSolutionFinder;
 			packageProductDependencies = (
 				2DEE53E0295B47FA0055A550 /* SDWebImageSwiftUI */,
+				2D92DCA5295DEB6F002B9A9A /* Sliders */,
 			);
 			productName = PeriSolutionFinder;
 			productReference = 2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */;
@@ -379,6 +382,7 @@
 			mainGroup = 2D2CE724291D14B400C369D4;
 			packageReferences = (
 				2DEE53DF295B47FA0055A550 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				2D92DCA4295DEB6F002B9A9A /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = 2D2CE72E291D14B400C369D4 /* Products */;
 			projectDirPath = "";
@@ -777,6 +781,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2D92DCA4295DEB6F002B9A9A /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:spacenation/swiftui-sliders.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		2DEE53DF295B47FA0055A550 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -788,6 +800,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2D92DCA5295DEB6F002B9A9A /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D92DCA4295DEB6F002B9A9A /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
 		2DEE53E0295B47FA0055A550 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2DEE53DF295B47FA0055A550 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

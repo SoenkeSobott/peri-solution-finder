@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import RangeUISlider
 
 struct SliderView: View {
-    @Binding var sliderValue: Double
+    @EnvironmentObject var searchModel: SearchModel
+
+    @Binding var lowValue: CGFloat
+    @Binding var highValue: CGFloat
     var sliderHeader: String
     var startValue: Double
     var endValue: Double
@@ -20,17 +24,8 @@ struct SliderView: View {
     private let innerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.85
     private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.2
 
-
     private func outerToInnerBoxPadding() -> CGFloat {
         return (outerBoxWidth-innerBoxWidth)/2
-    }
-
-    func isStepSelected(currentValue: Double) -> Bool {
-        return currentValue == sliderValue
-    }
-
-    func divisionValue() -> CGFloat {
-        return CGFloat(endValue/step)
     }
 
     var body: some View {
@@ -47,7 +42,6 @@ struct SliderView: View {
                         .multilineTextAlignment(.leading)
                         .fontWeight(.semibold)
                         .padding(.leading, outerToInnerBoxPadding())
-
                     Spacer()
                 }
                 .frame(width: outerBoxWidth)
@@ -69,7 +63,6 @@ struct SliderView: View {
                                         .font(Font.system(size: 12))
                                         .fixedSize(horizontal: true, vertical: false)
                                         .frame(maxWidth: .infinity)
-                                        .fontWeight(isStepSelected(currentValue: value) ? .bold : .light)
                                     Image(systemName: "capsule.portrait.fill")
                                         .resizable()
                                         .frame(width: 5, height: 8)
@@ -79,9 +72,31 @@ struct SliderView: View {
                         }
                         .frame(width: innerBoxWidth-30)
 
-                        Slider(value: $sliderValue, in: startValue...endValue, step: step)
-                            .frame(width: innerBoxWidth-30)
-                            .accentColor(Color("PeriRed"))
+                        RangeSlider(minValueSelected: $lowValue, maxValueSelected: $highValue)
+                            .scaleMinValue(0)
+                            .scaleMaxValue(1)
+                            .stepIncrement(0.1)
+                            .rangeSelectedColor(Color("PeriRed"))
+                            .rangeNotSelectedColor(.gray.opacity(0.3))
+                            .barHeight(4)
+                            .leftKnobColor(.white)
+                            .leftKnobWidth(30)
+                            .leftKnobHeight(30)
+                            .leftKnobCorners(15)
+                            .leftShadowColor(.black)
+                            .leftShadowOpacity(0.2)
+                            .leftShadowRadius(5)
+                            .leftShadowOffset(CGSize(width: 0, height: 0))
+                            .rightKnobColor(.white)
+                            .rightKnobWidth(30)
+                            .rightKnobHeight(30)
+                            .rightKnobCorners(15)
+                            .rightShadowColor(.black)
+                            .rightShadowOpacity(0.2)
+                            .rightShadowRadius(5)
+                            .rightShadowOffset(CGSize(width: 0, height: 0))
+                            .frame(width: innerBoxWidth-10, height: 30)
+                            .padding(.top, 5)
                     }
                 }
             }
@@ -92,9 +107,10 @@ struct SliderView: View {
 
 struct SliderView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderView(sliderValue: .constant(10),
+        SliderView(lowValue: .constant(0),
+                   highValue: .constant(1),
                    sliderHeader: "Thickness (CM)",
-                   startValue: 10,
+                   startValue: 0,
                    endValue: 100,
                    step: 10)
     }

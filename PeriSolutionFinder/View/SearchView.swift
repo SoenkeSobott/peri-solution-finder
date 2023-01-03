@@ -36,19 +36,15 @@ struct SearchView: View {
                         .frame(height: searchViewHeight)
                         .zIndex(10)
 
-                        Text(getHeadlineForSelectedSearchCriteria())
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .fontWeight(.bold)
-                            .font(Font.system(size: 22, weight: .medium, design: .default))
-                            .padding(.bottom, 0)
-                            .padding(.leading, UIScreen.main.bounds.width*0.05)
-                            .padding(.trailing, UIScreen.main.bounds.width*0.05)
-
-
-                        SearchCriteriaFiltersView()
-                            .zIndex(0)
-
+                        if (searchModel.selectedCriteria == SearchCriteria.Product) {
+                            ProductFiltersView()
+                        } else {
+                            if (searchModel.selectedStructure == Structure.Wall) {
+                                WallFiltersView()
+                            } else {
+                                Text(searchModel.selectedStructure.rawValue)
+                            }
+                        }
 
                         Spacer()
 
@@ -56,16 +52,6 @@ struct SearchView: View {
                     }
                 }
             }
-        }
-    }
-    
-    func getHeadlineForSelectedSearchCriteria() -> String {
-        if (searchModel.selectedCriteria == SearchCriteria.Product) {
-            return "Search by Name"
-        } else if (searchModel.selectedCriteria == SearchCriteria.Structure) {
-            return searchModel.selectedStructure.rawValue
-        } else {
-            return "No Selection"
         }
     }
 }

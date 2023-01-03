@@ -17,8 +17,10 @@ class SearchModel: ObservableObject {
 
     // FilterValues
     @Published var searchTerm: String = ""
-    @Published var thickness: Double?
-    @Published var height: Double?
+    @Published private var thicknessLowValue: CGFloat?
+    @Published private var thicknessHighValue: CGFloat?
+    @Published private var heightLowValue: CGFloat?
+    @Published private var heightHighValue: CGFloat?
 
     func getSelectedProduct() -> Product? {
         return selectedProduct
@@ -29,20 +31,36 @@ class SearchModel: ObservableObject {
         updateSearchTerm()
     }
 
-    func getThickness() -> Double? {
-        return thickness
+    func getThicknessLowValue() -> CGFloat? {
+        return thicknessLowValue
     }
 
-    func setThickness(thickness: Double?) {
-        self.thickness = thickness
+    func setThicknessLowValue(thickness: CGFloat?) {
+        self.thicknessLowValue = thickness
     }
 
-    func getHeight() -> Double? {
-        return height
+    func getThicknessHighValue() -> CGFloat? {
+        return thicknessHighValue
     }
 
-    func setHeight(height: Double?) {
-        self.height = height
+    func setThicknessHighValue(thickness: CGFloat?) {
+        self.thicknessHighValue = thickness
+    }
+
+    func getHeightLowValue() -> CGFloat? {
+        return heightLowValue
+    }
+
+    func setHeightLowValue(height: CGFloat?) {
+        self.heightLowValue = height
+    }
+
+    func getHeightHighValue() -> CGFloat? {
+        return heightHighValue
+    }
+
+    func setHeightHighValue(height: CGFloat?) {
+        self.heightHighValue = height
     }
 
     func updateSearchTerm() {
@@ -54,13 +72,16 @@ class SearchModel: ObservableObject {
         }
 
         // Thickness
-        if (thickness != nil && thickness! > 0) {
-            searchTerm+=thickness!.description
+        if (thicknessLowValue != nil && thicknessLowValue! >= 0) {
+            searchTerm+="LowT: \(thicknessLowValue!.description)"
+        }
+        if (thicknessHighValue != nil && thicknessHighValue! > 0) {
+            searchTerm+="HighT: \(thicknessHighValue!.description)"
         }
 
         // Height
-        if (height != nil && height! > 0) {
-            searchTerm+=height!.description
+        if (heightLowValue != nil && heightLowValue! >= 0) {
+            searchTerm+="LowH: \(heightLowValue!.description)"
         }
 
     }

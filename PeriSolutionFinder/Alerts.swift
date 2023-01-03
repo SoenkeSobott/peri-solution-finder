@@ -14,7 +14,7 @@ class Alerts {
     }
 
     func featureNotAvailableAlert() -> Alert {
-        return Alert(title: Text("Feature not available"),
+        return Alert(title: Text("Coming Soon"),
                      message: Text("This feature will be added in the near future."),
                      dismissButton: .default(Text("Got it!")))
     }

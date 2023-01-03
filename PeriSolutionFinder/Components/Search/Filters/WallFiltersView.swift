@@ -11,9 +11,9 @@ import RangeUISlider
 struct WallFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
     @State var thicknessLowValue: CGFloat = 0
-    @State var thicknessHighValue: CGFloat = 1
+    @State var thicknessHighValue: CGFloat = 100
     @State var heightLowValue: CGFloat = 0
-    @State var heightHighValue: CGFloat = 1
+    @State var heightHighValue: CGFloat = 1000
     @State var height: Double = -1
 
     var body: some View {
@@ -46,11 +46,6 @@ struct WallFiltersView: View {
                        startValue: 0,
                        endValue: 100,
                        step: 10)
-            .onAppear {
-                if (searchModel.getThicknessLowValue() != nil) {
-                    print("assign: \(searchModel.getThicknessLowValue()!/100)")
-                }
-            }
 
             SliderView(lowValue: $heightLowValue,
                        highValue: $heightHighValue,
@@ -58,16 +53,12 @@ struct WallFiltersView: View {
                        startValue: 0,
                        endValue: 1000,
                        step: 100)
-            .onAppear {
-                if (searchModel.getThicknessLowValue() != nil) {
-                    print("assign: \(searchModel.getThicknessLowValue()!/100)")
-                }
-            }
 
             Button(action: {
-                searchModel.setThicknessLowValue(thickness: (thicknessLowValue*100).rounded())
-                searchModel.setThicknessHighValue(thickness: (thicknessHighValue*100).rounded())
-                searchModel.setHeightLowValue(height: (heightLowValue*1000).rounded())
+                searchModel.setThicknessLowValue(thickness: thicknessLowValue.rounded())
+                searchModel.setThicknessHighValue(thickness: thicknessHighValue.rounded())
+                searchModel.setHeightLowValue(height: heightLowValue.rounded())
+                searchModel.setHeightHighValue(height: heightHighValue.rounded())
                 searchModel.updateSearchTerm()
             }, label: {
                 Text("Add to Search")

@@ -66,24 +66,25 @@ class SearchModel: ObservableObject {
     func updateSearchTerm() {
         // Product
         if (selectedProduct != nil) {
-            searchTerm = selectedProduct!.rawValue
+            searchTerm = "\(selectedProduct!.rawValue) "
         } else if (selectedProduct == nil) {
             searchTerm = ""
         }
 
         // Thickness
         if (thicknessLowValue != nil && thicknessLowValue! >= 0) {
-            searchTerm+="LowT: \(thicknessLowValue!.description)"
+            searchTerm+="LT:\(Float(thicknessLowValue!).decimals(0)) "
         }
         if (thicknessHighValue != nil && thicknessHighValue! > 0) {
-            searchTerm+="HighT: \(thicknessHighValue!.description)"
+            searchTerm+="HT:\(Float(thicknessHighValue!).decimals(0)) "
         }
 
         // Height
         if (heightLowValue != nil && heightLowValue! >= 0) {
-            searchTerm+="LowH: \(heightLowValue!.description)"
+            searchTerm+="LH:\(Float(heightLowValue!).decimals(0)) "
         }
-
+        if (heightHighValue != nil && heightHighValue! >= 0) {
+            searchTerm+="HH:\(Float(heightHighValue!).decimals(0)) "
+        }
     }
 }
-

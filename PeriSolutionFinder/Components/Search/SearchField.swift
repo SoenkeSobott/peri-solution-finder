@@ -15,7 +15,7 @@ struct SearchField: View {
             TextField("Search Projects", text: $searchModel.searchTerm)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 40)
-                .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 10))
+                .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
                 .background(Color.white)
                 .cornerRadius(50)
                 .shadow(color: .black.opacity(0.05), radius: 50)

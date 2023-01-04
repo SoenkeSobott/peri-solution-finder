@@ -14,6 +14,9 @@ class SearchModel: ObservableObject {
     @Published var selectedCriteria: SearchCriteria = SearchCriteria.Product
     @Published var structureElements: [Structure] = [Structure.Wall, Structure.Column, Structure.Slob]
     @Published var selectedStructure: Structure = Structure.Wall
+    @Published var segmentElements: [Segment] = [Segment.Residential, Segment.NonResidential, Segment.Infrastrucutre, Segment.Industrial]
+    @Published var selectedSegment: Segment = Segment.Infrastrucutre
+
 
     // FilterValues
     @Published var searchTerm: String = ""

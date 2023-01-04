@@ -10,6 +10,8 @@ import Foundation
 enum SearchCriteria {
     case Product
     case Structure
+    case Segment
+    case Solution
 }
 
 enum Structure: String {
@@ -20,4 +22,11 @@ enum Structure: String {
 
 enum Product: String {
     case Duo
+}
+
+enum Segment: String {
+    case Residential
+    case NonResidential = "Non-Residential"
+    case Infrastrucutre
+    case Industrial
 }

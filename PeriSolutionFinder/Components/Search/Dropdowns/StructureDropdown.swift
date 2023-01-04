@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Dropdown: View {
+struct StructureDropdown: View {
     @EnvironmentObject var searchModel: SearchModel
     @Binding var isOpen: Bool
     @State private var showingFeatureNotImplementedAlert: Bool = false
@@ -46,6 +46,7 @@ struct Dropdown: View {
 
 struct Dropdown_Previews: PreviewProvider {
     static var previews: some View {
-        Dropdown(isOpen: .constant(true))
+        StructureDropdown(isOpen: .constant(true))
+            .environmentObject(SearchModel())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @EnvironmentObject var searchModel: SearchModel
-    private let searchViewHeight: CGFloat = UIScreen.main.bounds.height*0.3
+    private let searchViewHeight: CGFloat = UIScreen.main.bounds.height*0.35
 
     var body: some View {
         NavigationStack {
@@ -38,12 +38,16 @@ struct SearchView: View {
 
                         if (searchModel.selectedCriteria == SearchCriteria.Product) {
                             ProductFiltersView()
-                        } else {
+                        } else if (searchModel.selectedCriteria == SearchCriteria.Structure) {
                             if (searchModel.selectedStructure == Structure.Wall) {
                                 WallFiltersView()
                             } else {
                                 Text(searchModel.selectedStructure.rawValue)
                             }
+                        } else if (searchModel.selectedCriteria == SearchCriteria.Segment) {
+                            SegmentFiltersView()
+                        } else if (searchModel.selectedCriteria == SearchCriteria.Solution) {
+                            SolutionFiltersView()
                         }
 
                         Spacer()

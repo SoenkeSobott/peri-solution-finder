@@ -20,13 +20,7 @@ struct WallFiltersView: View {
         VStack {
             HStack {
                 Text("Wall")
-                    .foregroundColor(Color.black)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fontWeight(.bold)
-                    .font(Font.system(size: 22, weight: .medium, design: .default))
-                    .padding(.bottom, 0)
-                    .padding(.leading, UIScreen.main.bounds.width*0.05)
-                    .padding(.trailing, UIScreen.main.bounds.width*0.05)
+                    .filterHeadingStyle()
 
                 Button(action: {
                     searchModel.setThicknessLowValue(thickness: -1)

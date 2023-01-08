@@ -27,7 +27,6 @@ struct WallFiltersView: View {
                     searchModel.setThicknessHighValue(thickness: -1)
                     searchModel.setHeightLowValue(height: -1)
                     searchModel.setHeightHighValue(height: -1)
-                    searchModel.updateSearchTerm()
                 }, label: {
                     Text("Reset")
                         .padding(.trailing, UIScreen.main.bounds.width*0.05)
@@ -53,7 +52,6 @@ struct WallFiltersView: View {
                 searchModel.setThicknessHighValue(thickness: thicknessHighValue.rounded())
                 searchModel.setHeightLowValue(height: heightLowValue.rounded())
                 searchModel.setHeightHighValue(height: heightHighValue.rounded())
-                searchModel.updateSearchTerm()
             }, label: {
                 Text("Add to Search")
                     .foregroundColor(Color("PeriRed"))

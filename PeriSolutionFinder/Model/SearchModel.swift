@@ -31,7 +31,6 @@ class SearchModel: ObservableObject {
 
     func setSelectedProduct(product: Product?) {
         self.selectedProduct = product
-        updateSearchTerm()
     }
 
     func getThicknessLowValue() -> CGFloat? {
@@ -64,30 +63,5 @@ class SearchModel: ObservableObject {
 
     func setHeightHighValue(height: CGFloat?) {
         self.heightHighValue = height
-    }
-
-    func updateSearchTerm() {
-        // Product
-        if (selectedProduct != nil) {
-            searchTerm = "\(selectedProduct!.rawValue) "
-        } else if (selectedProduct == nil) {
-            searchTerm = ""
-        }
-
-        // Thickness
-        if (thicknessLowValue != nil && thicknessLowValue! >= 0) {
-            searchTerm+="LT:\(Float(thicknessLowValue!).decimals(0)) "
-        }
-        if (thicknessHighValue != nil && thicknessHighValue! > 0) {
-            searchTerm+="HT:\(Float(thicknessHighValue!).decimals(0)) "
-        }
-
-        // Height
-        if (heightLowValue != nil && heightLowValue! >= 0) {
-            searchTerm+="LH:\(Float(heightLowValue!).decimals(0)) "
-        }
-        if (heightHighValue != nil && heightHighValue! >= 0) {
-            searchTerm+="HH:\(Float(heightHighValue!).decimals(0)) "
-        }
     }
 }

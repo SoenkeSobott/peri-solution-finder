@@ -26,6 +26,7 @@ struct SearchCriteriaView: View {
                         Text("Product")
                             .searchCriteriaPillStyle(
                                 isSelected: isSelected(searchCriteria: SearchCriteria.Product),
+                                isFilterSet: searchModel.isProductFilterSet(),
                                 height: 40)
                     })
 
@@ -37,6 +38,7 @@ struct SearchCriteriaView: View {
                             Text("Structure")
                                 .searchCriteriaPillStyle(
                                     isSelected: isSelected(searchCriteria: SearchCriteria.Structure),
+                                    isFilterSet: searchModel.isStructureFilterSet(),
                                     height: 40)
 
                             Button(action: {
@@ -44,11 +46,10 @@ struct SearchCriteriaView: View {
                                 isStructureDropdownOpen.toggle()
                                 isSegmentDropdownOpen = false
                             }, label: {
-                                Image(systemName: isStructureDropdownOpen ? "chevron.up.circle.fill" : "chevron.down.circle.fill")
-                                    .resizable()
-                                    .foregroundColor(isSelected(searchCriteria: SearchCriteria.Structure) ? Color("PeriRed") : .gray)
-                                    .frame(width: 25, height: 25)
-                                    .padding(.trailing, 7.5)
+                                Image(systemName: getDropdownImageName())
+                                    .dropdownChevron(
+                                        isSelected: isSelected(searchCriteria: SearchCriteria.Structure),
+                                        isFilterSet: searchModel.isStructureFilterSet())
                             })
                         }
                     })
@@ -71,6 +72,7 @@ struct SearchCriteriaView: View {
                             Text("Segment")
                                 .searchCriteriaPillStyle(
                                     isSelected: isSelected(searchCriteria: SearchCriteria.Segment),
+                                    isFilterSet: false,
                                     height: 40)
 
                             Button(action: {
@@ -102,6 +104,7 @@ struct SearchCriteriaView: View {
                         Text("Solution")
                             .searchCriteriaPillStyle(
                                 isSelected: isSelected(searchCriteria: SearchCriteria.Solution),
+                                isFilterSet: false,
                                 height: 40)
                     })
                 }
@@ -112,6 +115,16 @@ struct SearchCriteriaView: View {
 
     func isSelected(searchCriteria: SearchCriteria) -> Bool {
         return searchModel.selectedCriteria == searchCriteria
+    }
+
+    func getDropdownImageName() -> String{
+        if (searchModel.isStructureFilterSet()) {
+            if (isStructureDropdownOpen) {
+                return "chevron.up.circle"
+            }
+            return "chevron.down.circle"
+        }
+        return isStructureDropdownOpen ? "chevron.up.circle.fill" : "chevron.down.circle.fill"
     }
 }
 

@@ -64,4 +64,30 @@ class SearchModel: ObservableObject {
     func setHeightHighValue(height: CGFloat?) {
         self.heightHighValue = height
     }
+
+    // Filter set helper functions
+
+    func isProductFilterSet() -> Bool {
+        return selectedProduct != nil
+    }
+
+    func isStructureFilterSet() -> Bool {
+        return isWallFilterSet()
+    }
+
+    func isWallFilterSet() -> Bool {
+        if (thicknessLowValue != nil && thicknessLowValue! != 0) {
+            return thicknessLowValue! > 0
+        }
+        if (thicknessHighValue != nil && thicknessHighValue! != 100) {
+            return thicknessHighValue! < 100
+        }
+        if (heightLowValue != nil && heightLowValue != 0) {
+            return heightLowValue! > 0
+        }
+        if (heightHighValue != nil && heightHighValue != 1000) {
+            return heightHighValue! < 1000
+        }
+        return false
+    }
 }

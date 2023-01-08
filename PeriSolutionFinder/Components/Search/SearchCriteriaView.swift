@@ -55,7 +55,7 @@ struct SearchCriteriaView: View {
                     .overlay(
                         HStack {
                             StructureDropdown(isOpen: $isStructureDropdownOpen)
-                                .offset(y: 70)
+                                .offset(y: 95)
                         }
                     )
                 }

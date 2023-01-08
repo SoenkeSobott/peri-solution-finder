@@ -19,7 +19,7 @@ struct WallFiltersView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Wall")
+                Text(Structure.Wall.rawValue)
                     .filterHeadingStyle()
 
                 Button(action: {

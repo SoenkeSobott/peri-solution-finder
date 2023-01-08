@@ -17,7 +17,9 @@ enum SearchCriteria {
 enum Structure: String {
     case Wall
     case Column
-    case Slob
+    case Slab
+    case Culvert
+    case Tank
 }
 
 enum Product: String {

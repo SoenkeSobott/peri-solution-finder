@@ -10,12 +10,35 @@ import SwiftUI
 class SearchModel: ObservableObject {
     let identifier = UUID()
 
-    @Published private var selectedProduct: Product?
     @Published var selectedCriteria: SearchCriteria = SearchCriteria.Product
+
+    // Product
+    @Published private var selectedProduct: Product?
+
+    // Element
     @Published var structureElements: [Structure] = [Structure.Wall, Structure.Column, Structure.Slab, Structure.Culvert, Structure.Tank]
     @Published var selectedStructure: Structure = Structure.Wall
+
+
+    // Segment
     @Published var segmentElements: [Segment] = [Segment.Residential, Segment.NonResidential, Segment.Infrastrucutre, Segment.Industrial]
     @Published var selectedSegment: Segment = Segment.Infrastrucutre
+    @Published var infrastructureElements: [Infrastructure] = [Infrastructure.Bridges, Infrastructure.Tunnels, Infrastructure.LandTraffics, Infrastructure.Airports, Infrastructure.MarineAndWaterInfrastructur, Infrastructure.WaterPlants]
+    @Published var selectedInfrastructureElements: [Infrastructure] = []
+    @Published var selectedInfrastructure: Infrastructure?
+
+    // Segment - Tunnels
+    @Published var tunnelElements: [Tunnel] = [Tunnel.RoadTunnels, Tunnel.RailwayTunnels, Tunnel.NonTrafficTunnels]
+    @Published var selectedTunnelElements: [Tunnel] = []
+    // Segment - Water Plants
+    @Published var waterPlantElements: [WaterPlant] = [WaterPlant.WaterTreatmentPlants, WaterPlant.DesalinationPlants, WaterPlant.ElevatedWaterTowers]
+    @Published var selectedWaterPlantElements: [WaterPlant] = []
+
+
+    // Solution
+    @Published var solutionElements: [Solution] = [Solution.ChamferCorner, Solution.StraightWall, Solution.Traveller]
+    @Published var selectedSolutionElements: [Solution] = []
+
 
 
     // FilterValues
@@ -89,5 +112,13 @@ class SearchModel: ObservableObject {
             return heightHighValue! < 1000
         }
         return false
+    }
+
+    func isSegmentFilterSet() -> Bool {
+        return isInfrastructureFilterSet()
+    }
+
+    func isInfrastructureFilterSet() -> Bool {
+        return selectedInfrastructureElements.count > 0
     }
 }

@@ -10,8 +10,17 @@ import SwiftUI
 class Network: ObservableObject {
     @Published var projects: [Project] = []
 
-    func getProjects() {
-        guard let url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
+    func getProjects(product: Product?) {
+        guard var url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
+
+        // Add filter parameters
+        if (product != nil) {
+            url.append(queryItems: [
+                URLQueryItem(name: "product", value: product?.rawValue)
+            ])
+        }
+
+        print("URL: ", url)
 
         let urlRequest = URLRequest(url: url)
 

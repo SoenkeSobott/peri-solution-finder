@@ -46,7 +46,8 @@ struct SearchCriteriaView: View {
                                 isStructureDropdownOpen.toggle()
                                 isSegmentDropdownOpen = false
                             }, label: {
-                                Image(systemName: getDropdownImageName())
+                                Image(systemName: getDropdownImageName(
+                                    isDropDownOpen: isStructureDropdownOpen, isFilterSet: searchModel.isStructureFilterSet()))
                                     .dropdownChevron(
                                         isSelected: isSelected(searchCriteria: SearchCriteria.Structure),
                                         isFilterSet: searchModel.isStructureFilterSet())
@@ -72,7 +73,7 @@ struct SearchCriteriaView: View {
                             Text("Segment")
                                 .searchCriteriaPillStyle(
                                     isSelected: isSelected(searchCriteria: SearchCriteria.Segment),
-                                    isFilterSet: false,
+                                    isFilterSet: searchModel.isSegmentFilterSet(),
                                     height: 40)
 
                             Button(action: {
@@ -80,12 +81,10 @@ struct SearchCriteriaView: View {
                                 isStructureDropdownOpen = false
                                 isSegmentDropdownOpen.toggle()
                             }, label: {
-                                Image(systemName: isSegmentDropdownOpen ? "chevron.up.circle.fill" : "chevron.down.circle.fill")
-                                    .resizable()
-                                    .foregroundColor(
-                                        isSelected(searchCriteria: SearchCriteria.Segment) ? Color("PeriRed") : .gray)
-                                    .frame(width: 25, height: 25)
-                                    .padding(.trailing, 7.5)
+                                Image(systemName: getDropdownImageName(isDropDownOpen: isSegmentDropdownOpen, isFilterSet: searchModel.isSegmentFilterSet()))
+                                    .dropdownChevron(
+                                        isSelected: isSelected(searchCriteria: SearchCriteria.Segment),
+                                        isFilterSet: searchModel.isSegmentFilterSet())
                             })
                         }
                     })
@@ -117,14 +116,14 @@ struct SearchCriteriaView: View {
         return searchModel.selectedCriteria == searchCriteria
     }
 
-    func getDropdownImageName() -> String{
-        if (searchModel.isStructureFilterSet()) {
-            if (isStructureDropdownOpen) {
+    func getDropdownImageName(isDropDownOpen: Bool, isFilterSet: Bool) -> String{
+        if (isFilterSet) {
+            if (isDropDownOpen) {
                 return "chevron.up.circle"
             }
             return "chevron.down.circle"
         }
-        return isStructureDropdownOpen ? "chevron.up.circle.fill" : "chevron.down.circle.fill"
+        return isDropDownOpen ? "chevron.up.circle.fill" : "chevron.down.circle.fill"
     }
 }
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProjectListView: View {
+    @EnvironmentObject var searchModel: SearchModel
     @EnvironmentObject var network: Network
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
@@ -62,7 +63,7 @@ struct ProjectListView: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
                     .onAppear {
-                        network.getProjects()
+                        network.getProjects(product: searchModel.getSelectedProduct())
                     }
                 }
             }

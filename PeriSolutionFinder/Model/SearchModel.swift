@@ -43,10 +43,10 @@ class SearchModel: ObservableObject {
 
     // FilterValues
     @Published var searchTerm: String = ""
-    @Published private var thicknessLowValue: CGFloat?
-    @Published private var thicknessHighValue: CGFloat?
-    @Published private var heightLowValue: CGFloat?
-    @Published private var heightHighValue: CGFloat?
+    @Published private var thicknessLowValue: CGFloat = 0
+    @Published private var thicknessHighValue: CGFloat = 100
+    @Published private var heightLowValue: CGFloat = 0
+    @Published private var heightHighValue: CGFloat = 1000
 
     func getSelectedProduct() -> Product? {
         return selectedProduct
@@ -56,37 +56,76 @@ class SearchModel: ObservableObject {
         self.selectedProduct = product
     }
 
-    func getThicknessLowValue() -> CGFloat? {
+    func getThicknessLowValue() -> CGFloat {
         return thicknessLowValue
     }
 
-    func setThicknessLowValue(thickness: CGFloat?) {
+    func setThicknessLowValue(thickness: CGFloat) {
         self.thicknessLowValue = thickness
     }
 
-    func getThicknessHighValue() -> CGFloat? {
+    func getThicknessHighValue() -> CGFloat {
         return thicknessHighValue
     }
 
-    func setThicknessHighValue(thickness: CGFloat?) {
+    func setThicknessHighValue(thickness: CGFloat) {
         self.thicknessHighValue = thickness
     }
 
-    func getHeightLowValue() -> CGFloat? {
+    func getHeightLowValue() -> CGFloat {
         return heightLowValue
     }
 
-    func setHeightLowValue(height: CGFloat?) {
+    func setHeightLowValue(height: CGFloat) {
         self.heightLowValue = height
     }
 
-    func getHeightHighValue() -> CGFloat? {
+    func getHeightHighValue() -> CGFloat {
         return heightHighValue
     }
 
-    func setHeightHighValue(height: CGFloat?) {
+    func setHeightHighValue(height: CGFloat) {
         self.heightHighValue = height
     }
+
+    // Reset criteria filters
+
+    func resetSelectedCriteriaFilters() {
+        switch selectedCriteria {
+        case .Product:
+            setSelectedProduct(product: nil)
+        case .Structure:
+            resetStructureFilters()
+        case .Segment:
+            resetSegmentFilters()
+        case .Solution:
+            selectedSolutionElements = []
+        }
+
+    }
+
+    private func resetStructureFilters() {
+        switch selectedStructure {
+        case .Wall:
+            setThicknessLowValue(thickness: 0)
+            setThicknessHighValue(thickness: 100)
+            setHeightLowValue(height: 0)
+            setHeightHighValue(height: 1000)
+        default:
+            SharedLogger.shared().info("Nothing to reset in structure")
+        }
+    }
+
+    private func resetSegmentFilters() {
+        switch selectedSegment {
+        case .Infrastrucutre:
+            selectedInfrastructureElements = []
+        default:
+            SharedLogger.shared().info("Nothing to reset in segment")
+        }
+    }
+
+
 
     // Filter set helper functions
 
@@ -99,17 +138,17 @@ class SearchModel: ObservableObject {
     }
 
     func isWallFilterSet() -> Bool {
-        if (thicknessLowValue != nil && thicknessLowValue! != 0) {
-            return thicknessLowValue! > 0
+        if (thicknessLowValue != 0) {
+            return thicknessLowValue > 0
         }
-        if (thicknessHighValue != nil && thicknessHighValue! != 100) {
-            return thicknessHighValue! < 100
+        if (thicknessHighValue != 100) {
+            return thicknessHighValue < 100
         }
-        if (heightLowValue != nil && heightLowValue != 0) {
-            return heightLowValue! > 0
+        if (heightLowValue != 0) {
+            return heightLowValue > 0
         }
-        if (heightHighValue != nil && heightHighValue != 1000) {
-            return heightHighValue! < 1000
+        if (heightHighValue != 1000) {
+            return heightHighValue < 1000
         }
         return false
     }

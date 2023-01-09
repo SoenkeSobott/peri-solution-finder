@@ -63,7 +63,12 @@ struct ProjectListView: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
                     .onAppear {
-                        network.getProjects(product: searchModel.getSelectedProduct())
+                        network.getProjects(
+                            product: searchModel.getSelectedProduct(),
+                            minThickness: searchModel.getThicknessLowValue(),
+                            maxThickness: searchModel.getThicknessHighValue(),
+                            minHeight: searchModel.getHeightLowValue(),
+                            maxHeight: searchModel.getHeightHighValue())
                     }
                 }
             }

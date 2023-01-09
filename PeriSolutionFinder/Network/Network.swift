@@ -10,7 +10,11 @@ import SwiftUI
 class Network: ObservableObject {
     @Published var projects: [Project] = []
 
-    func getProjects(product: Product?) {
+    func getProjects(product: Product?,
+                     minThickness: Double,
+                     maxThickness: Double,
+                     minHeight: Double,
+                     maxHeight: Double) {
         guard var url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
 
         // Add filter parameters
@@ -19,6 +23,12 @@ class Network: ObservableObject {
                 URLQueryItem(name: "product", value: product?.rawValue)
             ])
         }
+        url.append(queryItems: [
+            URLQueryItem(name: "minThickness", value: minThickness.description),
+            URLQueryItem(name: "maxThickness", value: maxThickness.description),
+            URLQueryItem(name: "minHeight", value: minHeight.description),
+            URLQueryItem(name: "maxHeight", value: maxHeight.description)
+        ])
 
         print("URL: ", url)
 

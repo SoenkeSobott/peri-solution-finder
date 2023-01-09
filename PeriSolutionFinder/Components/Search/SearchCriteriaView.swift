@@ -103,7 +103,7 @@ struct SearchCriteriaView: View {
                         Text("Solution")
                             .searchCriteriaPillStyle(
                                 isSelected: isSelected(searchCriteria: SearchCriteria.Solution),
-                                isFilterSet: false,
+                                isFilterSet: searchModel.isSolutionFilterSet(),
                                 height: 40)
                     })
                 }

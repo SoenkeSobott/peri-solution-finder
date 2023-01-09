@@ -121,4 +121,8 @@ class SearchModel: ObservableObject {
     func isInfrastructureFilterSet() -> Bool {
         return selectedInfrastructureElements.count > 0
     }
+
+    func isSolutionFilterSet() -> Bool {
+        return selectedSolutionElements.count > 0
+    }
 }

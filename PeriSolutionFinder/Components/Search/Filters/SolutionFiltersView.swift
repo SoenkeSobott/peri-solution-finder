@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SolutionFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
+    @State private var totalHeight = CGFloat(100)
 
     var body: some View {
         VStack(alignment: .center) {
@@ -16,13 +17,31 @@ struct SolutionFiltersView: View {
                 .filterHeadingStyle()
 
             GeometryReader { geometry in
-                VStack {
-                    geometryLayout2(geometry: geometry)
-                }
-            }
-            .frame(height: 200)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(.white)
+                        .clipped()
+                        .shadow(color: .gray.opacity(0.5), radius: 5)
 
-            Spacer()
+                    HStack {
+                        geometryLayout2(geometry: geometry)
+                        Spacer()
+                    }
+                    .padding(10)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(width: UIScreen.main.bounds.width*0.9)
+                .padding(.leading, UIScreen.main.bounds.width*0.05)
+                .padding(.bottom, 10)
+                .background(GeometryReader {gp -> Color in
+                    DispatchQueue.main.async {
+                        self.totalHeight = gp.size.height
+                    }
+                    return Color.clear
+                })
+            }
+            .frame(height: totalHeight)
+
         }
     }
 }

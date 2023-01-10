@@ -50,6 +50,10 @@ struct ProjectListView: View {
                         .padding(.leading, UIScreen.main.bounds.width*0.05)
                         .padding(.trailing, UIScreen.main.bounds.width*0.05)
 
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+                        .opacity(network.projectsLoading ? 1 : 0)
+
                     List(network.projects, id: \.projectNumber) { project in
                         ZStack {
                             NavigationLink(destination: ProjectView(project: project)) {
@@ -62,6 +66,7 @@ struct ProjectListView: View {
                     }
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
+                    .opacity(network.projectsLoading ? 0 : 1)
                     .onAppear {
                         network.getProjects(
                             searchTerm: searchModel.getSearchTerm(),

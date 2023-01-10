@@ -9,6 +9,7 @@ import SwiftUI
 
 class Network: ObservableObject {
     @Published var projects: [Project] = []
+    @Published var projectsLoading: Bool = false
 
     func getProjects(searchTerm: String,
                      product: Product?,
@@ -16,6 +17,7 @@ class Network: ObservableObject {
                      maxThickness: Double,
                      minHeight: Double,
                      maxHeight: Double) {
+        projectsLoading = true
         guard var url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
 
         // Add filter parameters
@@ -39,6 +41,7 @@ class Network: ObservableObject {
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 SharedLogger.shared().error("Request error: \(error)")
+                self.projectsLoading = false
                 return
             }
 
@@ -50,8 +53,10 @@ class Network: ObservableObject {
                     do {
                         let decodedProjects = try JSONDecoder().decode([Project].self, from: data)
                         self.projects = decodedProjects
+                        self.projectsLoading = false
                     } catch let error {
                         SharedLogger.shared().error("Error decoding: \(error)")
+                        self.projectsLoading = false
                     }
                 }
             }

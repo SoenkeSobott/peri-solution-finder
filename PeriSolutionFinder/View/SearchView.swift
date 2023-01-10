@@ -40,6 +40,8 @@ struct SearchView: View {
                         } else if (searchModel.selectedCriteria == SearchCriteria.Structure) {
                             if (searchModel.selectedStructure == Structure.Wall) {
                                 WallFiltersView()
+                            } else if (searchModel.selectedStructure == Structure.Column) {
+                                ColumnFiltersView()
                             } else {
                                 Text(searchModel.selectedStructure.rawValue)
                             }

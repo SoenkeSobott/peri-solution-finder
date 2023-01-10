@@ -71,10 +71,10 @@ struct ProjectListView: View {
                         network.getProjects(
                             searchTerm: searchModel.getSearchTerm(),
                             product: searchModel.getSelectedProduct(),
-                            minThickness: searchModel.getThicknessLowValue(),
-                            maxThickness: searchModel.getThicknessHighValue(),
-                            minHeight: searchModel.getHeightLowValue(),
-                            maxHeight: searchModel.getHeightHighValue())
+                            minThickness: searchModel.wallThicknessLowValue,
+                            maxThickness: searchModel.wallThicknessHighValue,
+                            minHeight: searchModel.wallHeightLowValue,
+                            maxHeight: searchModel.wallHeightHighValue)
                     }
                 }
             }

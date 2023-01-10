@@ -14,7 +14,6 @@ struct WallFiltersView: View {
     @State var thicknessHighValue: CGFloat = 100
     @State var heightLowValue: CGFloat = 0
     @State var heightHighValue: CGFloat = 1000
-    @State var height: Double = -1
 
     var body: some View {
         VStack {
@@ -30,10 +29,10 @@ struct WallFiltersView: View {
                        endValue: 100,
                        step: 10)
             .onChange(of: thicknessLowValue) { _ in
-                searchModel.setThicknessLowValue(thickness: thicknessLowValue.rounded())
+                searchModel.wallThicknessLowValue = thicknessLowValue.rounded()
             }
             .onChange(of: thicknessHighValue) { _ in
-                searchModel.setThicknessHighValue(thickness: thicknessHighValue.rounded())
+                searchModel.wallThicknessHighValue = thicknessHighValue.rounded()
             }
 
             SliderView(lowValue: $heightLowValue,
@@ -43,10 +42,10 @@ struct WallFiltersView: View {
                        endValue: 1000,
                        step: 100)
             .onChange(of: heightLowValue) { _ in
-                searchModel.setHeightLowValue(height: heightLowValue.rounded())
+                searchModel.wallHeightLowValue = heightLowValue.rounded()
             }
             .onChange(of: heightHighValue) { _ in
-                searchModel.setHeightHighValue(height: heightHighValue.rounded())
+                searchModel.wallHeightHighValue = heightHighValue.rounded()
             }
         }
     }

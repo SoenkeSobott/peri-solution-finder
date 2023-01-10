@@ -15,10 +15,21 @@ class SearchModel: ObservableObject {
     // Product
     @Published private var selectedProduct: Product?
 
-    // Element
+    // Structure
     @Published var structureElements: [Structure] = [Structure.Wall, Structure.Column, Structure.Slab, Structure.Culvert, Structure.Tank]
     @Published var selectedStructure: Structure = Structure.Wall
 
+    // Structure - Wall
+    @Published var wallThicknessLowValue: CGFloat = 0
+    @Published var wallThicknessHighValue: CGFloat = 100
+    @Published var wallHeightLowValue: CGFloat = 0
+    @Published var wallHeightHighValue: CGFloat = 1000
+
+    // Structure - Column
+    @Published var columnThicknessLowValue: CGFloat = 0
+    @Published var columnThicknessHighValue: CGFloat = 100
+    @Published var columnHeightLowValue: CGFloat = 0
+    @Published var columnHeightHighValue: CGFloat = 1000
 
     // Segment
     @Published var segmentElements: [Segment] = [Segment.Residential, Segment.NonResidential, Segment.Infrastrucutre, Segment.Industrial]
@@ -43,10 +54,7 @@ class SearchModel: ObservableObject {
 
     // FilterValues
     @Published private var searchTerm: String = ""
-    @Published private var thicknessLowValue: CGFloat = 0
-    @Published private var thicknessHighValue: CGFloat = 100
-    @Published private var heightLowValue: CGFloat = 0
-    @Published private var heightHighValue: CGFloat = 1000
+
 
     func getSearchTerm() -> String {
         return searchTerm
@@ -64,38 +72,6 @@ class SearchModel: ObservableObject {
         self.selectedProduct = product
     }
 
-    func getThicknessLowValue() -> CGFloat {
-        return thicknessLowValue
-    }
-
-    func setThicknessLowValue(thickness: CGFloat) {
-        self.thicknessLowValue = thickness
-    }
-
-    func getThicknessHighValue() -> CGFloat {
-        return thicknessHighValue
-    }
-
-    func setThicknessHighValue(thickness: CGFloat) {
-        self.thicknessHighValue = thickness
-    }
-
-    func getHeightLowValue() -> CGFloat {
-        return heightLowValue
-    }
-
-    func setHeightLowValue(height: CGFloat) {
-        self.heightLowValue = height
-    }
-
-    func getHeightHighValue() -> CGFloat {
-        return heightHighValue
-    }
-
-    func setHeightHighValue(height: CGFloat) {
-        self.heightHighValue = height
-    }
-
     // Reset criteria filters
 
     func resetSelectedCriteriaFilters() {
@@ -109,19 +85,18 @@ class SearchModel: ObservableObject {
         case .Solution:
             selectedSolutionElements = []
         }
-
     }
 
     private func resetStructureFilters() {
-        switch selectedStructure {
-        case .Wall:
-            setThicknessLowValue(thickness: 0)
-            setThicknessHighValue(thickness: 100)
-            setHeightLowValue(height: 0)
-            setHeightHighValue(height: 1000)
-        default:
-            SharedLogger.shared().info("Nothing to reset in structure")
-        }
+        wallThicknessLowValue = 0
+        wallThicknessHighValue = 100
+        wallHeightLowValue = 0
+        wallHeightHighValue = 1000
+
+        columnThicknessLowValue = 0
+        columnThicknessHighValue = 100
+        columnHeightLowValue = 0
+        columnHeightHighValue = 1000
     }
 
     private func resetSegmentFilters() {
@@ -142,21 +117,37 @@ class SearchModel: ObservableObject {
     }
 
     func isStructureFilterSet() -> Bool {
-        return isWallFilterSet()
+        return isWallFilterSet() || isColumnFilterSet()
     }
 
     func isWallFilterSet() -> Bool {
-        if (thicknessLowValue != 0) {
-            return thicknessLowValue > 0
+        if (wallThicknessLowValue != 0) {
+            return wallThicknessLowValue > 0
         }
-        if (thicknessHighValue != 100) {
-            return thicknessHighValue < 100
+        if (wallThicknessHighValue != 100) {
+            return wallThicknessHighValue < 100
         }
-        if (heightLowValue != 0) {
-            return heightLowValue > 0
+        if (wallHeightLowValue != 0) {
+            return wallHeightLowValue > 0
         }
-        if (heightHighValue != 1000) {
-            return heightHighValue < 1000
+        if (wallHeightHighValue != 1000) {
+            return wallHeightHighValue < 1000
+        }
+        return false
+    }
+
+    func isColumnFilterSet() -> Bool {
+        if (columnThicknessLowValue != 0) {
+            return columnThicknessLowValue > 0
+        }
+        if (columnThicknessHighValue != 100) {
+            return columnThicknessHighValue < 100
+        }
+        if (columnHeightLowValue != 0) {
+            return columnHeightLowValue > 0
+        }
+        if (columnHeightHighValue != 1000) {
+            return columnHeightHighValue < 1000
         }
         return false
     }

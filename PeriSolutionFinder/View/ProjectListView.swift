@@ -64,6 +64,7 @@ struct ProjectListView: View {
                     .listStyle(.plain)
                     .onAppear {
                         network.getProjects(
+                            searchTerm: searchModel.getSearchTerm(),
                             product: searchModel.getSelectedProduct(),
                             minThickness: searchModel.getThicknessLowValue(),
                             maxThickness: searchModel.getThicknessHighValue(),

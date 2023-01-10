@@ -16,7 +16,6 @@ struct SearchView: View {
             // Necessary that keyboard doesn't lift the view
             // https://stackoverflow.com/questions/63958912/ios-14-swiftui-keyboard-lifts-view-automatically
             GeometryReader { _ in
-
                 ZStack(alignment: .top) {
                     Image("Ellipse")
                         .resizable()
@@ -74,6 +73,7 @@ struct SearchView: View {
                     }
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }

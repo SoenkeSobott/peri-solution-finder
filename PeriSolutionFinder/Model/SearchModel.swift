@@ -42,11 +42,19 @@ class SearchModel: ObservableObject {
 
 
     // FilterValues
-    @Published var searchTerm: String = ""
+    @Published private var searchTerm: String = ""
     @Published private var thicknessLowValue: CGFloat = 0
     @Published private var thicknessHighValue: CGFloat = 100
     @Published private var heightLowValue: CGFloat = 0
     @Published private var heightHighValue: CGFloat = 1000
+
+    func getSearchTerm() -> String {
+        return searchTerm
+    }
+
+    func setSearchTerm(searchTerm: String) {
+        self.searchTerm = searchTerm
+    }
 
     func getSelectedProduct() -> Product? {
         return selectedProduct

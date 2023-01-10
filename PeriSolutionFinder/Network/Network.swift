@@ -10,7 +10,8 @@ import SwiftUI
 class Network: ObservableObject {
     @Published var projects: [Project] = []
 
-    func getProjects(product: Product?,
+    func getProjects(searchTerm: String,
+                     product: Product?,
                      minThickness: Double,
                      maxThickness: Double,
                      minHeight: Double,
@@ -24,19 +25,20 @@ class Network: ObservableObject {
             ])
         }
         url.append(queryItems: [
+            URLQueryItem(name: "searchTerm", value: searchTerm),
             URLQueryItem(name: "minThickness", value: minThickness.description),
             URLQueryItem(name: "maxThickness", value: maxThickness.description),
             URLQueryItem(name: "minHeight", value: minHeight.description),
             URLQueryItem(name: "maxHeight", value: maxHeight.description)
         ])
 
-        print("URL: ", url)
+        SharedLogger.shared().info("URL: \(url)")
 
         let urlRequest = URLRequest(url: url)
 
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
-                print("Request error: ", error)
+                SharedLogger.shared().error("Request error: \(error)")
                 return
             }
 
@@ -49,7 +51,7 @@ class Network: ObservableObject {
                         let decodedProjects = try JSONDecoder().decode([Project].self, from: data)
                         self.projects = decodedProjects
                     } catch let error {
-                        print("Error decoding: ", error)
+                        SharedLogger.shared().error("Error decoding: \(error)")
                     }
                 }
             }

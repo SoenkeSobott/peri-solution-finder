@@ -18,26 +18,24 @@ class Network: ObservableObject {
                      minHeight: Double,
                      maxHeight: Double) {
         projectsLoading = true
-        guard var url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
-
-        // Add filter parameters
-        if (product != nil) {
-            url.append(queryItems: [
-                URLQueryItem(name: "product", value: product?.rawValue)
-            ])
-        }
-        url.append(queryItems: [
-            URLQueryItem(name: "searchTerm", value: searchTerm),
-            URLQueryItem(name: "minThickness", value: minThickness.description),
-            URLQueryItem(name: "maxThickness", value: maxThickness.description),
-            URLQueryItem(name: "minHeight", value: minHeight.description),
-            URLQueryItem(name: "maxHeight", value: maxHeight.description)
-        ])
-
+        // Create URL
+        guard let url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
         SharedLogger.shared().info("URL: \(url)")
 
-        let urlRequest = URLRequest(url: url)
+        // Create Request
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let cmdParams: [String: String] =  ["searchTerm":"\(searchTerm)", "product": "\(product != nil ? product!.rawValue : "")",
+                                            "minThickness": "\(minThickness)", "maxThickness": "\(maxThickness)",
+                                            "minHeight": "\(minHeight)", "maxHeight": "\(maxHeight)"]
+        do {
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: cmdParams)
+        } catch let error {
+            print(error.localizedDescription)
+        }
 
+        // Send Request
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 SharedLogger.shared().error("Request error: \(error)")
@@ -58,6 +56,11 @@ class Network: ObservableObject {
                         SharedLogger.shared().error("Error decoding: \(error)")
                         self.projectsLoading = false
                     }
+                }
+            } else {
+                SharedLogger.shared().error("Request error: \(response.statusCode)")
+                DispatchQueue.main.async {
+                    self.projectsLoading = false
                 }
             }
         }

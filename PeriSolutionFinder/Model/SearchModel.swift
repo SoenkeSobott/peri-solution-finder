@@ -21,7 +21,7 @@ class SearchModel: ObservableObject {
 
     // Structure - Wall
     @Published var wallThicknessLowValue: CGFloat = 0
-    @Published var wallThicknessHighValue: CGFloat = 100
+    @Published var wallThicknessHighValue: CGFloat = 500
     @Published var wallHeightLowValue: CGFloat = 0
     @Published var wallHeightHighValue: CGFloat = 1000
 
@@ -89,7 +89,7 @@ class SearchModel: ObservableObject {
 
     private func resetStructureFilters() {
         wallThicknessLowValue = 0
-        wallThicknessHighValue = 100
+        wallThicknessHighValue = 500
         wallHeightLowValue = 0
         wallHeightHighValue = 1000
 
@@ -124,8 +124,8 @@ class SearchModel: ObservableObject {
         if (wallThicknessLowValue != 0) {
             return wallThicknessLowValue > 0
         }
-        if (wallThicknessHighValue != 100) {
-            return wallThicknessHighValue < 100
+        if (wallThicknessHighValue != 500) {
+            return wallThicknessHighValue < 500
         }
         if (wallHeightLowValue != 0) {
             return wallHeightLowValue > 0

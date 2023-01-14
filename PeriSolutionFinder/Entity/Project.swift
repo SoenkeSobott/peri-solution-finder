@@ -24,15 +24,23 @@ struct Project: Identifiable, Decodable, Hashable {
     var billOfQuantity: [BillOffQuantityEntry]?
     var pictures: [String]?
     var height: Float?
+    var maxPourHeight: Float?
     var thickness: Float?
+    var width: Float?
+    var m2OfFormwork: Float?
+    var m2OfConcrete: Float?
     var planViewSize: String?
     var location: String?
+    var coordinates: String?
     var product: String?
-    var structure: String?
-    var solutionOne: String?
-    var solutionTwo: String?
-    var solutionThree: String?
-    var solutionFour: String?
+    var mainStructure: String?
+    var segmentLevelOne: String?
+    var segmentLevelTwo: String?
+    var segmentLevelThree: String?
+    var solutionTagOne: String?
+    var solutionTagTwo: String?
+    var solutionTagThree: String?
+    var solutionTagFour: String?
 }
 
 struct BillOffQuantityEntry: Identifiable, Decodable {

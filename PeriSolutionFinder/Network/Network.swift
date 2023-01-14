@@ -11,10 +11,12 @@ struct Filter: Identifiable, Encodable {
     var id = UUID()
     var searchTerm: String
     var product: String
-    var wallFilter: WallFilter
+    var wallFilter: ThicknessAndHeightFilter
+    var columnFilter: ThicknessAndHeightFilter
+    var infrastructureElements: [String]
 }
 
-struct WallFilter: Identifiable, Encodable {
+struct ThicknessAndHeightFilter: Identifiable, Encodable {
     var id = UUID()
     var minThickness: Double
     var maxThickness: Double
@@ -28,10 +30,15 @@ class Network: ObservableObject {
 
     func getProjects(searchTerm: String,
                      product: Product?,
-                     minThickness: Double,
-                     maxThickness: Double,
-                     minHeight: Double,
-                     maxHeight: Double) {
+                     wallMinThickness: Double,
+                     wallMaxThickness: Double,
+                     wallMinHeight: Double,
+                     wallMaxHeight: Double,
+                     columnMinThickness: Double,
+                     columnMaxThickness: Double,
+                     columnMinHeight: Double,
+                     columnMaxHeight: Double,
+                     infrastructureElements: [Infrastructure]) {
         projectsLoading = true
         // Create URL
         guard let url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
@@ -42,9 +49,12 @@ class Network: ObservableObject {
         urlRequest.httpMethod = "POST"
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        print(minThickness.description + " " + maxThickness.description)
         let filter = Filter(searchTerm: searchTerm, product: product != nil ? product!.rawValue : "",
-                         wallFilter: WallFilter(minThickness: minThickness, maxThickness: maxThickness, minHeight: minHeight, maxHeight: maxHeight))
+                            wallFilter: ThicknessAndHeightFilter(minThickness: wallMinThickness, maxThickness: wallMaxThickness,
+                                                                 minHeight: wallMinHeight, maxHeight: wallMaxHeight),
+                            columnFilter: ThicknessAndHeightFilter(minThickness: columnMinThickness, maxThickness: columnMaxThickness,
+                                                                   minHeight: columnMinHeight, maxHeight: columnMaxHeight),
+                            infrastructureElements: infrastructureElements.map { $0.rawValue })
         do {
             urlRequest.httpBody = try JSONEncoder().encode(filter)
         } catch let error {

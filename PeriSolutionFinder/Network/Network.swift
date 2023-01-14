@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+struct Filter: Identifiable, Encodable {
+    var id = UUID()
+    var searchTerm: String
+    var product: String
+    var wallFilter: WallFilter
+}
+
+struct WallFilter: Identifiable, Encodable {
+    var id = UUID()
+    var minThickness: Double
+    var maxThickness: Double
+    var minHeight: Double
+    var maxHeight: Double
+}
+
 class Network: ObservableObject {
     @Published var projects: [Project] = []
     @Published var projectsLoading: Bool = false
@@ -26,11 +41,12 @@ class Network: ObservableObject {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let cmdParams: [String: String] =  ["searchTerm":"\(searchTerm)", "product": "\(product != nil ? product!.rawValue : "")",
-                                            "minThickness": "\(minThickness)", "maxThickness": "\(maxThickness)",
-                                            "minHeight": "\(minHeight)", "maxHeight": "\(maxHeight)"]
+
+        print(minThickness.description + " " + maxThickness.description)
+        let filter = Filter(searchTerm: searchTerm, product: product != nil ? product!.rawValue : "",
+                         wallFilter: WallFilter(minThickness: minThickness, maxThickness: maxThickness, minHeight: minHeight, maxHeight: maxHeight))
         do {
-            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: cmdParams)
+            urlRequest.httpBody = try JSONEncoder().encode(filter)
         } catch let error {
             print(error.localizedDescription)
         }
@@ -39,7 +55,9 @@ class Network: ObservableObject {
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 SharedLogger.shared().error("Request error: \(error)")
-                self.projectsLoading = false
+                DispatchQueue.main.async {
+                    self.projectsLoading = false
+                }
                 return
             }
 

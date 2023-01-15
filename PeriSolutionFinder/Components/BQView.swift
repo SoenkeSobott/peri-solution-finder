@@ -21,7 +21,7 @@ struct BQView: View {
             if (!billOfQuantity.isEmpty) {
                 List(billOfQuantity, id: \.id) { entry in
                     HStack {
-                        Text(entry.articleNumber)
+                        Text(entry.articleNumber ?? "")
                             .padding(.leading, 5)
                             .frame(width: UIScreen.main.bounds.width*0.22, alignment: .center)
                             .lineLimit(1)
@@ -31,7 +31,7 @@ struct BQView: View {
 
                         HStack {
                             if columnsIndex == 0 {
-                                Text(entry.description)
+                                Text(entry.description ?? "")
                             } else if columnsIndex == 1 {
                                 Text(entry.unit ?? "")
                                     .lineLimit(1)

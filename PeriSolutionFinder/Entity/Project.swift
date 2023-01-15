@@ -41,9 +41,9 @@ struct Project: Identifiable, Decodable, Hashable {
 }
 
 struct BillOffQuantityEntry: Identifiable, Decodable {
-    var id: String {articleNumber + description}
-    var articleNumber: String
-    var description: String
+    var id: String {articleNumber ?? UUID().description}
+    var articleNumber: String?
+    var description: String?
     var unit: String?
     var quantity: Int?
     var weightPerUnit: Float?

@@ -24,9 +24,12 @@ struct SolutionFiltersView: View {
                         .shadow(color: .gray.opacity(0.5), radius: 5)
 
                     ScrollView {
-                        geometryLayout2(geometry: geometry)
+                        geometryLayoutSolutionTags(geometry: geometry)
+                            .padding(.vertical, 5)
+                            .frame(width: UIScreen.main.bounds.width*0.9)
                     }
-                    .padding(10)
+                    .cornerRadius(25)
+                    .frame(width: UIScreen.main.bounds.width*0.9)
                 }
                 .frame(width: UIScreen.main.bounds.width*0.9)
                 .padding(.leading, UIScreen.main.bounds.width*0.05)
@@ -44,7 +47,7 @@ struct SolutionFiltersView_Previews: PreviewProvider {
     }
 }
 
-struct geometryLayout2: View {
+struct geometryLayoutSolutionTags: View {
     @EnvironmentObject var searchModel: SearchModel
     @State private var isSelected = false
     let geometry: GeometryProxy
@@ -60,7 +63,7 @@ struct geometryLayout2: View {
         return ZStack(alignment: .topLeading) {
             ForEach(searchModel.solutionTags, id: \.self) { solution in
                 self.getButtonText(for: solution, isSelected: isSelected)
-                    .padding([.horizontal, .vertical], 4)
+                    .padding([.horizontal, .vertical], 5)
                     .alignmentGuide(.leading, computeValue: { d in
                         if (abs(width - d.width) > g.size.width*0.9)
                         {

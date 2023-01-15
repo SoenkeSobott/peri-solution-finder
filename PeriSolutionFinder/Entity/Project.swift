@@ -37,10 +37,7 @@ struct Project: Identifiable, Decodable, Hashable {
     var segmentLevelOne: String?
     var segmentLevelTwo: String?
     var segmentLevelThree: String?
-    var solutionTagOne: String?
-    var solutionTagTwo: String?
-    var solutionTagThree: String?
-    var solutionTagFour: String?
+    var solutionTags: [String]?
 }
 
 struct BillOffQuantityEntry: Identifiable, Decodable {

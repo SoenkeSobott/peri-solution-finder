@@ -44,6 +44,9 @@ struct ProjectView: View {
                         Text("MainStructure:" + (project.mainStructure?.description ?? ""))
                         Text("Thickness: " + (project.thickness?.description ?? ""))
                         Text("Height: " + (project.height?.description ?? ""))
+                        Text("SegLevOne: " + (project.segmentLevelOne?.description ?? ""))
+                        Text("SolutionTags: " + (project.solutionTags?.joined() ?? ""))
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }

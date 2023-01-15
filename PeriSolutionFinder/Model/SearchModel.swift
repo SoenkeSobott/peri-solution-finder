@@ -47,8 +47,8 @@ class SearchModel: ObservableObject {
 
 
     // Solution
-    @Published var solutionElements: [Solution] = [Solution.ChamferCorner, Solution.StraightWall, Solution.Traveller]
-    @Published var selectedSolutionElements: [Solution] = []
+    @Published var solutionTags: [SolutionTag] = SolutionTag.allCases
+    @Published var selectedSolutionTags: [SolutionTag] = []
 
 
 
@@ -83,7 +83,7 @@ class SearchModel: ObservableObject {
         case .Segment:
             resetSegmentFilters()
         case .Solution:
-            selectedSolutionElements = []
+            selectedSolutionTags = []
         }
     }
 
@@ -161,6 +161,6 @@ class SearchModel: ObservableObject {
     }
 
     func isSolutionFilterSet() -> Bool {
-        return selectedSolutionElements.count > 0
+        return selectedSolutionTags.count > 0
     }
 }

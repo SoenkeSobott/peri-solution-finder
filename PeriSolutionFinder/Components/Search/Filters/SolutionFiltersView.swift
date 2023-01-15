@@ -23,25 +23,16 @@ struct SolutionFiltersView: View {
                         .clipped()
                         .shadow(color: .gray.opacity(0.5), radius: 5)
 
-                    HStack {
+                    ScrollView {
                         geometryLayout2(geometry: geometry)
-                        Spacer()
                     }
                     .padding(10)
                 }
-                .fixedSize(horizontal: false, vertical: true)
                 .frame(width: UIScreen.main.bounds.width*0.9)
                 .padding(.leading, UIScreen.main.bounds.width*0.05)
+                .padding(.trailing, UIScreen.main.bounds.width*0.05)
                 .padding(.bottom, 10)
-                .background(GeometryReader {gp -> Color in
-                    DispatchQueue.main.async {
-                        self.totalHeight = gp.size.height
-                    }
-                    return Color.clear
-                })
             }
-            .frame(height: totalHeight)
-
         }
     }
 }
@@ -67,17 +58,17 @@ struct geometryLayout2: View {
         var height = CGFloat.zero
 
         return ZStack(alignment: .topLeading) {
-            ForEach(searchModel.solutionElements, id: \.self) { solution in
+            ForEach(searchModel.solutionTags, id: \.self) { solution in
                 self.getButtonText(for: solution, isSelected: isSelected)
                     .padding([.horizontal, .vertical], 4)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if (abs(width - d.width) > g.size.width)
+                        if (abs(width - d.width) > g.size.width*0.9)
                         {
                             width = 0
                             height -= d.height
                         }
                         let result = width
-                        if solution == searchModel.solutionElements.last! {
+                        if solution == searchModel.solutionTags.last! {
                             width = 0 //last item
                         } else {
                             width -= d.width
@@ -86,7 +77,7 @@ struct geometryLayout2: View {
                     })
                     .alignmentGuide(.top, computeValue: {d in
                         let result = height
-                        if solution == searchModel.solutionElements.last! {
+                        if solution == searchModel.solutionTags.last! {
                             height = 0 // last item
                         }
                         return result
@@ -95,31 +86,31 @@ struct geometryLayout2: View {
         }
     }
 
-    func getButtonText(for solution: Solution, isSelected: Bool) -> some View {
+    func getButtonText(for solutionTag: SolutionTag, isSelected: Bool) -> some View {
         Button(action: {
-            if (searchModel.selectedSolutionElements.contains(solution)) {
-                searchModel.selectedSolutionElements.removeAll { $0 == solution }
+            if (searchModel.selectedSolutionTags.contains(solutionTag)) {
+                searchModel.selectedSolutionTags.removeAll { $0 == solutionTag }
             } else {
-                searchModel.selectedSolutionElements.append(solution)
+                searchModel.selectedSolutionTags.append(solutionTag)
             }
         }, label: {
-            Text(solution.rawValue)
+            Text(solutionTag.rawValue)
                 .frame(height: 40)
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
                 .background(.white)
-                .foregroundColor(isSolutionSelected(solution: solution) ? Color("PeriRed") : .gray)
+                .foregroundColor(isSolutionTagSelected(solutionTag: solutionTag) ? Color("PeriRed") : .gray)
                 .cornerRadius(25)
                 .font(Font.system(size: 12, weight: .medium))
                 .overlay(
                     RoundedRectangle(cornerRadius: 25)
-                        .stroke(isSolutionSelected(solution: solution) ? Color("PeriRed") : .gray, lineWidth: 1)
+                        .stroke(isSolutionTagSelected(solutionTag: solutionTag) ? Color("PeriRed") : .gray, lineWidth: 1)
                 )
         })
 
     }
 
-    func isSolutionSelected(solution: Solution) -> Bool {
-        return searchModel.selectedSolutionElements.contains(solution)
+    func isSolutionTagSelected(solutionTag: SolutionTag) -> Bool {
+        return searchModel.selectedSolutionTags.contains(solutionTag)
     }
 }

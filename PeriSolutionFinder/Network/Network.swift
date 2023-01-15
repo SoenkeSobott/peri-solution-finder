@@ -14,6 +14,7 @@ struct Filter: Identifiable, Encodable {
     var wallFilter: ThicknessAndHeightFilter
     var columnFilter: ThicknessAndHeightFilter
     var infrastructureElements: [String]
+    var solutionTags: [String]
 }
 
 struct ThicknessAndHeightFilter: Identifiable, Encodable {
@@ -38,7 +39,8 @@ class Network: ObservableObject {
                      columnMaxThickness: Double,
                      columnMinHeight: Double,
                      columnMaxHeight: Double,
-                     infrastructureElements: [Infrastructure]) {
+                     infrastructureElements: [Infrastructure],
+                     solutionTags: [SolutionTag]) {
         projectsLoading = true
         // Create URL
         guard let url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
@@ -54,7 +56,8 @@ class Network: ObservableObject {
                                                                  minHeight: wallMinHeight, maxHeight: wallMaxHeight),
                             columnFilter: ThicknessAndHeightFilter(minThickness: columnMinThickness, maxThickness: columnMaxThickness,
                                                                    minHeight: columnMinHeight, maxHeight: columnMaxHeight),
-                            infrastructureElements: infrastructureElements.map { $0.rawValue })
+                            infrastructureElements: infrastructureElements.map { $0.rawValue },
+                            solutionTags: solutionTags.map { $0.rawValue })
         do {
             urlRequest.httpBody = try JSONEncoder().encode(filter)
         } catch let error {

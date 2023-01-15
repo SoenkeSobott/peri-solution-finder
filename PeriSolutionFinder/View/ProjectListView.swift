@@ -78,7 +78,9 @@ struct ProjectListView: View {
                             columnMinThickness: searchModel.columnThicknessLowValue,
                             columnMaxThickness: searchModel.columnThicknessHighValue,
                             columnMinHeight: searchModel.columnHeightLowValue,
-                            columnMaxHeight: searchModel.columnHeightHighValue, infrastructureElements: searchModel.selectedInfrastructureElements)
+                            columnMaxHeight: searchModel.columnHeightHighValue,
+                            infrastructureElements: searchModel.selectedInfrastructureElements,
+                            solutionTags: searchModel.selectedSolutionTags)
                     }
                 }
             }

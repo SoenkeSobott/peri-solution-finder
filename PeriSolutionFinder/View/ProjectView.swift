@@ -45,7 +45,7 @@ struct ProjectView: View {
                         Text("Thickness: " + (project.thickness?.description ?? ""))
                         Text("Height: " + (project.height?.description ?? ""))
                         Text("SegLevOne: " + (project.segmentLevelOne?.description ?? ""))
-                        Text("SolutionTags: " + (project.solutionTags?.joined() ?? ""))
+                        Text("SolutionTags: " + (project.solutionTags?.joined(separator: ", ") ?? ""))
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }

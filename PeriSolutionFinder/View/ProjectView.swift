@@ -39,15 +39,6 @@ struct ProjectView: View {
                     BQView(billOfQuantity: project.billOfQuantity ?? [])
                 } else if selectedView == 2 {
                     PhotoView(photoUrls: project.pictures ?? [])
-                } else if selectedView == 3 {
-                    VStack {
-                        Text("MainStructure:" + (project.mainStructure?.description ?? ""))
-                        Text("Thickness: " + (project.thickness?.description ?? ""))
-                        Text("Height: " + (project.height?.description ?? ""))
-                        Text("SegLevOne: " + (project.segmentLevelOne?.description ?? ""))
-                        Text("SolutionTags: " + (project.solutionTags?.joined(separator: ", ") ?? ""))
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
                 }
             }
 
@@ -83,15 +74,6 @@ struct ProjectView: View {
                     }, label: {
                         Text("Photo")
                             .redBackgroundWithRoundedCorners(isSelected: selectedView == 2)
-                    })
-
-                    Spacer()
-
-                    Button(action: {
-                        selectedView = 3
-                    }, label: {
-                        Text("All")
-                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 3)
                     })
 
                     Spacer()

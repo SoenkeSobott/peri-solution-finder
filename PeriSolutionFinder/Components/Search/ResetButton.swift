@@ -12,9 +12,10 @@ struct ResetButton: View {
 
     var body: some View {
         Button(action: {
-            searchModel.resetSelectedCriteriaFilters()
+            searchModel.resetAllFilters()
+            searchModel.selectedCriteria = .Product
         }, label: {
-            Text("Reset")
+            Text("Reset All")
                 .foregroundColor(searchModel.hasSelectedCriteriaSelectedItems() ? Color("PeriRed") : .gray)
                 .fontWeight(.bold)
                 .frame(width: UIScreen.main.bounds.width*0.5, height: 40)

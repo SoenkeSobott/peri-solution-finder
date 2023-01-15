@@ -110,6 +110,14 @@ struct SearchCriteriaView: View {
                 .padding(.top, 10)
             }
         }
+        .onChange(of: searchModel.selectedCriteria) { newSelectedCriteria in
+            if (newSelectedCriteria != .Structure) {
+                isStructureDropdownOpen = false
+            }
+            if (newSelectedCriteria != .Segment) {
+                isSegmentDropdownOpen = false
+            }
+        }
     }
 
     func isSelected(searchCriteria: SearchCriteria) -> Bool {

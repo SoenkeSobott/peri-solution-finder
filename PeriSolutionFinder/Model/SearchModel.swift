@@ -74,17 +74,11 @@ class SearchModel: ObservableObject {
 
     // Reset criteria filters
 
-    func resetSelectedCriteriaFilters() {
-        switch selectedCriteria {
-        case .Product:
-            setSelectedProduct(product: nil)
-        case .Structure:
-            resetStructureFilters()
-        case .Segment:
-            resetSegmentFilters()
-        case .Solution:
-            selectedSolutionTags = []
-        }
+    func resetAllFilters() {
+        setSelectedProduct(product: nil)
+        resetStructureFilters()
+        resetSegmentFilters()
+        selectedSolutionTags = []
     }
 
     private func resetStructureFilters() {

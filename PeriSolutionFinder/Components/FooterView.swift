@@ -27,7 +27,7 @@ struct FooterView: View {
     var body: some View {
         ZStack(alignment: .center) {
             Image("")
-                .frame(width: UIScreen.main.bounds.width, height: 80)
+                .frame(width: UIScreen.main.bounds.width, height: 65)
                 .background(Color("PeriRed").edgesIgnoringSafeArea(.all))
 
             HStack {

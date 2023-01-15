@@ -53,24 +53,8 @@ struct SearchView: View {
 
                         Spacer()
 
-                        Button(action: {
-                            searchModel.resetSelectedCriteriaFilters()
-                        }, label: {
-                            Text("Reset")
-                                .foregroundColor(Color("PeriRed"))
-                                .fontWeight(.bold)
-                                .frame(width: UIScreen.main.bounds.width*0.5, height: 40)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 50)
-                                        .stroke(Color("PeriRed"), lineWidth: 3)
-                                )
-                                .background(Color.white)
-                                .cornerRadius(50)
-                                .shadow(color: Color("PeriRed").opacity(0.2), radius: 10, y: 5)
-                                .padding(.bottom, 10)
-                        })
-
-
+                        ResetButton()
+                            .padding(.bottom, 10)
                         FooterView()
                     }
                 }

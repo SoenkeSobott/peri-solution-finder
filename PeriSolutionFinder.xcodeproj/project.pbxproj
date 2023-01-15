@@ -47,6 +47,7 @@
 		2D9C33C7296DA95000E196FC /* ColumnFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C33C6296DA95000E196FC /* ColumnFiltersView.swift */; };
 		2DB11580292C1AD30043872E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1157F292C1AD30043872E /* SearchView.swift */; };
 		2DB11582292C261B0043872E /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB11581292C261B0043872E /* FooterView.swift */; };
+		2DE910232973B76600465561 /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE910222973B76600465561 /* ResetButton.swift */; };
 		2DEE53D62959F0F90055A550 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE53D52959F0F90055A550 /* SearchField.swift */; };
 		2DEE53D82959F1CD0055A550 /* SearchCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE53D72959F1CD0055A550 /* SearchCriteriaView.swift */; };
 		2DEE53DA295B23B50055A550 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE53D9295B23B50055A550 /* BackButton.swift */; };
@@ -115,6 +116,7 @@
 		2D9C33C6296DA95000E196FC /* ColumnFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFiltersView.swift; sourceTree = "<group>"; };
 		2DB1157F292C1AD30043872E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2DB11581292C261B0043872E /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		2DE910222973B76600465561 /* ResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 		2DEE53D52959F0F90055A550 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		2DEE53D72959F1CD0055A550 /* SearchCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteriaView.swift; sourceTree = "<group>"; };
 		2DEE53D9295B23B50055A550 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				2D311575295C75EE0091D4A3 /* ProductSelectionBoxView.swift */,
 				2DEE53D72959F1CD0055A550 /* SearchCriteriaView.swift */,
 				2D31157C295CB0F00091D4A3 /* SliderView.swift */,
+				2DE910222973B76600465561 /* ResetButton.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				2D25098F2954BF4D00F8D30A /* BQView.swift in Sources */,
 				2D92DCB229643740002B9A9A /* ProductFiltersView.swift in Sources */,
 				2DB11582292C261B0043872E /* FooterView.swift in Sources */,
+				2DE910232973B76600465561 /* ResetButton.swift in Sources */,
 				2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */,
 				2D2509952958B92300F8D30A /* PageControl.swift in Sources */,
 				2D92DCB429643FD2002B9A9A /* NumberExtensions.swift in Sources */,

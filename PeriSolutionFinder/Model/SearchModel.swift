@@ -108,7 +108,18 @@ class SearchModel: ObservableObject {
         }
     }
 
-
+    func hasSelectedCriteriaSelectedItems() -> Bool {
+        switch selectedCriteria {
+        case .Product:
+            return isProductFilterSet()
+        case .Structure:
+            return isStructureFilterSet()
+        case .Segment:
+            return isSegmentFilterSet()
+        case .Solution:
+            return isSolutionFilterSet()
+        }
+    }
 
     // Filter set helper functions
 

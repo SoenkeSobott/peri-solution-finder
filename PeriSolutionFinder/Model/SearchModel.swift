@@ -27,7 +27,7 @@ class SearchModel: ObservableObject {
 
     // Structure - Column
     @Published var columnThicknessLowValue: CGFloat = 0
-    @Published var columnThicknessHighValue: CGFloat = 100
+    @Published var columnThicknessHighValue: CGFloat = 500
     @Published var columnHeightLowValue: CGFloat = 0
     @Published var columnHeightHighValue: CGFloat = 1000
 
@@ -94,7 +94,7 @@ class SearchModel: ObservableObject {
         wallHeightHighValue = 1000
 
         columnThicknessLowValue = 0
-        columnThicknessHighValue = 100
+        columnThicknessHighValue = 500
         columnHeightLowValue = 0
         columnHeightHighValue = 1000
     }
@@ -151,8 +151,8 @@ class SearchModel: ObservableObject {
         if (columnThicknessLowValue != 0) {
             return columnThicknessLowValue > 0
         }
-        if (columnThicknessHighValue != 100) {
-            return columnThicknessHighValue < 100
+        if (columnThicknessHighValue != 500) {
+            return columnThicknessHighValue < 500
         }
         if (columnHeightLowValue != 0) {
             return columnHeightLowValue > 0

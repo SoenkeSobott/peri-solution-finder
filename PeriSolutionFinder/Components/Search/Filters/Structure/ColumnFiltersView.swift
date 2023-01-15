@@ -10,7 +10,7 @@ import SwiftUI
 struct ColumnFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
     @State var thicknessLowValue: CGFloat = 0
-    @State var thicknessHighValue: CGFloat = 100
+    @State var thicknessHighValue: CGFloat = 500
     @State var heightLowValue: CGFloat = 0
     @State var heightHighValue: CGFloat = 1000
     
@@ -25,8 +25,8 @@ struct ColumnFiltersView: View {
                        highValue: $thicknessHighValue,
                        sliderHeader: "Thickness (CM)",
                        startValue: 0,
-                       endValue: 100,
-                       step: 10)
+                       endValue: 500,
+                       step: 50)
             .onChange(of: thicknessLowValue) { _ in
                 searchModel.columnThicknessLowValue = thicknessLowValue.rounded()
             }

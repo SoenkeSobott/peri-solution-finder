@@ -60,8 +60,9 @@ struct AboutView: View {
                     }
                 }
 
-
-
+                Text("Data")
+                    .font(Font.system(size: 22, weight: .medium, design: .default))
+                Text("All project data is owned by PERI (Hong Kong) Limited")
 
                 Text("Used Libraries")
                     .font(Font.system(size: 22, weight: .medium, design: .default))

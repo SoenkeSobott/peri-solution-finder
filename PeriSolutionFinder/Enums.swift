@@ -29,7 +29,7 @@ enum Structure: String {
 enum Segment: String {
     case Residential
     case NonResidential = "Non-Residential"
-    case Infrastrucutre
+    case Infrastructure
     case Industrial
 }
 

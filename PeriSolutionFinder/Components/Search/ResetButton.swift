@@ -16,18 +16,18 @@ struct ResetButton: View {
             searchModel.selectedCriteria = .Product
         }, label: {
             Text("Reset All")
-                .foregroundColor(searchModel.hasSelectedCriteriaSelectedItems() ? Color("PeriRed") : .gray)
+                .foregroundColor(.gray)
                 .fontWeight(.bold)
                 .frame(width: UIScreen.main.bounds.width*0.5, height: 40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 50)
-                        .stroke(searchModel.hasSelectedCriteriaSelectedItems() ? Color("PeriRed") : .gray, lineWidth: 3)
+                        .stroke(.gray, lineWidth: 3)
                 )
                 .background(Color.white)
                 .cornerRadius(50)
                 .shadow(color: .gray.opacity(0.2), radius: 5)
         })
-        .disabled(!searchModel.hasSelectedCriteriaSelectedItems())
+        .disabled(!searchModel.hasSelectedItems())
     }
 }
 

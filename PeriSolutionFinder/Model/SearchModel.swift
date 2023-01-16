@@ -32,8 +32,8 @@ class SearchModel: ObservableObject {
     @Published var columnHeightHighValue: CGFloat = 1000
 
     // Segment
-    @Published var segmentElements: [Segment] = [Segment.Residential, Segment.NonResidential, Segment.Infrastrucutre, Segment.Industrial]
-    @Published var selectedSegment: Segment = Segment.Infrastrucutre
+    @Published var segmentElements: [Segment] = [.Residential, .NonResidential, .Infrastructure, .Industrial]
+    @Published var selectedSegment: Segment = .Infrastructure
     @Published var infrastructureElements: [Infrastructure] = [Infrastructure.Bridges, Infrastructure.Tunnels, Infrastructure.LandTraffics, Infrastructure.Airports, Infrastructure.MarineAndWaterInfrastructur, Infrastructure.WaterPlants]
     @Published var selectedInfrastructureElements: [Infrastructure] = []
     @Published var selectedInfrastructure: Infrastructure?
@@ -95,24 +95,15 @@ class SearchModel: ObservableObject {
 
     private func resetSegmentFilters() {
         switch selectedSegment {
-        case .Infrastrucutre:
+        case .Infrastructure:
             selectedInfrastructureElements = []
         default:
             SharedLogger.shared().info("Nothing to reset in segment")
         }
     }
 
-    func hasSelectedCriteriaSelectedItems() -> Bool {
-        switch selectedCriteria {
-        case .Product:
-            return isProductFilterSet()
-        case .Structure:
-            return isStructureFilterSet()
-        case .Segment:
-            return isSegmentFilterSet()
-        case .Solution:
-            return isSolutionFilterSet()
-        }
+    func hasSelectedItems() -> Bool {
+        return (isProductFilterSet() || isStructureFilterSet() || isSegmentFilterSet() || isSolutionFilterSet())
     }
 
     // Filter set helper functions

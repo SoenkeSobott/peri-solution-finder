@@ -10,6 +10,8 @@ import SwiftUI
 class SearchModel: ObservableObject {
     let identifier = UUID()
 
+    @Published var searchTerm: String = ""
+
     @Published var selectedCriteria: SearchCriteria = SearchCriteria.Product
 
     // Product
@@ -51,19 +53,6 @@ class SearchModel: ObservableObject {
     @Published var selectedSolutionTags: [SolutionTag] = []
 
 
-
-    // FilterValues
-    @Published private var searchTerm: String = ""
-
-
-    func getSearchTerm() -> String {
-        return searchTerm
-    }
-
-    func setSearchTerm(searchTerm: String) {
-        self.searchTerm = searchTerm
-    }
-
     func getSelectedProduct() -> Product? {
         return selectedProduct
     }
@@ -75,6 +64,7 @@ class SearchModel: ObservableObject {
     // Reset criteria filters
 
     func resetAllFilters() {
+        searchTerm = ""
         setSelectedProduct(product: nil)
         resetStructureFilters()
         resetSegmentFilters()

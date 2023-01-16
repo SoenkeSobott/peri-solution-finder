@@ -69,7 +69,7 @@ struct ProjectListView: View {
                     .opacity(network.projectsLoading ? 0 : 1)
                     .onAppear {
                         network.getProjects(
-                            searchTerm: searchModel.getSearchTerm(),
+                            searchTerm: searchModel.searchTerm,
                             product: searchModel.getSelectedProduct(),
                             wallMinThickness: searchModel.wallThicknessLowValue,
                             wallMaxThickness: searchModel.wallThicknessHighValue,

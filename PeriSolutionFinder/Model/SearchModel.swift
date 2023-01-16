@@ -16,7 +16,7 @@ class SearchModel: ObservableObject {
     @Published private var selectedProduct: Product?
 
     // Structure
-    @Published var structureElements: [Structure] = [Structure.Wall, Structure.Column, Structure.Slab, Structure.Culvert, Structure.Tank]
+    @Published var structureElements: [Structure] = [.Wall, .Column, .Slab, .Culvert]
     @Published var selectedStructure: Structure = Structure.Wall
 
     // Structure - Wall

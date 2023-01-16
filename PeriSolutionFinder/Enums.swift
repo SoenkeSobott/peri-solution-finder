@@ -23,7 +23,6 @@ enum Structure: String {
     case Column
     case Slab
     case Culvert
-    case Tank
 }
 
 enum Segment: String {

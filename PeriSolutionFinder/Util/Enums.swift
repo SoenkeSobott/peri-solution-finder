@@ -7,25 +7,25 @@
 
 import Foundation
 
-enum SearchCriteria {
+enum SearchCriteria: String, CaseIterable {
     case Product
     case Structure
     case Segment
     case Solution
 }
 
-enum Product: String {
+enum Product: String, CaseIterable {
     case Duo
 }
 
-enum Structure: String {
+enum Structure: String, CaseIterable {
     case Wall
     case Column
     case Slab
     case Culvert
 }
 
-enum Segment: String {
+enum Segment: String, CaseIterable {
     case Residential
     case NonResidential = "Non-Residential"
     case Infrastructure
@@ -69,7 +69,7 @@ enum SolutionTag: String, CaseIterable {
 
 // Segment
 
-enum Infrastructure: String {
+enum Infrastructure: String, CaseIterable {
     case Bridges
     case Tunnels
     case LandTraffics = "Land Traffics"
@@ -80,13 +80,13 @@ enum Infrastructure: String {
 
 // Segment - Infrastructure
 
-enum Tunnel: String {
+enum Tunnel: String, CaseIterable {
     case RoadTunnels = "Road Tunnels"
     case RailwayTunnels = "Railway Tunnels"
     case NonTrafficTunnels = "Non-traffic Tunnels"
 }
 
-enum WaterPlant: String {
+enum WaterPlant: String, CaseIterable {
     case WaterTreatmentPlants = "Water Treatment Plants"
     case ElevatedWaterTowers = "Elevated Water Towers"
     case DesalinationPlants = "Desalination Plants"

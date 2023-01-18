@@ -18,7 +18,7 @@ class SearchModel: ObservableObject {
     @Published private var selectedProduct: Product?
 
     // Structure
-    @Published var structureElements: [Structure] = [.Wall, .Column, .Slab, .Culvert]
+    @Published var structureElements: [Structure] = Structure.allCases
     @Published var selectedStructure: Structure = Structure.Wall
 
     // Structure - Wall
@@ -34,24 +34,23 @@ class SearchModel: ObservableObject {
     @Published var columnHeightHighValue: CGFloat = 1000
 
     // Segment
-    @Published var segmentElements: [Segment] = [.Residential, .NonResidential, .Infrastructure, .Industrial]
+    @Published var segmentElements: [Segment] = Segment.allCases
     @Published var selectedSegment: Segment = .Infrastructure
-    @Published var infrastructureElements: [Infrastructure] = [Infrastructure.Bridges, Infrastructure.Tunnels, Infrastructure.LandTraffics, Infrastructure.Airports, Infrastructure.MarineAndWaterInfrastructur, Infrastructure.WaterPlants]
+    @Published var infrastructureElements: [Infrastructure] = Infrastructure.allCases
     @Published var selectedInfrastructureElements: [Infrastructure] = []
     @Published var selectedInfrastructure: Infrastructure?
 
     // Segment - Tunnels
-    @Published var tunnelElements: [Tunnel] = [Tunnel.RoadTunnels, Tunnel.RailwayTunnels, Tunnel.NonTrafficTunnels]
+    @Published var tunnelElements: [Tunnel] = Tunnel.allCases
     @Published var selectedTunnelElements: [Tunnel] = []
     // Segment - Water Plants
-    @Published var waterPlantElements: [WaterPlant] = [WaterPlant.WaterTreatmentPlants, WaterPlant.DesalinationPlants, WaterPlant.ElevatedWaterTowers]
+    @Published var waterPlantElements: [WaterPlant] = WaterPlant.allCases
     @Published var selectedWaterPlantElements: [WaterPlant] = []
 
 
     // Solution
     @Published var solutionTags: [SolutionTag] = SolutionTag.allCases
     @Published var selectedSolutionTags: [SolutionTag] = []
-
 
     func getSelectedProduct() -> Product? {
         return selectedProduct

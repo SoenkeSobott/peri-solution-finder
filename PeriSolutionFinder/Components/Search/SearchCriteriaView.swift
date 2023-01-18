@@ -29,6 +29,7 @@ struct SearchCriteriaView: View {
                                 isFilterSet: searchModel.isProductFilterSet(),
                                 height: 40)
                     })
+                    .accessibilityIdentifier("productButton")
 
                     Button(action: {
                         searchModel.selectedCriteria = SearchCriteria.Structure
@@ -60,6 +61,8 @@ struct SearchCriteriaView: View {
                                 .offset(y: 82)
                         }
                     )
+                    .accessibilityIdentifier("structureButton")
+
                 }
                 .padding(.top, 10)
                 .zIndex(20)
@@ -94,6 +97,8 @@ struct SearchCriteriaView: View {
                                 .offset(y: 80)
                         }
                     )
+                    .accessibilityIdentifier("segmentButton")
+
 
                     Button(action: {
                         searchModel.selectedCriteria = SearchCriteria.Solution
@@ -106,6 +111,7 @@ struct SearchCriteriaView: View {
                                 isFilterSet: searchModel.isSolutionFilterSet(),
                                 height: 40)
                     })
+                    .accessibilityIdentifier("solutionButton")
                 }
                 .padding(.top, 10)
             }

@@ -29,6 +29,7 @@ struct SearchView: View {
                                 .fontWeight(.bold)
                                 .font(Font.system(size: 22, weight: .medium, design: .default))
                                 .padding(.bottom, 20)
+                                .accessibilityIdentifier("searchHeading")
 
                             SearchCriteriaView()
                         }

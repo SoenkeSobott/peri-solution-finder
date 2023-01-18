@@ -22,30 +22,32 @@ struct WallFiltersView: View {
                     .filterHeadingStyle()
             }
 
-            SliderView(lowValue: $thicknessLowValue,
-                       highValue: $thicknessHighValue,
-                       sliderHeader: "Thickness (CM)",
-                       startValue: 0,
-                       endValue: 500,
-                       step: 50)
-            .onChange(of: thicknessLowValue) { _ in
-                searchModel.wallThicknessLowValue = thicknessLowValue.rounded()
-            }
-            .onChange(of: thicknessHighValue) { _ in
-                searchModel.wallThicknessHighValue = thicknessHighValue.rounded()
-            }
+            ScrollView {
+                SliderView(lowValue: $thicknessLowValue,
+                           highValue: $thicknessHighValue,
+                           sliderHeader: "Thickness (CM)",
+                           startValue: 0,
+                           endValue: 500,
+                           step: 50)
+                .onChange(of: thicknessLowValue) { _ in
+                    searchModel.wallThicknessLowValue = thicknessLowValue.rounded()
+                }
+                .onChange(of: thicknessHighValue) { _ in
+                    searchModel.wallThicknessHighValue = thicknessHighValue.rounded()
+                }
 
-            SliderView(lowValue: $heightLowValue,
-                       highValue: $heightHighValue,
-                       sliderHeader: "Height (CM)",
-                       startValue: 0,
-                       endValue: 1000,
-                       step: 100)
-            .onChange(of: heightLowValue) { _ in
-                searchModel.wallHeightLowValue = heightLowValue.rounded()
-            }
-            .onChange(of: heightHighValue) { _ in
-                searchModel.wallHeightHighValue = heightHighValue.rounded()
+                SliderView(lowValue: $heightLowValue,
+                           highValue: $heightHighValue,
+                           sliderHeader: "Height (CM)",
+                           startValue: 0,
+                           endValue: 1000,
+                           step: 100)
+                .onChange(of: heightLowValue) { _ in
+                    searchModel.wallHeightLowValue = heightLowValue.rounded()
+                }
+                .onChange(of: heightHighValue) { _ in
+                    searchModel.wallHeightHighValue = heightHighValue.rounded()
+                }
             }
         }
     }

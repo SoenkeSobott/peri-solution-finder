@@ -223,7 +223,11 @@
 		2D2CE72F291D14B400C369D4 /* PeriSolutionFinder */ = {
 			isa = PBXGroup;
 			children = (
+				2D11D4D32970FB600022454D /* LaunchScreen.storyboard */,
 				2D2CE730291D14B400C369D4 /* PeriSolutionFinderApp.swift */,
+				2D2CE734291D14B500C369D4 /* Assets.xcassets */,
+				2D2CE75A291D175800C369D4 /* Info.plist */,
+				2DE910DC2977F57000465561 /* Util */,
 				2D311582295DAF3E0091D4A3 /* View */,
 				2D31158C295DB0180091D4A3 /* Model */,
 				2D25097929506E9500F8D30A /* Components */,
@@ -231,13 +235,7 @@
 				2D2509852954B26C00F8D30A /* UIViewRepresentables */,
 				2D25097E2951AC7D00F8D30A /* Network */,
 				2D250974294C7DAD00F8D30A /* Entity */,
-				2D2CE75A291D175800C369D4 /* Info.plist */,
-				2D2CE734291D14B500C369D4 /* Assets.xcassets */,
 				2D311586295DAFAD0091D4A3 /* Preview Content */,
-				2D25099B2959B39E00F8D30A /* SharedLogger.swift */,
-				2D31157E295CBEF00091D4A3 /* Enums.swift */,
-				2D92DCA2295DDCC2002B9A9A /* Alerts.swift */,
-				2D11D4D32970FB600022454D /* LaunchScreen.storyboard */,
 			);
 			path = PeriSolutionFinder;
 			sourceTree = "<group>";
@@ -336,6 +334,16 @@
 				2D9C33C6296DA95000E196FC /* ColumnFiltersView.swift */,
 			);
 			path = Structure;
+			sourceTree = "<group>";
+		};
+		2DE910DC2977F57000465561 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2D25099B2959B39E00F8D30A /* SharedLogger.swift */,
+				2D31157E295CBEF00091D4A3 /* Enums.swift */,
+				2D92DCA2295DDCC2002B9A9A /* Alerts.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		2DEE53DB295B23C60055A550 /* Navigation */ = {
@@ -677,7 +685,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeriSolutionFinder/Preview Content\"";
@@ -712,7 +719,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PeriSolutionFinder/Preview Content\"";

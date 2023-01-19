@@ -78,6 +78,14 @@ enum Infrastructure: String, CaseIterable {
     case WaterPlants = "Water Plants"
 }
 
+enum Industrial: String, CaseIterable {
+    case OilAndGas = "Oil & Gas"
+    case Chemicals = "Chemicals"
+    case Power = "Power"
+    case MetalsAndMinerals = "Metals & Minerals"
+    case IndustrializedManufacturing = "Industrialized Manufacturing"
+}
+
 // Segment - Infrastructure
 
 enum Tunnel: String, CaseIterable {

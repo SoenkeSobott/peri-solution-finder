@@ -38,7 +38,8 @@ class SearchModel: ObservableObject {
     @Published var selectedSegment: Segment = .Infrastructure
     @Published var infrastructureElements: [Infrastructure] = Infrastructure.allCases
     @Published var selectedInfrastructureElements: [Infrastructure] = []
-    @Published var selectedInfrastructure: Infrastructure?
+    @Published var industrialElements: [Industrial] = Industrial.allCases
+    @Published var selectedIndustrialElements: [Industrial] = []
 
     // Segment - Tunnels
     @Published var tunnelElements: [Tunnel] = Tunnel.allCases
@@ -58,6 +59,42 @@ class SearchModel: ObservableObject {
 
     func setSelectedProduct(product: Product?) {
         self.selectedProduct = product
+    }
+
+    // Segment
+
+    func executeSegmentFilterAction(element: String) {
+        switch selectedSegment {
+        case .Residential:
+            print("Residential")
+        case .NonResidential:
+            print("NonResidential")
+        case .Infrastructure:
+            if (selectedInfrastructureElements.contains(.init(rawValue: element)!)) {
+                selectedInfrastructureElements.removeAll { $0.rawValue == element }
+            } else {
+                selectedInfrastructureElements.append(.init(rawValue: element)!)
+            }
+        case .Industrial:
+            if (selectedIndustrialElements.contains(.init(rawValue: element)!)) {
+                selectedIndustrialElements.removeAll { $0.rawValue == element }
+            } else {
+                selectedIndustrialElements.append(.init(rawValue: element)!)
+            }
+        }
+    }
+
+    func isSegmentFilterSelected(element: String) -> Bool {
+        switch selectedSegment {
+        case .Residential:
+            return false
+        case .NonResidential:
+            return false
+        case .Infrastructure:
+            return selectedInfrastructureElements.contains(.init(rawValue: element)!)
+        case .Industrial:
+            return selectedIndustrialElements.contains(.init(rawValue: element)!)
+        }
     }
 
     // Reset criteria filters
@@ -83,12 +120,8 @@ class SearchModel: ObservableObject {
     }
 
     private func resetSegmentFilters() {
-        switch selectedSegment {
-        case .Infrastructure:
-            selectedInfrastructureElements = []
-        default:
-            SharedLogger.shared().info("Nothing to reset in segment")
-        }
+        selectedInfrastructureElements = []
+        selectedIndustrialElements = []
     }
 
     func hasSelectedItems() -> Bool {
@@ -138,14 +171,21 @@ class SearchModel: ObservableObject {
     }
 
     func isSegmentFilterSet() -> Bool {
-        return isInfrastructureFilterSet()
+        return (isInfrastructureFilterSet() || isIndustrialFilterSet())
     }
 
     private func isInfrastructureFilterSet() -> Bool {
         return selectedInfrastructureElements.count > 0
     }
 
+    private func isIndustrialFilterSet() -> Bool {
+        return selectedIndustrialElements.count > 0
+    }
+
+
     func isSolutionFilterSet() -> Bool {
         return selectedSolutionTags.count > 0
     }
+
+    
 }

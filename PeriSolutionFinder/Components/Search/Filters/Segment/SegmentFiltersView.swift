@@ -24,7 +24,7 @@ struct SegmentFiltersView: View {
                         .shadow(color: .gray.opacity(0.5), radius: 5)
 
                     HStack {
-                        geometryLayout(geometry: geometry)
+                        segmentGeometryLayout(geometry: geometry, searchModel: searchModel)
                         Spacer()
                     }
                     .padding(10)
@@ -45,31 +45,39 @@ struct SegmentFiltersView: View {
     }
 }
 
-struct geometryLayout: View {
-    @EnvironmentObject var searchModel: SearchModel
-    @State private var isSelected = false
+struct segmentGeometryLayout: View {
     let geometry: GeometryProxy
+    let searchModel: SearchModel
 
     var body: some View {
-        self.generateContent(in: geometry)
+        if (searchModel.selectedSegment == .Infrastructure) {
+            self.generateContent(in: geometry, items: searchModel.infrastructureElements.map{ $0.rawValue })
+        } else {
+            self.generateContent(in: geometry, items: searchModel.industrialElements.map{ $0.rawValue })
+        }
     }
 
-    private func generateContent(in g: GeometryProxy) -> some View {
+    private func generateContent(in g: GeometryProxy, items: [String]) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
+        let padding: CGFloat = 10
 
         return ZStack(alignment: .topLeading) {
-            ForEach(searchModel.infrastructureElements, id: \.self) { infrastructure in
-                self.getButtonText(for: infrastructure, isSelected: isSelected)
+            ForEach(items, id: \.self) { item in
+                self.getButtonText(for: item,
+                                   isSelected: searchModel.isSegmentFilterSelected(element: item), padding: padding)
+                    .onTapGesture {
+                        searchModel.executeSegmentFilterAction(element: item)
+                    }
                     .padding([.horizontal, .vertical], 4)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if (abs(width - d.width) > g.size.width)
+                        if (abs(width - d.width) > (g.size.width*0.9)-(padding*2))
                         {
                             width = 0
                             height -= d.height
                         }
                         let result = width
-                        if infrastructure == searchModel.infrastructureElements.last! {
+                        if item == items.last! {
                             width = 0 //last item
                         } else {
                             width -= d.width
@@ -78,7 +86,7 @@ struct geometryLayout: View {
                     })
                     .alignmentGuide(.top, computeValue: {d in
                         let result = height
-                        if infrastructure == searchModel.infrastructureElements.last! {
+                        if item == items.last! {
                             height = 0 // last item
                         }
                         return result
@@ -87,36 +95,21 @@ struct geometryLayout: View {
         }
     }
 
-    func getButtonText(for infrastructure: Infrastructure, isSelected: Bool) -> some View {
-        Button(action: {
-            if (searchModel.selectedInfrastructureElements.contains(infrastructure)) {
-                searchModel.selectedInfrastructureElements.removeAll { $0 == infrastructure }
-            } else {
-                searchModel.selectedInfrastructureElements.append(infrastructure)
-            }
-        }, label: {
-            HStack {
-                Text(infrastructure.rawValue)
-                    .frame(height: 40)
-                    .padding(.leading, 10)
-                    .padding(.trailing, 10)
-                    .background(.white)
-                    .foregroundColor(isInfrastructureSelected(infrastructure: infrastructure) ? Color("PeriRed") : .gray)
-                    .cornerRadius(25)
-                    .font(Font.system(size: 12, weight: .medium))
-            }
-            .overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(isInfrastructureSelected(infrastructure: infrastructure) ? Color("PeriRed") : .gray, lineWidth: 1)
-            )
-
-
-        })
-
-    }
-
-    func isInfrastructureSelected(infrastructure: Infrastructure) -> Bool {
-        return searchModel.selectedInfrastructureElements.contains(infrastructure)
+    func getButtonText(for text: String, isSelected: Bool, padding: CGFloat) -> some View {
+        HStack {
+            Text(text)
+                .frame(height: 40)
+                .padding(.leading, padding)
+                .padding(.trailing, padding)
+                .background(.white)
+                .foregroundColor(isSelected ? Color("PeriRed") : .gray)
+                .cornerRadius(25)
+                .font(Font.system(size: 12, weight: .medium))
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: 25)
+                .stroke(isSelected ? Color("PeriRed") : .gray, lineWidth: 1)
+        )
     }
 }
 

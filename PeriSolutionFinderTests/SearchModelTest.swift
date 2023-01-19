@@ -54,9 +54,12 @@ final class SearchModelTest: XCTestCase {
 
     func testDefaultInfrastructureValues() {
         XCTAssertEqual(searchModel.infrastructureElements, [.Bridges, .Tunnels, .LandTraffics, .Airports, .MarineAndWaterInfrastructur, .WaterPlants], "Incorrect Default infrastructureElements")
-        XCTAssertEqual(searchModel.selectedSegment, .Infrastructure, "Incorrect Default selectedSegment")
         XCTAssertEqual(searchModel.selectedInfrastructureElements, [], "Incorrect Default selectedInfrastructureElements")
-        XCTAssertEqual(searchModel.selectedInfrastructure, nil, "Incorrect Default selectedInfrastructure")
+    }
+
+    func testDefaultIndustrialValues() {
+        XCTAssertEqual(searchModel.industrialElements, [.OilAndGas, .Chemicals, .Power, .MetalsAndMinerals, .IndustrializedManufacturing], "Incorrect Default industrialElements")
+        XCTAssertEqual(searchModel.selectedIndustrialElements, [], "Incorrect Default selectedIndustrialElements")
     }
 
     func testDefaultTunnelValues() {
@@ -86,6 +89,7 @@ final class SearchModelTest: XCTestCase {
         searchModel.columnHeightLowValue = 89
         searchModel.columnHeightHighValue = 888
         searchModel.selectedInfrastructureElements = [.WaterPlants, .Airports, .Tunnels]
+        searchModel.selectedIndustrialElements = [.Power, .IndustrializedManufacturing]
         searchModel.selectedSolutionTags = [.Tank, .ChamferCorner, .ConcreteShoringBeam, .Basement]
 
         searchModel.resetAllFilters()
@@ -101,6 +105,7 @@ final class SearchModelTest: XCTestCase {
         XCTAssertEqual(searchModel.columnHeightLowValue, 0, "Incorrect Default columnHeightLowValue")
         XCTAssertEqual(searchModel.columnHeightHighValue, 1000, "Incorrect Default columnHeightHighValue")
         XCTAssertEqual(searchModel.selectedInfrastructureElements, [], "Incorrect Default selectedInfrastructureElements")
+        XCTAssertEqual(searchModel.selectedIndustrialElements, [], "Incorrect Default selectedIndustrialElements")
         XCTAssertEqual(searchModel.selectedSolutionTags, [], "Incorrect Default selectedSolutionTags")
     }
 
@@ -214,10 +219,25 @@ final class SearchModelTest: XCTestCase {
         XCTAssertTrue(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
     }
 
-    func testIsSegmentFilterSet() {
+    func testIsSegmentFilterSetIfAllSet() {
         XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
 
         searchModel.selectedInfrastructureElements = [.Tunnels, .MarineAndWaterInfrastructur]
+        searchModel.selectedIndustrialElements = [.OilAndGas, .Chemicals]
+        XCTAssertTrue(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
+    }
+
+    func testIsSegmentFilterSetIfOnlyInfrastructureSet() {
+        XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
+
+        searchModel.selectedInfrastructureElements = [.Tunnels, .MarineAndWaterInfrastructur]
+        XCTAssertTrue(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
+    }
+
+    func testIsSegmentFilterSetIfOnlyIndustrialSet() {
+        XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
+
+        searchModel.selectedIndustrialElements = [.OilAndGas, .Chemicals]
         XCTAssertTrue(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
     }
 

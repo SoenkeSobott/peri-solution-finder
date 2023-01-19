@@ -32,9 +32,9 @@ struct ProjectListView: View {
                     Spacer()
                 }
 
-
                 VStack {
-                    Text("We found \(network.projects.count) projects with your search criteria")
+                    Text(network.projectsLoading ? "Loading Projects..." :
+                            "We found \(network.projects.count) projects with your search criteria")
                         .multilineTextAlignment(.center)
                         .frame(width: UIScreen.main.bounds.width*0.5, height: headingViewHeight)
                         .font(Font.system(size: 20, weight: .bold, design: .default))

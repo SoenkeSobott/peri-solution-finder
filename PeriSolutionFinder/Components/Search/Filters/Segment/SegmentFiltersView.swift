@@ -27,7 +27,7 @@ struct SegmentFiltersView: View {
                         segmentGeometryLayout(geometry: geometry, searchModel: searchModel)
                         Spacer()
                     }
-                    .padding(10)
+                    .padding(5)
                 }
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(width: UIScreen.main.bounds.width*0.9)
@@ -60,18 +60,18 @@ struct segmentGeometryLayout: View {
     private func generateContent(in g: GeometryProxy, items: [String]) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
-        let padding: CGFloat = 10
+        let padding: CGFloat = 5
 
         return ZStack(alignment: .topLeading) {
             ForEach(items, id: \.self) { item in
                 self.getButtonText(for: item,
-                                   isSelected: searchModel.isSegmentFilterSelected(element: item), padding: padding)
+                                   isSelected: searchModel.isSegmentFilterSelected(element: item))
                     .onTapGesture {
                         searchModel.executeSegmentFilterAction(element: item)
                     }
-                    .padding([.horizontal, .vertical], 4)
+                    .padding([.horizontal, .vertical], 5)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if (abs(width - d.width) > (g.size.width*0.9)-(padding*2))
+                        if (abs(width - d.width) > (g.size.width*0.9)-(padding))
                         {
                             width = 0
                             height -= d.height
@@ -95,12 +95,12 @@ struct segmentGeometryLayout: View {
         }
     }
 
-    func getButtonText(for text: String, isSelected: Bool, padding: CGFloat) -> some View {
+    func getButtonText(for text: String, isSelected: Bool) -> some View {
         HStack {
             Text(text)
                 .frame(height: 40)
-                .padding(.leading, padding)
-                .padding(.trailing, padding)
+                .padding(.leading, 10)
+                .padding(.trailing, 10)
                 .background(.white)
                 .foregroundColor(isSelected ? Color("PeriRed") : .gray)
                 .cornerRadius(25)

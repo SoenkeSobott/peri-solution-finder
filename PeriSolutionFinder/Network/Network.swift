@@ -14,6 +14,7 @@ struct Filter: Identifiable, Encodable {
     var wallFilter: ThicknessAndHeightFilter
     var columnFilter: ThicknessAndHeightFilter
     var infrastructureElements: [String]
+    var industrialElements: [String]
     var solutionTags: [String]
 }
 
@@ -40,6 +41,7 @@ class Network: ObservableObject {
                      columnMinHeight: Double,
                      columnMaxHeight: Double,
                      infrastructureElements: [Infrastructure],
+                     industrialElements: [Industrial],
                      solutionTags: [SolutionTag]) {
         projectsLoading = true
         // Create URL
@@ -57,6 +59,7 @@ class Network: ObservableObject {
                             columnFilter: ThicknessAndHeightFilter(minThickness: columnMinThickness, maxThickness: columnMaxThickness,
                                                                    minHeight: columnMinHeight, maxHeight: columnMaxHeight),
                             infrastructureElements: infrastructureElements.map { $0.rawValue },
+                            industrialElements: industrialElements.map{ $0.rawValue },
                             solutionTags: solutionTags.map { $0.rawValue })
         do {
             urlRequest.httpBody = try JSONEncoder().encode(filter)

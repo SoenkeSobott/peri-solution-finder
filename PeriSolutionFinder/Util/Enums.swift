@@ -72,7 +72,7 @@ enum SolutionTag: String, CaseIterable {
 enum Infrastructure: String, CaseIterable {
     case Bridges
     case Tunnels
-    case LandTraffics = "Land Traffics"
+    case LandTraffic = "Land Traffic"
     case Airports
     case MarineAndWaterInfrastructur = "Marine & Water Infrastructure"
     case WaterPlants = "Water Plants"

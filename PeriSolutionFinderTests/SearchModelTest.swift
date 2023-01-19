@@ -53,7 +53,7 @@ final class SearchModelTest: XCTestCase {
     }
 
     func testDefaultInfrastructureValues() {
-        XCTAssertEqual(searchModel.infrastructureElements, [.Bridges, .Tunnels, .LandTraffics, .Airports, .MarineAndWaterInfrastructur, .WaterPlants], "Incorrect Default infrastructureElements")
+        XCTAssertEqual(searchModel.infrastructureElements, [.Bridges, .Tunnels, .LandTraffic, .Airports, .MarineAndWaterInfrastructur, .WaterPlants], "Incorrect Default infrastructureElements")
         XCTAssertEqual(searchModel.selectedInfrastructureElements, [], "Incorrect Default selectedInfrastructureElements")
     }
 

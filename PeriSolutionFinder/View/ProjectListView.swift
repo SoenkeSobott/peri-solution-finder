@@ -80,6 +80,7 @@ struct ProjectListView: View {
                             columnMinHeight: searchModel.columnHeightLowValue,
                             columnMaxHeight: searchModel.columnHeightHighValue,
                             infrastructureElements: searchModel.selectedInfrastructureElements,
+                            industrialElements: searchModel.selectedIndustrialElements,
                             solutionTags: searchModel.selectedSolutionTags)
                     }
                 }

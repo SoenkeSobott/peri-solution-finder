@@ -39,6 +39,15 @@ struct ProjectView: View {
                     BQView(billOfQuantity: project.billOfQuantity ?? [])
                 } else if selectedView == 2 {
                     PhotoView(photoUrls: project.pictures ?? [])
+                } else if selectedView == 3 {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Info")
+                        Text("SolutionTags: \(project.solutionTags?.joined(separator: ", ") ?? "-")")
+                        Text("Segment: \(project.segmentLevelOne ?? "-")")
+                        Text("SegmentLevelTwo: \(project.segmentLevelTwo ?? "-")")
+                    }
+                    .frame(width: UIScreen.main.bounds.width*0.9)
+
                 }
             }
 
@@ -73,6 +82,15 @@ struct ProjectView: View {
                         selectedView = 2
                     }, label: {
                         Text("Photo")
+                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 2)
+                    })
+
+                    Spacer()
+
+                    Button(action: {
+                        selectedView = 3
+                    }, label: {
+                        Text("Info")
                             .redBackgroundWithRoundedCorners(isSelected: selectedView == 2)
                     })
 

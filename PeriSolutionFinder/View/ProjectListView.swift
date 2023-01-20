@@ -70,27 +70,34 @@ struct ProjectListView: View {
                     .opacity(network.projectsLoading ? 0 : 1)
                     .onAppear {
                         if (shouldExecuteSerach) {
-                            network.getProjects(
-                                searchTerm: searchModel.searchTerm,
-                                product: searchModel.getSelectedProduct(),
-                                wallMinThickness: searchModel.wallThicknessLowValue,
-                                wallMaxThickness: searchModel.wallThicknessHighValue,
-                                wallMinHeight: searchModel.wallHeightLowValue,
-                                wallMaxHeight: searchModel.wallHeightHighValue,
-                                columnMinThickness: searchModel.columnThicknessLowValue,
-                                columnMaxThickness: searchModel.columnThicknessHighValue,
-                                columnMinHeight: searchModel.columnHeightLowValue,
-                                columnMaxHeight: searchModel.columnHeightHighValue,
-                                infrastructureElements: searchModel.selectedInfrastructureElements,
-                                industrialElements: searchModel.selectedIndustrialElements,
-                                solutionTags: searchModel.selectedSolutionTags)
+                            loadProjects()
                             shouldExecuteSerach = false
                         }
+                    }
+                    .refreshable {
+                        loadProjects()
                     }
                 }
             }
         }
         .navigationBarHidden(true)
+    }
+
+    private func loadProjects() {
+        network.getProjects(
+            searchTerm: searchModel.searchTerm,
+            product: searchModel.getSelectedProduct(),
+            wallMinThickness: searchModel.wallThicknessLowValue,
+            wallMaxThickness: searchModel.wallThicknessHighValue,
+            wallMinHeight: searchModel.wallHeightLowValue,
+            wallMaxHeight: searchModel.wallHeightHighValue,
+            columnMinThickness: searchModel.columnThicknessLowValue,
+            columnMaxThickness: searchModel.columnThicknessHighValue,
+            columnMinHeight: searchModel.columnHeightLowValue,
+            columnMaxHeight: searchModel.columnHeightHighValue,
+            infrastructureElements: searchModel.selectedInfrastructureElements,
+            industrialElements: searchModel.selectedIndustrialElements,
+            solutionTags: searchModel.selectedSolutionTags)
     }
 }
 

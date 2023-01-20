@@ -82,20 +82,7 @@ struct ProjectListView: View {
     }
 
     private func loadProjects() {
-        network.getProjects(
-            searchTerm: searchModel.searchTerm,
-            product: searchModel.getSelectedProduct(),
-            wallMinThickness: searchModel.wallThicknessLowValue,
-            wallMaxThickness: searchModel.wallThicknessHighValue,
-            wallMinHeight: searchModel.wallHeightLowValue,
-            wallMaxHeight: searchModel.wallHeightHighValue,
-            columnMinThickness: searchModel.columnThicknessLowValue,
-            columnMaxThickness: searchModel.columnThicknessHighValue,
-            columnMinHeight: searchModel.columnHeightLowValue,
-            columnMaxHeight: searchModel.columnHeightHighValue,
-            infrastructureElements: searchModel.selectedInfrastructureElements,
-            industrialElements: searchModel.selectedIndustrialElements,
-            solutionTags: searchModel.selectedSolutionTags)
+        network.getProjects(searchModel: searchModel)
     }
 }
 

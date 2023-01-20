@@ -19,13 +19,15 @@ struct InfoView: View {
                     InfoRowView(name: "Main Structure", value: project.mainStructure?.description ?? "-")
                     InfoRowView(name: "M2 of Concrete", value: project.m2OfConcrete?.description ?? "-")
                     InfoRowView(name: "M2 of Formwork", value: project.m2OfFormwork?.description ?? "-")
-                    InfoRowView(name: "Formwork Height", value: project.height?.description ?? "-")
+                    InfoRowView(name: "Length", value: project.lenght?.description ?? "-")
+                    InfoRowView(name: "Width", value: project.width?.description ?? "-")
                     InfoRowView(name: "Thickness", value: project.thickness?.description ?? "-")
+                    InfoRowView(name: "Formwork Height", value: project.height?.description ?? "-")
                     InfoRowView(name: "Max. Pour Height", value: project.maxPourHeight?.description ?? "-")
-                    InfoRowView(name: "Location", value: project.location ?? "-")
                 }
 
                 Group {
+                    InfoRowView(name: "Location", value: project.location ?? "-")
                     InfoRowView(name: "Segment Level 1", value: project.segmentLevelOne ?? "-")
                     InfoRowView(name: "Segment Level 2", value: project.segmentLevelTwo ?? "-")
                     InfoRowView(name: "Solution Tags", value: (project.solutionTags?.joined(separator: ", ") ?? "-"))

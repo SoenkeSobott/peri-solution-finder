@@ -1,5 +1,5 @@
 //
-//  SearchModel.swift
+//  swift
 //  PeriSolutionFinder
 //
 //  Created by Sönke Sobott on 29.12.22.
@@ -22,16 +22,18 @@ class SearchModel: ObservableObject {
     @Published var selectedStructure: Structure = Structure.Wall
 
     // Structure - Wall
-    @Published var wallThicknessLowValue: CGFloat = 0
-    @Published var wallThicknessHighValue: CGFloat = 500
-    @Published var wallHeightLowValue: CGFloat = 0
-    @Published var wallHeightHighValue: CGFloat = 1000
+    @Published var wallThicknessLowValue: CGFloat? = nil
+    @Published var wallThicknessHighValue: CGFloat? = nil
+    @Published var wallHeightLowValue: CGFloat? = nil
+    @Published var wallHeightHighValue: CGFloat? = nil
 
     // Structure - Column
-    @Published var columnThicknessLowValue: CGFloat = 0
-    @Published var columnThicknessHighValue: CGFloat = 500
-    @Published var columnHeightLowValue: CGFloat = 0
-    @Published var columnHeightHighValue: CGFloat = 1000
+    @Published var columnLengthLowValue: CGFloat? = nil
+    @Published var columnLengthHighValue: CGFloat? = nil
+    @Published var columnWidthLowValue: CGFloat? = nil
+    @Published var columnWidthHighValue: CGFloat? = nil
+    @Published var columnHeightLowValue: CGFloat? = nil
+    @Published var columnHeightHighValue: CGFloat? = nil
 
     // Segment
     @Published var segmentElements: [Segment] = Segment.allCases
@@ -108,15 +110,17 @@ class SearchModel: ObservableObject {
     }
 
     private func resetStructureFilters() {
-        wallThicknessLowValue = 0
-        wallThicknessHighValue = 500
-        wallHeightLowValue = 0
-        wallHeightHighValue = 1000
+        wallThicknessLowValue = nil
+        wallThicknessHighValue = nil
+        wallHeightLowValue = nil
+        wallHeightHighValue = nil
 
-        columnThicknessLowValue = 0
-        columnThicknessHighValue = 500
-        columnHeightLowValue = 0
-        columnHeightHighValue = 1000
+        columnLengthLowValue = nil
+        columnLengthHighValue = nil
+        columnWidthLowValue = nil
+        columnWidthHighValue = nil
+        columnHeightLowValue = nil
+        columnHeightHighValue = nil
     }
 
     private func resetSegmentFilters() {
@@ -139,35 +143,12 @@ class SearchModel: ObservableObject {
     }
 
     func isWallFilterSet() -> Bool {
-        if (wallThicknessLowValue != 0) {
-            return wallThicknessLowValue > 0
-        }
-        if (wallThicknessHighValue != 500) {
-            return wallThicknessHighValue < 500
-        }
-        if (wallHeightLowValue != 0) {
-            return wallHeightLowValue > 0
-        }
-        if (wallHeightHighValue != 1000) {
-            return wallHeightHighValue < 1000
-        }
-        return false
+        return (wallThicknessLowValue != nil || wallThicknessHighValue != nil || wallHeightLowValue != nil || wallHeightHighValue != nil)
     }
 
     func isColumnFilterSet() -> Bool {
-        if (columnThicknessLowValue != 0) {
-            return columnThicknessLowValue > 0
-        }
-        if (columnThicknessHighValue != 500) {
-            return columnThicknessHighValue < 500
-        }
-        if (columnHeightLowValue != 0) {
-            return columnHeightLowValue > 0
-        }
-        if (columnHeightHighValue != 1000) {
-            return columnHeightHighValue < 1000
-        }
-        return false
+        return (columnLengthLowValue != nil || columnLengthHighValue != nil || columnWidthLowValue != nil || columnWidthHighValue != nil ||
+                columnHeightLowValue != nil || columnHeightHighValue != nil)
     }
 
     func isSegmentFilterSet() -> Bool {
@@ -187,5 +168,26 @@ class SearchModel: ObservableObject {
         return selectedSolutionTags.count > 0
     }
 
+    func createSearchFilterObject() -> Filter {
+        let wallFilter = ThicknessAndHeightFilter(minThickness: wallThicknessLowValue,
+                                                  maxThickness: wallThicknessHighValue,
+                                                  minHeight: wallHeightLowValue,
+                                                  maxHeight: wallHeightHighValue)
+
+        let columnFilter = LengthWidthAndHeightFilter(minLength: columnLengthLowValue,
+                                                      maxLength: columnLengthHighValue,
+                                                      minWidth: columnWidthLowValue,
+                                                      maxWidth: columnWidthHighValue,
+                                                      minHeight: columnHeightLowValue,
+                                                      maxHeight: columnHeightHighValue)
+
+        return Filter(searchTerm: searchTerm,
+                      product: getSelectedProduct()?.rawValue ?? "",
+                      wallFilter: wallFilter,
+                      columnFilter: columnFilter,
+                      infrastructureElements: selectedInfrastructureElements.map { $0.rawValue },
+                      industrialElements: selectedIndustrialElements.map{ $0.rawValue },
+                      solutionTags: selectedSolutionTags.map { $0.rawValue })
+    }
     
 }

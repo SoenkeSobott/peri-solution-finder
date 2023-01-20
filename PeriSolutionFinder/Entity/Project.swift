@@ -24,9 +24,10 @@ struct Project: Identifiable, Decodable, Hashable {
     var billOfQuantity: [BillOffQuantityEntry]?
     var pictures: [String]?
     var height: Float?
+    var lenght: Float?
+    var width: Float?
     var maxPourHeight: Float?
     var thickness: Float?
-    var width: Float?
     var m2OfFormwork: Float?
     var m2OfConcrete: Float?
     var planViewSize: String?

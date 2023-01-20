@@ -12,7 +12,7 @@ struct Filter: Identifiable, Encodable {
     var searchTerm: String
     var product: String
     var wallFilter: ThicknessAndHeightFilter
-    var columnFilter: ThicknessAndHeightFilter
+    var columnFilter: LengthWidthAndHeightFilter
     var infrastructureElements: [String]
     var industrialElements: [String]
     var solutionTags: [String]
@@ -20,29 +20,27 @@ struct Filter: Identifiable, Encodable {
 
 struct ThicknessAndHeightFilter: Identifiable, Encodable {
     var id = UUID()
-    var minThickness: Double
-    var maxThickness: Double
-    var minHeight: Double
-    var maxHeight: Double
+    var minThickness: CGFloat?
+    var maxThickness: CGFloat?
+    var minHeight: CGFloat?
+    var maxHeight: CGFloat?
+}
+
+struct LengthWidthAndHeightFilter: Identifiable, Encodable {
+    var id = UUID()
+    var minLength: CGFloat?
+    var maxLength: CGFloat?
+    var minWidth: CGFloat?
+    var maxWidth: CGFloat?
+    var minHeight: CGFloat?
+    var maxHeight: CGFloat?
 }
 
 class Network: ObservableObject {
     @Published var projects: [Project] = []
     @Published var projectsLoading: Bool = false
 
-    func getProjects(searchTerm: String,
-                     product: Product?,
-                     wallMinThickness: Double,
-                     wallMaxThickness: Double,
-                     wallMinHeight: Double,
-                     wallMaxHeight: Double,
-                     columnMinThickness: Double,
-                     columnMaxThickness: Double,
-                     columnMinHeight: Double,
-                     columnMaxHeight: Double,
-                     infrastructureElements: [Infrastructure],
-                     industrialElements: [Industrial],
-                     solutionTags: [SolutionTag]) {
+    func getProjects(searchModel: SearchModel) {
         projectsLoading = true
         // Create URL
         guard let url = URL(string: "https://solutionx-project-service.azurewebsites.net/projects") else { fatalError("Missing URL") }
@@ -53,16 +51,9 @@ class Network: ObservableObject {
         urlRequest.httpMethod = "POST"
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let filter = Filter(searchTerm: searchTerm, product: product != nil ? product!.rawValue : "",
-                            wallFilter: ThicknessAndHeightFilter(minThickness: wallMinThickness, maxThickness: wallMaxThickness,
-                                                                 minHeight: wallMinHeight, maxHeight: wallMaxHeight),
-                            columnFilter: ThicknessAndHeightFilter(minThickness: columnMinThickness, maxThickness: columnMaxThickness,
-                                                                   minHeight: columnMinHeight, maxHeight: columnMaxHeight),
-                            infrastructureElements: infrastructureElements.map { $0.rawValue },
-                            industrialElements: industrialElements.map{ $0.rawValue },
-                            solutionTags: solutionTags.map { $0.rawValue })
+
         do {
-            urlRequest.httpBody = try JSONEncoder().encode(filter)
+            urlRequest.httpBody = try JSONEncoder().encode(searchModel.createSearchFilterObject())
         } catch let error {
             print(error.localizedDescription)
         }

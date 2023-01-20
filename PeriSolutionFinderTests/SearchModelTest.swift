@@ -34,17 +34,19 @@ final class SearchModelTest: XCTestCase {
     }
 
     func testDefaultWallValues() {
-        XCTAssertEqual(searchModel.wallThicknessLowValue, 0, "Incorrect Default wallThicknessLowValue")
-        XCTAssertEqual(searchModel.wallThicknessHighValue, 500, "Incorrect Default wallThicknessHighValue")
-        XCTAssertEqual(searchModel.wallHeightLowValue, 0, "Incorrect Default wallHeightLowValue")
-        XCTAssertEqual(searchModel.wallHeightHighValue, 1000, "Incorrect Default wallHeightHighValue")
+        XCTAssertEqual(searchModel.wallThicknessLowValue, nil, "Incorrect Default wallThicknessLowValue")
+        XCTAssertEqual(searchModel.wallThicknessHighValue, nil, "Incorrect Default wallThicknessHighValue")
+        XCTAssertEqual(searchModel.wallHeightLowValue, nil, "Incorrect Default wallHeightLowValue")
+        XCTAssertEqual(searchModel.wallHeightHighValue, nil, "Incorrect Default wallHeightHighValue")
     }
 
     func testDefaultColumnValues() {
-        XCTAssertEqual(searchModel.columnThicknessLowValue, 0, "Incorrect Default columnThicknessLowValue")
-        XCTAssertEqual(searchModel.columnThicknessHighValue, 500, "Incorrect Default columnThicknessHighValue")
-        XCTAssertEqual(searchModel.columnHeightLowValue, 0, "Incorrect Default columnHeightLowValue")
-        XCTAssertEqual(searchModel.columnHeightHighValue, 1000, "Incorrect Default columnHeightHighValue")
+        XCTAssertEqual(searchModel.columnLengthLowValue, nil, "Incorrect Default columnLengthLowValue")
+        XCTAssertEqual(searchModel.columnLengthHighValue, nil, "Incorrect Default columnLengthHighValue")
+        XCTAssertEqual(searchModel.columnWidthLowValue, nil, "Incorrect Default columnWidthLowValue")
+        XCTAssertEqual(searchModel.columnWidthHighValue, nil, "Incorrect Default columnWidthHighValue")
+        XCTAssertEqual(searchModel.columnHeightLowValue, nil, "Incorrect Default columnHeightLowValue")
+        XCTAssertEqual(searchModel.columnHeightHighValue, nil, "Incorrect Default columnHeightHighValue")
     }
 
     func testDefaultSegmentValues() {
@@ -84,8 +86,10 @@ final class SearchModelTest: XCTestCase {
         searchModel.wallThicknessHighValue = 200
         searchModel.wallHeightLowValue = 100
         searchModel.wallHeightHighValue = 760
-        searchModel.columnThicknessLowValue = 23
-        searchModel.columnThicknessHighValue = 353
+        searchModel.columnLengthLowValue = 23
+        searchModel.columnLengthHighValue = 353
+        searchModel.columnWidthLowValue = 23
+        searchModel.columnWidthHighValue = 200
         searchModel.columnHeightLowValue = 89
         searchModel.columnHeightHighValue = 888
         searchModel.selectedInfrastructureElements = [.WaterPlants, .Airports, .Tunnels]
@@ -96,14 +100,19 @@ final class SearchModelTest: XCTestCase {
 
         XCTAssertEqual(searchModel.searchTerm, "", "Incorrect Default searchTerm")
         XCTAssertEqual(searchModel.getSelectedProduct(), nil, "Incorrect default selectedProduct")
-        XCTAssertEqual(searchModel.wallThicknessLowValue, 0, "Incorrect Default wallThicknessLowValue")
-        XCTAssertEqual(searchModel.wallThicknessHighValue, 500, "Incorrect Default wallThicknessHighValue")
-        XCTAssertEqual(searchModel.wallHeightLowValue, 0, "Incorrect Default wallHeightLowValue")
-        XCTAssertEqual(searchModel.wallHeightHighValue, 1000, "Incorrect Default wallHeightHighValue")
-        XCTAssertEqual(searchModel.columnThicknessLowValue, 0, "Incorrect Default columnThicknessLowValue")
-        XCTAssertEqual(searchModel.columnThicknessHighValue, 500, "Incorrect Default columnThicknessHighValue")
-        XCTAssertEqual(searchModel.columnHeightLowValue, 0, "Incorrect Default columnHeightLowValue")
-        XCTAssertEqual(searchModel.columnHeightHighValue, 1000, "Incorrect Default columnHeightHighValue")
+
+        XCTAssertEqual(searchModel.wallThicknessLowValue, nil, "Incorrect Default wallThicknessLowValue")
+        XCTAssertEqual(searchModel.wallThicknessHighValue, nil, "Incorrect Default wallThicknessHighValue")
+        XCTAssertEqual(searchModel.wallHeightLowValue, nil, "Incorrect Default wallHeightLowValue")
+        XCTAssertEqual(searchModel.wallHeightHighValue, nil, "Incorrect Default wallHeightHighValue")
+
+        XCTAssertEqual(searchModel.columnLengthLowValue, nil, "Incorrect Default columnLengthLowValue")
+        XCTAssertEqual(searchModel.columnLengthHighValue, nil, "Incorrect Default columnLengthHighValue")
+        XCTAssertEqual(searchModel.columnWidthLowValue, nil, "Incorrect Default columnWidthLowValue")
+        XCTAssertEqual(searchModel.columnWidthHighValue, nil, "Incorrect Default columnWidthHighValue")
+        XCTAssertEqual(searchModel.columnHeightLowValue, nil, "Incorrect Default columnHeightLowValue")
+        XCTAssertEqual(searchModel.columnHeightHighValue, nil, "Incorrect Default columnHeightHighValue")
+
         XCTAssertEqual(searchModel.selectedInfrastructureElements, [], "Incorrect Default selectedInfrastructureElements")
         XCTAssertEqual(searchModel.selectedIndustrialElements, [], "Incorrect Default selectedIndustrialElements")
         XCTAssertEqual(searchModel.selectedSolutionTags, [], "Incorrect Default selectedSolutionTags")
@@ -157,7 +166,7 @@ final class SearchModelTest: XCTestCase {
         XCTAssertFalse(searchModel.isStructureFilterSet(), "Incorrect value for isStructureFilterSet()")
 
         searchModel.columnHeightLowValue = 10
-        searchModel.columnThicknessLowValue = 200
+        searchModel.columnLengthLowValue = 200
         XCTAssertTrue(searchModel.isStructureFilterSet(), "Incorrect value for isStructureFilterSet()")
     }
 
@@ -189,19 +198,33 @@ final class SearchModelTest: XCTestCase {
         XCTAssertTrue(searchModel.isWallFilterSet(), "Incorrect value for isWallFilterSet()")
     }
 
+    // Column
 
-
-    func testIsColumnFilterSetWhenOnlyThicknessLowValueSet() {
+    func testIsColumnFilterSetWhenOnlyLengthLowValueSet() {
         XCTAssertFalse(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
 
-        searchModel.columnThicknessLowValue = 1
+        searchModel.columnLengthLowValue = 1
         XCTAssertTrue(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
     }
 
-    func testIsColumnFilterSetWhenOnlyThicknessHighValueSet() {
+    func testIsColumnFilterSetWhenOnlyLengthHighValueSet() {
         XCTAssertFalse(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
 
-        searchModel.columnHeightHighValue = 499
+        searchModel.columnLengthHighValue = 499
+        XCTAssertTrue(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
+    }
+
+    func testIsColumnFilterSetWhenOnlyWidthLowValueSet() {
+        XCTAssertFalse(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
+
+        searchModel.columnWidthLowValue = 1
+        XCTAssertTrue(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
+    }
+
+    func testIsColumnFilterSetWhenOnlyWidthHighValueSet() {
+        XCTAssertFalse(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
+
+        searchModel.columnWidthHighValue = 499
         XCTAssertTrue(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
     }
 

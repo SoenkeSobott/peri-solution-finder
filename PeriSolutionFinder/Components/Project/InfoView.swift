@@ -11,17 +11,35 @@ struct InfoView: View {
     let project: Project
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Info")
-                .headline()
-            Text("SolutionTags: \(project.solutionTags?.joined(separator: ", ") ?? "-")")
-                .text()
-            Text("Segment: \(project.segmentLevelOne ?? "-")")
-                .text()
-            Text("SegmentLevelTwo: \(project.segmentLevelTwo ?? "-")")
-                .text()
+        VStack(alignment: .leading, spacing: 0) {
+            List() {
+                Group {
+                    InfoRowView(name: "Project Name", value: project.projectName)
+                    InfoRowView(name: "Project Number", value: project.projectNumber)
+                    InfoRowView(name: "Main Structure", value: project.mainStructure?.description ?? "-")
+                    InfoRowView(name: "M2 of Concrete", value: project.m2OfConcrete?.description ?? "-")
+                    InfoRowView(name: "M2 of Formwork", value: project.m2OfFormwork?.description ?? "-")
+                    InfoRowView(name: "Formwork Height", value: project.height?.description ?? "-")
+                    InfoRowView(name: "Thickness", value: project.thickness?.description ?? "-")
+                    InfoRowView(name: "Max. Pour Height", value: project.maxPourHeight?.description ?? "-")
+                    InfoRowView(name: "Location", value: project.location ?? "-")
+                }
+
+                Group {
+                    InfoRowView(name: "Segment Level 1", value: project.segmentLevelOne ?? "-")
+                    InfoRowView(name: "Segment Level 2", value: project.segmentLevelTwo ?? "-")
+                    InfoRowView(name: "Solution Tags", value: (project.solutionTags?.joined(separator: ", ") ?? "-"))
+                }
+
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color("PeriLightGray"))
+            .cornerRadius(20)
+            .listStyle(.plain)
         }
+        .padding(15)
         .frame(width: UIScreen.main.bounds.width*0.9)
+        .cornerRadius(20)
     }
 }
 

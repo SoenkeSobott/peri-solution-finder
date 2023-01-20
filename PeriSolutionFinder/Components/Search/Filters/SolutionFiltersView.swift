@@ -23,19 +23,24 @@ struct SolutionFiltersView: View {
                         .clipped()
                         .shadow(color: .gray.opacity(0.5), radius: 5)
 
-                    ScrollView {
-                        geometryLayoutSolutionTags(geometry: geometry)
-                            .padding(.vertical, 5)
-                            .frame(width: UIScreen.main.bounds.width*0.9)
-                    }
-                    .cornerRadius(25)
-                    .frame(width: UIScreen.main.bounds.width*0.9)
+                    geometryLayoutSolutionTags(geometry: geometry)
+                        .padding(.vertical, 5)
+                        .frame(width: UIScreen.main.bounds.width*0.9)
+                        .cornerRadius(25)
+                        .frame(width: UIScreen.main.bounds.width*0.9)
                 }
+                .background(GeometryReader {gp -> Color in
+                    DispatchQueue.main.async {
+                        self.totalHeight = gp.size.height
+                    }
+                    return Color.clear
+                })
                 .frame(width: UIScreen.main.bounds.width*0.9)
                 .padding(.leading, UIScreen.main.bounds.width*0.05)
                 .padding(.trailing, UIScreen.main.bounds.width*0.05)
                 .padding(.bottom, 10)
             }
+            .frame(height: totalHeight)
         }
     }
 }

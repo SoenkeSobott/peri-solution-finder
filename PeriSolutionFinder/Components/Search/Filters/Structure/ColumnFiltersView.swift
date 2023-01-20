@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ColumnFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
-    @State var thicknessLowValue: CGFloat = 0
-    @State var thicknessHighValue: CGFloat = 500
+    @State var lengthLowValue: CGFloat = 0
+    @State var lengthHighValue: CGFloat = 500
+    @State var widthLowValue: CGFloat = 0
+    @State var widthHighValue: CGFloat = 500
     @State var heightLowValue: CGFloat = 0
     @State var heightHighValue: CGFloat = 1000
     
@@ -21,17 +23,30 @@ struct ColumnFiltersView: View {
                     .filterHeadlineStyle()
             }
 
-            SliderView(lowValue: $thicknessLowValue,
-                       highValue: $thicknessHighValue,
-                       sliderHeader: "Thickness (CM)",
+            SliderView(lowValue: $lengthLowValue,
+                       highValue: $lengthHighValue,
+                       sliderHeader: "Lenght (CM)",
                        startValue: 0,
                        endValue: 500,
                        step: 50)
-            .onChange(of: thicknessLowValue) { _ in
-                searchModel.columnThicknessLowValue = thicknessLowValue.rounded()
+            .onChange(of: lengthLowValue) { _ in
+                //searchModel.columnThicknessLowValue = thicknessLowValue.rounded()
             }
-            .onChange(of: thicknessHighValue) { _ in
-                searchModel.columnThicknessHighValue = thicknessHighValue.rounded()
+            .onChange(of: lengthHighValue) { _ in
+                //searchModel.columnThicknessHighValue = thicknessHighValue.rounded()
+            }
+
+            SliderView(lowValue: $widthLowValue,
+                       highValue: $widthHighValue,
+                       sliderHeader: "Width (CM)",
+                       startValue: 0,
+                       endValue: 500,
+                       step: 50)
+            .onChange(of: widthLowValue) { _ in
+               // searchModel.columnThicknessLowValue = thicknessLowValue.rounded()
+            }
+            .onChange(of: widthHighValue) { _ in
+              //  searchModel.columnThicknessHighValue = thicknessHighValue.rounded()
             }
 
             SliderView(lowValue: $heightLowValue,

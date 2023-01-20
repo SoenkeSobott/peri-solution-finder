@@ -13,52 +13,60 @@ struct SearchView: View {
 
     var body: some View {
         NavigationStack {
-            // Necessary that keyboard doesn't lift the view
-            // https://stackoverflow.com/questions/63958912/ios-14-swiftui-keyboard-lifts-view-automatically
-            GeometryReader { _ in
-                ZStack(alignment: .top) {
-                    Image("Ellipse")
-                        .resizable()
-                        .ignoresSafeArea()
-                        .frame(width: UIScreen.main.bounds.width, height: searchViewHeight)
+            ZStack {
+                Color("PeriLightGray").edgesIgnoringSafeArea(.top)
+                // Necessary that keyboard doesn't lift the view
+                // https://stackoverflow.com/questions/63958912/ios-14-swiftui-keyboard-lifts-view-automatically
+                GeometryReader { _ in
+                    Color.white
+                    VStack(spacing: 0) {
+                        ScrollView {
+                            ZStack(alignment: .top) {
+                                Image("Ellipse")
+                                    .resizable()
+                                    .ignoresSafeArea()
+                                    .frame(width: UIScreen.main.bounds.width, height: searchViewHeight)
 
-                    VStack(alignment: .center) {
-                        VStack {
-                            Text("Find your Reference Solution")
-                                .headline()
-                                .padding(.bottom, 20)
-                                .accessibilityIdentifier("searchHeading")
+                                VStack(alignment: .center) {
+                                    VStack {
+                                        Text("Find your Reference Solution")
+                                            .headline()
+                                            .padding(.bottom, 20)
+                                            .accessibilityIdentifier("searchHeading")
 
-                            SearchCriteriaView()
-                        }
-                        .frame(height: searchViewHeight)
-                        .zIndex(10)
+                                        SearchCriteriaView()
+                                    }
+                                    .frame(height: searchViewHeight)
+                                    .zIndex(10)
 
-                        if (searchModel.selectedCriteria == SearchCriteria.Product) {
-                            ProductFiltersView()
-                        } else if (searchModel.selectedCriteria == SearchCriteria.Structure) {
-                            if (searchModel.selectedStructure == Structure.Wall) {
-                                WallFiltersView()
-                            } else if (searchModel.selectedStructure == Structure.Column) {
-                                ColumnFiltersView()
-                            } else {
-                                Text(searchModel.selectedStructure.rawValue)
+                                    if (searchModel.selectedCriteria == SearchCriteria.Product) {
+                                        ProductFiltersView()
+                                    } else if (searchModel.selectedCriteria == SearchCriteria.Structure) {
+                                        if (searchModel.selectedStructure == Structure.Wall) {
+                                            WallFiltersView()
+                                        } else if (searchModel.selectedStructure == Structure.Column) {
+                                            ColumnFiltersView()
+                                        } else {
+                                            Text(searchModel.selectedStructure.rawValue)
+                                        }
+                                    } else if (searchModel.selectedCriteria == SearchCriteria.Segment) {
+                                        SegmentFiltersView()
+                                    } else if (searchModel.selectedCriteria == SearchCriteria.Solution) {
+                                        SolutionFiltersView()
+                                    }
+
+                                    Spacer()
+
+                                    ResetButton()
+                                        .padding(.bottom, 10)
+                                }
                             }
-                        } else if (searchModel.selectedCriteria == SearchCriteria.Segment) {
-                            SegmentFiltersView()
-                        } else if (searchModel.selectedCriteria == SearchCriteria.Solution) {
-                            SolutionFiltersView()
                         }
-
-                        Spacer()
-
-                        ResetButton()
-                            .padding(.bottom, 10)
                         FooterView()
                     }
                 }
+                .ignoresSafeArea(.keyboard)
             }
-            .ignoresSafeArea(.keyboard)
         }
     }
 }

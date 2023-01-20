@@ -35,6 +35,12 @@ class SearchModel: ObservableObject {
     @Published var columnHeightLowValue: CGFloat? = nil
     @Published var columnHeightHighValue: CGFloat? = nil
 
+    // Structure - Culvert
+    @Published var culvertThicknessLowValue: CGFloat? = nil
+    @Published var culvertThicknessHighValue: CGFloat? = nil
+    @Published var culvertHeightLowValue: CGFloat? = nil
+    @Published var culvertHeightHighValue: CGFloat? = nil
+
     // Segment
     @Published var segmentElements: [Segment] = Segment.allCases
     @Published var selectedSegment: Segment = .Infrastructure
@@ -121,6 +127,11 @@ class SearchModel: ObservableObject {
         columnWidthHighValue = nil
         columnHeightLowValue = nil
         columnHeightHighValue = nil
+
+        culvertThicknessLowValue = nil
+        culvertThicknessHighValue = nil
+        culvertHeightLowValue = nil
+        culvertHeightHighValue = nil
     }
 
     private func resetSegmentFilters() {
@@ -139,7 +150,7 @@ class SearchModel: ObservableObject {
     }
 
     func isStructureFilterSet() -> Bool {
-        return isWallFilterSet() || isColumnFilterSet()
+        return isWallFilterSet() || isColumnFilterSet() || isCulvertFilterSet()
     }
 
     func isWallFilterSet() -> Bool {
@@ -149,6 +160,10 @@ class SearchModel: ObservableObject {
     func isColumnFilterSet() -> Bool {
         return (columnLengthLowValue != nil || columnLengthHighValue != nil || columnWidthLowValue != nil || columnWidthHighValue != nil ||
                 columnHeightLowValue != nil || columnHeightHighValue != nil)
+    }
+
+    func isCulvertFilterSet() -> Bool {
+        return (culvertThicknessLowValue != nil || culvertThicknessHighValue != nil || culvertHeightLowValue != nil || culvertHeightHighValue != nil)
     }
 
     func isSegmentFilterSet() -> Bool {
@@ -181,10 +196,16 @@ class SearchModel: ObservableObject {
                                                       minHeight: columnHeightLowValue,
                                                       maxHeight: columnHeightHighValue)
 
+        let culvertFilter = ThicknessAndHeightFilter(minThickness: culvertThicknessLowValue,
+                                                     maxThickness: culvertThicknessHighValue,
+                                                     minHeight: culvertHeightLowValue,
+                                                     maxHeight: culvertHeightHighValue)
+
         return Filter(searchTerm: searchTerm,
                       product: getSelectedProduct()?.rawValue ?? "",
                       wallFilter: wallFilter,
                       columnFilter: columnFilter,
+                      culvertFilter: culvertFilter,
                       infrastructureElements: selectedInfrastructureElements.map { $0.rawValue },
                       industrialElements: selectedIndustrialElements.map{ $0.rawValue },
                       solutionTags: selectedSolutionTags.map { $0.rawValue })

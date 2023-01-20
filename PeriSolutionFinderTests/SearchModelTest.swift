@@ -49,6 +49,13 @@ final class SearchModelTest: XCTestCase {
         XCTAssertEqual(searchModel.columnHeightHighValue, nil, "Incorrect Default columnHeightHighValue")
     }
 
+    func testDefaultCulvertValues() {
+        XCTAssertEqual(searchModel.culvertThicknessLowValue, nil, "Incorrect Default culvertThicknessLowValue")
+        XCTAssertEqual(searchModel.culvertThicknessHighValue, nil, "Incorrect Default culvertThicknessHighValue")
+        XCTAssertEqual(searchModel.culvertHeightLowValue, nil, "Incorrect Default culvertHeightLowValue")
+        XCTAssertEqual(searchModel.culvertHeightHighValue, nil, "Incorrect Default culvertHeightHighValue")
+    }
+
     func testDefaultSegmentValues() {
         XCTAssertEqual(searchModel.segmentElements, [.Residential, .NonResidential, .Infrastructure, .Industrial], "Incorrect Default segmentElements")
         XCTAssertEqual(searchModel.selectedSegment, .Infrastructure, "Incorrect Default selectedSegment")
@@ -82,16 +89,24 @@ final class SearchModelTest: XCTestCase {
     func testResetAllFilters() {
         searchModel.searchTerm = "GRODT"
         searchModel.setSelectedProduct(product: .Duo)
+
         searchModel.wallThicknessLowValue = 50
         searchModel.wallThicknessHighValue = 200
         searchModel.wallHeightLowValue = 100
         searchModel.wallHeightHighValue = 760
+
         searchModel.columnLengthLowValue = 23
         searchModel.columnLengthHighValue = 353
         searchModel.columnWidthLowValue = 23
         searchModel.columnWidthHighValue = 200
         searchModel.columnHeightLowValue = 89
         searchModel.columnHeightHighValue = 888
+
+        searchModel.culvertThicknessLowValue = 34
+        searchModel.culvertThicknessHighValue = 200
+        searchModel.culvertHeightLowValue = 100
+        searchModel.culvertHeightHighValue = 760
+
         searchModel.selectedInfrastructureElements = [.WaterPlants, .Airports, .Tunnels]
         searchModel.selectedIndustrialElements = [.Power, .IndustrializedManufacturing]
         searchModel.selectedSolutionTags = [.Tank, .ChamferCorner, .ConcreteShoringBeam, .Basement]
@@ -112,6 +127,11 @@ final class SearchModelTest: XCTestCase {
         XCTAssertEqual(searchModel.columnWidthHighValue, nil, "Incorrect Default columnWidthHighValue")
         XCTAssertEqual(searchModel.columnHeightLowValue, nil, "Incorrect Default columnHeightLowValue")
         XCTAssertEqual(searchModel.columnHeightHighValue, nil, "Incorrect Default columnHeightHighValue")
+
+        XCTAssertEqual(searchModel.culvertThicknessLowValue, nil, "Incorrect Default culvertThicknessLowValue")
+        XCTAssertEqual(searchModel.culvertThicknessHighValue, nil, "Incorrect Default culvertThicknessHighValue")
+        XCTAssertEqual(searchModel.culvertHeightLowValue, nil, "Incorrect Default culvertHeightLowValue")
+        XCTAssertEqual(searchModel.culvertHeightHighValue, nil, "Incorrect Default culvertHeightHighValue")
 
         XCTAssertEqual(searchModel.selectedInfrastructureElements, [], "Incorrect Default selectedInfrastructureElements")
         XCTAssertEqual(searchModel.selectedIndustrialElements, [], "Incorrect Default selectedIndustrialElements")
@@ -169,6 +189,16 @@ final class SearchModelTest: XCTestCase {
         searchModel.columnLengthLowValue = 200
         XCTAssertTrue(searchModel.isStructureFilterSet(), "Incorrect value for isStructureFilterSet()")
     }
+
+    func testIsStructureFilterSetWhenOnlyCulvertIsSet() {
+        XCTAssertFalse(searchModel.isStructureFilterSet(), "Incorrect value for isStructureFilterSet()")
+
+        searchModel.culvertHeightLowValue = 10
+        searchModel.culvertThicknessLowValue = 200
+        XCTAssertTrue(searchModel.isStructureFilterSet(), "Incorrect value for isStructureFilterSet()")
+    }
+
+    // Wall
 
     func testIsWallFilterSetWhenOnlyThicknessLowValueSet() {
         XCTAssertFalse(searchModel.isWallFilterSet(), "Incorrect value for isWallFilterSet()")
@@ -241,6 +271,38 @@ final class SearchModelTest: XCTestCase {
         searchModel.columnHeightHighValue = 999
         XCTAssertTrue(searchModel.isColumnFilterSet(), "Incorrect value for isColumnFilterSet()")
     }
+
+    // Culvert
+
+    func testIsCulvertFilterSetWhenOnlyThicknessLowValueSet() {
+        XCTAssertFalse(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+
+        searchModel.culvertThicknessLowValue = 1
+        XCTAssertTrue(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+    }
+
+    func testIsCulvertFilterSetWhenOnlyThicknessHighValueSet() {
+        XCTAssertFalse(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+
+        searchModel.culvertThicknessHighValue = 499
+        XCTAssertTrue(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+    }
+
+    func testIsCulvertFilterSetWhenOnlyHeightLowValueSet() {
+        XCTAssertFalse(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+
+        searchModel.culvertHeightLowValue = 1
+        XCTAssertTrue(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+    }
+
+    func testIsCulvertFilterSetWhenOnlyHeightHighValueSet() {
+        XCTAssertFalse(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+
+        searchModel.culvertHeightHighValue = 999
+        XCTAssertTrue(searchModel.isCulvertFilterSet(), "Incorrect value for isCulvertFilterSet()")
+    }
+
+    // Segment
 
     func testIsSegmentFilterSetIfAllSet() {
         XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")

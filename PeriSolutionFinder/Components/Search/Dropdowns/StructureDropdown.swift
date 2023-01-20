@@ -16,7 +16,7 @@ struct StructureDropdown: View {
         VStack {
             ForEach(searchModel.structureElements, id: \.self) { structure in
                 Button(action: {
-                    if (structure != .Wall && structure != .Column) {
+                    if (structure != .Wall && structure != .Column && structure != .Culvert) {
                         showingFeatureNotImplementedAlert = true
                     } else {
                         searchModel.selectedStructure = structure

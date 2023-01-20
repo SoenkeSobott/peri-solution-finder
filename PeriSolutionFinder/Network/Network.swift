@@ -13,6 +13,7 @@ struct Filter: Identifiable, Encodable {
     var product: String
     var wallFilter: ThicknessAndHeightFilter
     var columnFilter: LengthWidthAndHeightFilter
+    var culvertFilter: ThicknessAndHeightFilter
     var infrastructureElements: [String]
     var industrialElements: [String]
     var solutionTags: [String]

@@ -39,19 +39,23 @@ struct SearchView: View {
                                     .frame(height: searchViewHeight)
                                     .zIndex(10)
 
-                                    if (searchModel.selectedCriteria == SearchCriteria.Product) {
+                                    switch searchModel.selectedCriteria {
+                                    case .Product:
                                         ProductFiltersView()
-                                    } else if (searchModel.selectedCriteria == SearchCriteria.Structure) {
-                                        if (searchModel.selectedStructure == Structure.Wall) {
+                                    case .Structure:
+                                        switch searchModel.selectedStructure {
+                                        case .Wall:
                                             WallFiltersView()
-                                        } else if (searchModel.selectedStructure == Structure.Column) {
+                                        case .Column:
                                             ColumnFiltersView()
-                                        } else {
+                                        case .Culvert:
+                                            CulvertFiltersView()
+                                        case .Slab:
                                             Text(searchModel.selectedStructure.rawValue)
                                         }
-                                    } else if (searchModel.selectedCriteria == SearchCriteria.Segment) {
+                                    case .Segment:
                                         SegmentFiltersView()
-                                    } else if (searchModel.selectedCriteria == SearchCriteria.Solution) {
+                                    case .Solution:
                                         SolutionFiltersView()
                                     }
 

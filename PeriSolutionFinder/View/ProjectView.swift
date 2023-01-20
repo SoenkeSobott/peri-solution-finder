@@ -91,7 +91,7 @@ struct ProjectView: View {
                         selectedView = 3
                     }, label: {
                         Text("Info")
-                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 2)
+                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 3)
                     })
 
                     Spacer()

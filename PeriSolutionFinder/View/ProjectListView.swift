@@ -11,6 +11,7 @@ struct ProjectListView: View {
     @EnvironmentObject var searchModel: SearchModel
     @EnvironmentObject var network: Network
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var shouldExecuteSerach = true
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
 
     var body: some View {
@@ -68,20 +69,23 @@ struct ProjectListView: View {
                     .listStyle(.plain)
                     .opacity(network.projectsLoading ? 0 : 1)
                     .onAppear {
-                        network.getProjects(
-                            searchTerm: searchModel.searchTerm,
-                            product: searchModel.getSelectedProduct(),
-                            wallMinThickness: searchModel.wallThicknessLowValue,
-                            wallMaxThickness: searchModel.wallThicknessHighValue,
-                            wallMinHeight: searchModel.wallHeightLowValue,
-                            wallMaxHeight: searchModel.wallHeightHighValue,
-                            columnMinThickness: searchModel.columnThicknessLowValue,
-                            columnMaxThickness: searchModel.columnThicknessHighValue,
-                            columnMinHeight: searchModel.columnHeightLowValue,
-                            columnMaxHeight: searchModel.columnHeightHighValue,
-                            infrastructureElements: searchModel.selectedInfrastructureElements,
-                            industrialElements: searchModel.selectedIndustrialElements,
-                            solutionTags: searchModel.selectedSolutionTags)
+                        if (shouldExecuteSerach) {
+                            network.getProjects(
+                                searchTerm: searchModel.searchTerm,
+                                product: searchModel.getSelectedProduct(),
+                                wallMinThickness: searchModel.wallThicknessLowValue,
+                                wallMaxThickness: searchModel.wallThicknessHighValue,
+                                wallMinHeight: searchModel.wallHeightLowValue,
+                                wallMaxHeight: searchModel.wallHeightHighValue,
+                                columnMinThickness: searchModel.columnThicknessLowValue,
+                                columnMaxThickness: searchModel.columnThicknessHighValue,
+                                columnMinHeight: searchModel.columnHeightLowValue,
+                                columnMaxHeight: searchModel.columnHeightHighValue,
+                                infrastructureElements: searchModel.selectedInfrastructureElements,
+                                industrialElements: searchModel.selectedIndustrialElements,
+                                solutionTags: searchModel.selectedSolutionTags)
+                            shouldExecuteSerach = false
+                        }
                     }
                 }
             }

@@ -57,15 +57,14 @@ struct ProjectView: View {
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                                .fill(.white)
 
-                HStack() {
-                    Spacer()
-
+                HStack(spacing: 0) {
                     Button(action: {
                         selectedView = 0
                     }, label: {
                         Text("2D")
                             .redBackgroundWithRoundedCorners(isSelected: selectedView == 0)
                     })
+                    .padding(.leading, 5)
 
                     Spacer()
 
@@ -93,11 +92,11 @@ struct ProjectView: View {
                         Text("Info")
                             .redBackgroundWithRoundedCorners(isSelected: selectedView == 3)
                     })
-
-                    Spacer()
+                    .padding(.trailing, 5)
                 }
             }
-            .frame(width: UIScreen.main.bounds.width*0.8, height: 60)
+            .frame(height: 60)
+            .frame(maxWidth: UIScreen.main.bounds.width*0.85)
 
 
 

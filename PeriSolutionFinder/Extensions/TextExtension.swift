@@ -16,6 +16,9 @@ extension Text {
             .cornerRadius(25)
             .fontWeight(.bold)
             .foregroundColor(isSelected ? Color.white : Color.gray)
+            .scaledToFill()
+            .minimumScaleFactor(0.8)
+            .lineLimit(1)
     }
 
     func searchCriteriaPillStyle(isSelected: Bool, isFilterSet: Bool, height: CGFloat) -> some View {

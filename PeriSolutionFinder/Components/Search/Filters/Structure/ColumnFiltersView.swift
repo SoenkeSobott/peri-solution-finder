@@ -30,10 +30,10 @@ struct ColumnFiltersView: View {
                        endValue: 500,
                        step: 50)
             .onChange(of: lengthLowValue) { _ in
-                //searchModel.columnThicknessLowValue = thicknessLowValue.rounded()
+                searchModel.columnLengthLowValue = lengthLowValue.rounded()
             }
             .onChange(of: lengthHighValue) { _ in
-                //searchModel.columnThicknessHighValue = thicknessHighValue.rounded()
+                searchModel.columnLengthHighValue = lengthHighValue.rounded()
             }
 
             SliderView(lowValue: $widthLowValue,
@@ -43,10 +43,10 @@ struct ColumnFiltersView: View {
                        endValue: 500,
                        step: 50)
             .onChange(of: widthLowValue) { _ in
-               // searchModel.columnThicknessLowValue = thicknessLowValue.rounded()
+                searchModel.columnWidthLowValue = widthLowValue.rounded()
             }
             .onChange(of: widthHighValue) { _ in
-              //  searchModel.columnThicknessHighValue = thicknessHighValue.rounded()
+                searchModel.columnWidthHighValue = widthHighValue.rounded()
             }
 
             SliderView(lowValue: $heightLowValue,

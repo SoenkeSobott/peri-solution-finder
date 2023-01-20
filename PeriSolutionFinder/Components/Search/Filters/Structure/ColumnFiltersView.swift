@@ -18,7 +18,7 @@ struct ColumnFiltersView: View {
         VStack {
             HStack {
                 Text(Structure.Column.rawValue)
-                    .filterHeadingStyle()
+                    .filterHeadlineStyle()
             }
 
             SliderView(lowValue: $thicknessLowValue,

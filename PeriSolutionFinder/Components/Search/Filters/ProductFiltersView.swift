@@ -10,8 +10,8 @@ import SwiftUI
 struct ProductFiltersView: View {
     var body: some View {
         VStack {
-            Text("Search by Name")
-                .filterHeadingStyle()
+            Text("Search by Product")
+                .filterHeadlineStyle()
 
             HStack {
                 ProductSelectionBoxView()

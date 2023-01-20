@@ -14,6 +14,7 @@ struct SearchField: View {
     var body: some View {
         ZStack(alignment: .trailing) {
             TextField("Search Projects", text: $searchModel.searchTerm)
+                .font(Font.system(size: 18, weight: .medium, design: .default))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 40)
                 .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))

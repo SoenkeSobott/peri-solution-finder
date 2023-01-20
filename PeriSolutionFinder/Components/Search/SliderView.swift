@@ -39,8 +39,8 @@ struct SliderView: View {
 
                 HStack() {
                     Text(sliderHeader)
+                        .headlineThree()
                         .multilineTextAlignment(.leading)
-                        .fontWeight(.semibold)
                         .padding(.leading, outerToInnerBoxPadding())
                     Spacer()
                 }

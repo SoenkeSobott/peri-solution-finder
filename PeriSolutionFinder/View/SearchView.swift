@@ -25,9 +25,7 @@ struct SearchView: View {
                     VStack(alignment: .center) {
                         VStack {
                             Text("Find your Reference Solution")
-                                .foregroundColor(Color.black)
-                                .fontWeight(.bold)
-                                .font(Font.system(size: 22, weight: .medium, design: .default))
+                                .headline()
                                 .padding(.bottom, 20)
                                 .accessibilityIdentifier("searchHeading")
 

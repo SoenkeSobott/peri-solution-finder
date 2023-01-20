@@ -31,7 +31,7 @@ struct ProjectRow : View {
                 }.padding(.leading, 10)
 
                 Text(project.projectName)
-                    .fontWeight(.bold)
+                    .headlineTwo()
                 Spacer()
                 Image(systemName: "ellipsis")
                     .foregroundColor(.gray)

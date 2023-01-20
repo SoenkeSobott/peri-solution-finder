@@ -14,7 +14,7 @@ struct SolutionFiltersView: View {
     var body: some View {
         VStack(alignment: .center) {
             Text("Solution")
-                .filterHeadingStyle()
+                .filterHeadlineStyle()
 
             GeometryReader { geometry in
                 ZStack {
@@ -98,13 +98,13 @@ struct geometryLayoutSolutionTags: View {
             }
         }, label: {
             Text(solutionTag.rawValue)
+                .text()
                 .frame(height: 40)
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
                 .background(.white)
                 .foregroundColor(isSolutionTagSelected(solutionTag: solutionTag) ? Color("PeriRed") : .gray)
                 .cornerRadius(25)
-                .font(Font.system(size: 12, weight: .medium))
                 .overlay(
                     RoundedRectangle(cornerRadius: 25)
                         .stroke(isSolutionTagSelected(solutionTag: solutionTag) ? Color("PeriRed") : .gray, lineWidth: 1)

@@ -16,8 +16,8 @@ struct ResetButton: View {
             searchModel.selectedCriteria = .Product
         }, label: {
             Text("Reset All")
+                .headlineTwo()
                 .foregroundColor(.gray)
-                .fontWeight(.bold)
                 .frame(width: UIScreen.main.bounds.width*0.5, height: 40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 50)

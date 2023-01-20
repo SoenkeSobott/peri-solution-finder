@@ -9,12 +9,12 @@ import SwiftUI
 
 extension Text {
     func redBackgroundWithRoundedCorners(isSelected: Bool) -> some View {
-        self.padding(.leading, 20)
+        self.headlineThree()
+            .padding(.leading, 20)
             .padding(.trailing, 20)
             .frame(height: 50)
             .background(isSelected ? Color("PeriRed") : Color.clear)
             .cornerRadius(25)
-            .fontWeight(.bold)
             .foregroundColor(isSelected ? Color.white : Color.gray)
             .scaledToFill()
             .minimumScaleFactor(0.8)
@@ -22,7 +22,8 @@ extension Text {
     }
 
     func searchCriteriaPillStyle(isSelected: Bool, isFilterSet: Bool, height: CGFloat) -> some View {
-        self.foregroundColor(getForegroundColorForFilterPills(isSelected: isSelected, isFilterSet: isFilterSet))
+        self.text()
+            .foregroundColor(getForegroundColorForFilterPills(isSelected: isSelected, isFilterSet: isFilterSet))
             .frame(width: UIScreen.main.bounds.width*0.4, height: height)
             .overlay(
                 RoundedRectangle(cornerRadius: 50)
@@ -40,19 +41,37 @@ extension Text {
                     Spacer()
                 }
             )
-            .font(Font.system(size: 12, weight: .bold))
             .background(isFilterSet ? Color("PeriRed") : Color.white)
             .cornerRadius(50)
     }
 
-    func filterHeadingStyle() -> some View {
-        self.foregroundColor(Color.black)
+    func filterHeadlineStyle() -> some View {
+        self.headlineOne()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .fontWeight(.bold)
-            .font(Font.system(size: 22, weight: .medium, design: .default))
             .padding(.bottom, 0)
             .padding(.leading, UIScreen.main.bounds.width*0.05)
             .padding(.trailing, UIScreen.main.bounds.width*0.05)
+    }
+
+    func headline() -> some View {
+        self.font(Font.system(size: 22, weight: .bold, design: .default))
+            .foregroundColor(Color.black)
+    }
+
+    func headlineOne() -> some View {
+        self.font(Font.system(size: 20, weight: .bold, design: .default))
+    }
+
+    func headlineTwo() -> some View {
+        self.font(Font.system(size: 16, weight: .bold, design: .default))
+    }
+
+    func headlineThree() -> some View {
+        self.font(Font.system(size: 14, weight: .semibold, design: .default))
+    }
+
+    func text() -> some View {
+        self.font(Font.system(size: 13, weight: .medium, design: .default))
     }
 
     // Helper functions

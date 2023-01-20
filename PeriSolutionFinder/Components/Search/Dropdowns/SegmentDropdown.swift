@@ -24,6 +24,7 @@ struct SegmentDropdown: View {
                     }
                 }, label: {
                     Text(segment.rawValue)
+                        .text()
                         .padding(2)
                         .foregroundColor(segment == searchModel.selectedSegment ? Color("PeriRed") : .gray)
 

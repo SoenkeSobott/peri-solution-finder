@@ -34,18 +34,16 @@ struct ProjectListView: View {
                 }
 
                 VStack {
-                    Text(network.projectsLoading ? "Loading Projects..." :
-                            "We found \(network.projects.count) projects with your search criteria")
+                    Text(network.projectsLoading ? "Loading Projects..." : "We found \(network.projects.count) projects with your search criteria")
+                        .headline()
                         .multilineTextAlignment(.center)
                         .frame(width: UIScreen.main.bounds.width*0.5, height: headingViewHeight)
-                        .font(Font.system(size: 20, weight: .bold, design: .default))
 
                     Spacer()
 
                     Text("Projects List")
-                        .foregroundColor(Color.black)
+                        .headlineOne()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.system(size: 20, weight: .bold, design: .default))
                         .padding(.top, 10)
                         .padding(.bottom, 0)
                         .padding(.leading, UIScreen.main.bounds.width*0.05)

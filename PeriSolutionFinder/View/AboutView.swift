@@ -23,7 +23,7 @@ struct AboutView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Text("About")
-                    .font(Font.system(size: 22, weight: .bold, design: .default))
+                    .headline()
                     .frame(maxWidth: .infinity, alignment: .center)
 
                 Spacer()
@@ -34,7 +34,7 @@ struct AboutView: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Text("Feedback")
-                    .font(Font.system(size: 22, weight: .medium, design: .default))
+                    .headlineOne()
                 Text("Thanks for testing our Beta Version. We'd love to hear your feedback. " +
                         "You can simply send all comments and questions to:")
 
@@ -61,11 +61,11 @@ struct AboutView: View {
                 }
 
                 Text("Data")
-                    .font(Font.system(size: 22, weight: .medium, design: .default))
+                    .headlineOne()
                 Text("All project data is owned by PERI (Hong Kong) Limited")
 
                 Text("Used Libraries")
-                    .font(Font.system(size: 22, weight: .medium, design: .default))
+                    .headlineOne()
                 Text("[SDWebImageSwiftUI](https://github.com/SDWebImage/SDWebImageSwiftUI)")
                 Text("[RangeUISlider](https://github.com/chicio/RangeUISlider)")
             }

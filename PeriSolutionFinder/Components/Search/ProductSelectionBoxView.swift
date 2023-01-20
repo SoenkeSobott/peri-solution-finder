@@ -12,11 +12,11 @@ struct ProductSelectionBoxView: View {
 
     private let outerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.4
     private let outerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.45
-    private let outerBoxCornerRadius: CGFloat = 30
+    private let outerBoxCornerRadius: CGFloat = 20
 
     private let innerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.35
     private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.32
-    private let innerBoxCornerRadius: CGFloat = 25
+    private let innerBoxCornerRadius: CGFloat = 10
 
     private func outerToInnerBoxPadding() -> CGFloat {
         return (outerBoxWidth - innerBoxWidth)/2
@@ -30,11 +30,8 @@ struct ProductSelectionBoxView: View {
         ZStack(alignment: .top) {
             ZStack {
                 RoundedRectangle(cornerRadius: outerBoxCornerRadius)
-                    .fill(Color("PeriLightGray"))
+                    .fill(isSelected() ? Color("PeriRed").opacity(0.1) : Color("PeriLightGray"))
                     .shadow(color: .gray.opacity(isSelected() ? 0.5 : 0), radius: 10)
-
-                RoundedRectangle(cornerRadius: outerBoxCornerRadius)
-                    .strokeBorder(Color("PeriRed"), lineWidth: isSelected() ? 1 : 0)
             }
             .frame(width: outerBoxWidth, height: outerBoxHeight)
 
@@ -56,9 +53,9 @@ struct ProductSelectionBoxView: View {
 
                 HStack() {
                     Text("DUO")
+                        .headlineThree()
                         .multilineTextAlignment(.leading)
-                        .fontWeight(.semibold)
-                        .padding(.leading, outerToInnerBoxPadding())
+                        .padding(.leading, outerToInnerBoxPadding()+innerBoxCornerRadius)
 
                     Spacer()
                 }

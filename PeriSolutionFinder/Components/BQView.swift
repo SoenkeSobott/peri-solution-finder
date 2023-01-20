@@ -60,7 +60,9 @@ struct BQView: View {
                 Spacer()
                 VStack(spacing: 20) {
                     Text("Sorry!")
+                        .text()
                     Text("There is no data for this project.")
+                        .text()
                 }
                 Spacer()
             }

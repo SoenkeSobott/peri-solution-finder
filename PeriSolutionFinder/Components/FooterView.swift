@@ -48,10 +48,11 @@ struct FooterView: View {
                                 .foregroundColor(.white)
 
                             Text(item.name)
+                                .headlineThree()
                                 .frame(height: 20)
                                 .foregroundColor(.white)
-                                .fontWeight(isSelected(index: index) ? .bold : .regular)
                         }
+                        .opacity(isSelected(index: index) ? 1 : 0.7)
                         .frame(maxWidth: .infinity)
 
                     }
@@ -69,10 +70,11 @@ struct FooterView: View {
                             .foregroundColor(.white)
 
                         Text("About")
+                            .headlineThree()
                             .frame(height: 20)
                             .foregroundColor(.white)
-                            .fontWeight(.regular)
                     }
+                    .opacity(0.7)
                     .frame(maxWidth: .infinity)
                 })
             }

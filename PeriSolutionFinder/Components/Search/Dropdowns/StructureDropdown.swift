@@ -24,6 +24,7 @@ struct StructureDropdown: View {
                     }
                 }, label: {
                     Text(structure.rawValue)
+                        .text()
                         .padding(2)
                         .foregroundColor(structure == searchModel.selectedStructure ? Color("PeriRed") : .gray)
 
@@ -35,7 +36,6 @@ struct StructureDropdown: View {
         }
         .padding(5)
         .frame(width: UIScreen.main.bounds.width*0.4)
-        .font(Font.system(size: 12, weight: .bold))
         .background(Color.white)
         .cornerRadius(15)
         .clipped()

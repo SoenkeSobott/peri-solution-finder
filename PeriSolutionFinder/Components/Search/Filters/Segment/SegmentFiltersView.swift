@@ -14,7 +14,7 @@ struct SegmentFiltersView: View {
     var body: some View {
         VStack(alignment: .center) {
             Text(searchModel.selectedSegment.rawValue)
-                .filterHeadingStyle()
+                .filterHeadlineStyle()
 
             GeometryReader { geometry in
                 ZStack {
@@ -98,13 +98,13 @@ struct segmentGeometryLayout: View {
     func getButtonText(for text: String, isSelected: Bool) -> some View {
         HStack {
             Text(text)
+                .text()
                 .frame(height: 40)
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
                 .background(.white)
                 .foregroundColor(isSelected ? Color("PeriRed") : .gray)
                 .cornerRadius(25)
-                .font(Font.system(size: 12, weight: .medium))
         }
         .overlay(
             RoundedRectangle(cornerRadius: 25)

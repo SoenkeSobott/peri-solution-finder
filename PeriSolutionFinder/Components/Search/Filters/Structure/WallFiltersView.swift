@@ -19,7 +19,7 @@ struct WallFiltersView: View {
         VStack {
             HStack {
                 Text(Structure.Wall.rawValue)
-                    .filterHeadingStyle()
+                    .filterHeadlineStyle()
             }
 
             ScrollView {

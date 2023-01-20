@@ -37,7 +37,9 @@ struct PhotoView: View {
         } else {
             VStack(spacing: 20) {
                 Text("Sorry!")
+                    .text()
                 Text("There are no photos for this project.")
+                    .text()
             }
         }
     }

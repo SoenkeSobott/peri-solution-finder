@@ -40,18 +40,7 @@ struct ProjectView: View {
                 } else if selectedView == 2 {
                     PhotoView(photoUrls: project.pictures ?? [])
                 } else if selectedView == 3 {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("Info")
-                            .headline()
-                        Text("SolutionTags: \(project.solutionTags?.joined(separator: ", ") ?? "-")")
-                            .text()
-                        Text("Segment: \(project.segmentLevelOne ?? "-")")
-                            .text()
-                        Text("SegmentLevelTwo: \(project.segmentLevelTwo ?? "-")")
-                            .text()
-                    }
-                    .frame(width: UIScreen.main.bounds.width*0.9)
-
+                    InfoView(project: project)
                 }
             }
 
@@ -84,7 +73,7 @@ struct ProjectView: View {
                     Button(action: {
                         selectedView = 2
                     }, label: {
-                        Text("Photo")
+                        Text("PHOTO")
                             .redBackgroundWithRoundedCorners(isSelected: selectedView == 2)
                     })
 
@@ -93,7 +82,7 @@ struct ProjectView: View {
                     Button(action: {
                         selectedView = 3
                     }, label: {
-                        Text("Info")
+                        Text("INFO")
                             .redBackgroundWithRoundedCorners(isSelected: selectedView == 3)
                     })
                     .padding(.trailing, 5)

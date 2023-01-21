@@ -86,6 +86,12 @@ enum Industrial: String, CaseIterable {
     case IndustrializedManufacturing = "Industrialized Manufacturing"
 }
 
+enum Residential: String, CaseIterable {
+    case MultiFamilyHousingAboveTenFloors = "Multi-Family housing above 10 floors"
+    case MultiFamilyHousingUpToTenFloors = "Multi-Family housing up to 10 floors"
+    case SingleFamilyHousing = "Single-Family Housing"
+}
+
 // Segment - Infrastructure
 
 enum Tunnel: String, CaseIterable {

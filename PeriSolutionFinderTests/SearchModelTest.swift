@@ -71,6 +71,11 @@ final class SearchModelTest: XCTestCase {
         XCTAssertEqual(searchModel.selectedIndustrialElements, [], "Incorrect Default selectedIndustrialElements")
     }
 
+    func testDefaultIResidentialValues() {
+        XCTAssertEqual(searchModel.residentialElements, [.MultiFamilyHousingAboveTenFloors, .MultiFamilyHousingUpToTenFloors, .SingleFamilyHousing], "Incorrect Default residentialElements")
+        XCTAssertEqual(searchModel.selectedResidentialElements, [], "Incorrect Default residentialElements")
+    }
+
     func testDefaultTunnelValues() {
         XCTAssertEqual(searchModel.tunnelElements, [.RoadTunnels, .RailwayTunnels, .NonTrafficTunnels], "Incorrect Default tunnelElements")
         XCTAssertEqual(searchModel.selectedTunnelElements, [], "Incorrect Default selectedTunnelElements")
@@ -109,6 +114,7 @@ final class SearchModelTest: XCTestCase {
 
         searchModel.selectedInfrastructureElements = [.WaterPlants, .Airports, .Tunnels]
         searchModel.selectedIndustrialElements = [.Power, .IndustrializedManufacturing]
+        searchModel.selectedResidentialElements = [.SingleFamilyHousing]
         searchModel.selectedSolutionTags = [.Tank, .ChamferCorner, .ConcreteShoringBeam, .Basement]
 
         searchModel.resetAllFilters()
@@ -135,6 +141,7 @@ final class SearchModelTest: XCTestCase {
 
         XCTAssertEqual(searchModel.selectedInfrastructureElements, [], "Incorrect Default selectedInfrastructureElements")
         XCTAssertEqual(searchModel.selectedIndustrialElements, [], "Incorrect Default selectedIndustrialElements")
+        XCTAssertEqual(searchModel.selectedResidentialElements, [], "Incorrect Default selectedResidentialElements")
         XCTAssertEqual(searchModel.selectedSolutionTags, [], "Incorrect Default selectedSolutionTags")
     }
 
@@ -304,11 +311,55 @@ final class SearchModelTest: XCTestCase {
 
     // Segment
 
+    func testExecuteSegementFilterActionAndIsSegmentFilterSelectedForInfrastructure() {
+        searchModel.selectedSegment = .Infrastructure
+        searchModel.executeSegmentFilterAction(element: Infrastructure.LandTraffic.rawValue)
+        XCTAssertEqual(searchModel.selectedInfrastructureElements, [.LandTraffic])
+        XCTAssertTrue(searchModel.isSegmentFilterSelected(element: Infrastructure.LandTraffic.rawValue))
+
+        searchModel.executeSegmentFilterAction(element: Infrastructure.LandTraffic.rawValue)
+        XCTAssertEqual(searchModel.selectedInfrastructureElements, [])
+        XCTAssertFalse(searchModel.isSegmentFilterSelected(element: Infrastructure.LandTraffic.rawValue))
+
+        XCTAssertFalse(searchModel.isSegmentFilterSelected(element: "NotValidValue"))
+        searchModel.executeSegmentFilterAction(element: "NotValidValue")
+    }
+
+    func testExecuteSegementFilterActionAndIsSegmentFilterSelectedForIndustrial() {
+        searchModel.selectedSegment = .Industrial
+        searchModel.executeSegmentFilterAction(element: Industrial.OilAndGas.rawValue)
+        XCTAssertEqual(searchModel.selectedIndustrialElements, [.OilAndGas])
+        XCTAssertTrue(searchModel.isSegmentFilterSelected(element: Industrial.OilAndGas.rawValue))
+
+        searchModel.executeSegmentFilterAction(element: Industrial.OilAndGas.rawValue)
+        XCTAssertEqual(searchModel.selectedIndustrialElements, [])
+        XCTAssertFalse(searchModel.isSegmentFilterSelected(element: Industrial.OilAndGas.rawValue))
+
+        XCTAssertFalse(searchModel.isSegmentFilterSelected(element: "NotValidValue"))
+        searchModel.executeSegmentFilterAction(element: "NotValidValue")
+    }
+
+    func testExecuteSegementFilterActionForResidential() {
+        searchModel.selectedSegment = .Residential
+        searchModel.executeSegmentFilterAction(element: Residential.SingleFamilyHousing.rawValue)
+        XCTAssertEqual(searchModel.selectedResidentialElements, [.SingleFamilyHousing])
+        XCTAssertTrue(searchModel.isSegmentFilterSelected(element: Residential.SingleFamilyHousing.rawValue))
+
+        searchModel.executeSegmentFilterAction(element: Residential.SingleFamilyHousing.rawValue)
+        XCTAssertEqual(searchModel.selectedResidentialElements, [])
+        XCTAssertFalse(searchModel.isSegmentFilterSelected(element: Residential.SingleFamilyHousing.rawValue))
+
+        XCTAssertFalse(searchModel.isSegmentFilterSelected(element: "NotValidValue"))
+        searchModel.executeSegmentFilterAction(element: "NotValidValue")
+    }
+
+
     func testIsSegmentFilterSetIfAllSet() {
         XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
 
         searchModel.selectedInfrastructureElements = [.Tunnels, .MarineAndWaterInfrastructur]
         searchModel.selectedIndustrialElements = [.OilAndGas, .Chemicals]
+        searchModel.selectedResidentialElements = [.MultiFamilyHousingUpToTenFloors, .MultiFamilyHousingAboveTenFloors]
         XCTAssertTrue(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
     }
 
@@ -323,6 +374,13 @@ final class SearchModelTest: XCTestCase {
         XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
 
         searchModel.selectedIndustrialElements = [.OilAndGas, .Chemicals]
+        XCTAssertTrue(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
+    }
+
+    func testIsSegmentFilterSetIfOnlyResidentialSet() {
+        XCTAssertFalse(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
+
+        searchModel.selectedResidentialElements = [.MultiFamilyHousingAboveTenFloors]
         XCTAssertTrue(searchModel.isSegmentFilterSet(), "Incorrect value for isSegmentFilterSet()")
     }
 

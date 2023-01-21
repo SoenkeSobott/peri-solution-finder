@@ -50,10 +50,15 @@ struct segmentGeometryLayout: View {
     let searchModel: SearchModel
 
     var body: some View {
-        if (searchModel.selectedSegment == .Infrastructure) {
+        switch searchModel.selectedSegment {
+        case .Infrastructure:
             self.generateContent(in: geometry, items: searchModel.infrastructureElements.map{ $0.rawValue })
-        } else {
+        case .Industrial:
             self.generateContent(in: geometry, items: searchModel.industrialElements.map{ $0.rawValue })
+        case .Residential:
+            self.generateContent(in: geometry, items: searchModel.residentialElements.map{ $0.rawValue })
+        case .NonResidential:
+            Text(Segment.NonResidential.rawValue)
         }
     }
 

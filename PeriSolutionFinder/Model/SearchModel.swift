@@ -48,6 +48,8 @@ class SearchModel: ObservableObject {
     @Published var selectedInfrastructureElements: [Infrastructure] = []
     @Published var industrialElements: [Industrial] = Industrial.allCases
     @Published var selectedIndustrialElements: [Industrial] = []
+    @Published var residentialElements: [Residential] = Residential.allCases
+    @Published var selectedResidentialElements: [Residential] = []
 
     // Segment - Tunnels
     @Published var tunnelElements: [Tunnel] = Tunnel.allCases
@@ -74,20 +76,36 @@ class SearchModel: ObservableObject {
     func executeSegmentFilterAction(element: String) {
         switch selectedSegment {
         case .Residential:
-            print("Residential")
+            guard let residential = Residential(rawValue: element) else {
+                SharedLogger.shared().error("Invalid Residential enum case \(element)")
+                return
+            }
+            if (selectedResidentialElements.contains(residential)) {
+                selectedResidentialElements.removeAll { $0 == residential }
+            } else {
+                selectedResidentialElements.append(residential)
+            }
         case .NonResidential:
             print("NonResidential")
         case .Infrastructure:
-            if (selectedInfrastructureElements.contains(.init(rawValue: element)!)) {
-                selectedInfrastructureElements.removeAll { $0.rawValue == element }
+            guard let infrastructure = Infrastructure(rawValue: element) else {
+                SharedLogger.shared().error("Invalid Infrastructure enum case \(element)")
+                return
+            }
+            if (selectedInfrastructureElements.contains(infrastructure)) {
+                selectedInfrastructureElements.removeAll { $0 == infrastructure }
             } else {
-                selectedInfrastructureElements.append(.init(rawValue: element)!)
+                selectedInfrastructureElements.append(infrastructure)
             }
         case .Industrial:
-            if (selectedIndustrialElements.contains(.init(rawValue: element)!)) {
-                selectedIndustrialElements.removeAll { $0.rawValue == element }
+            guard let industrial = Industrial(rawValue: element) else {
+                SharedLogger.shared().error("Invalid Industrial enum case \(element)")
+                return
+            }
+            if (selectedIndustrialElements.contains(industrial)) {
+                selectedIndustrialElements.removeAll { $0 == industrial }
             } else {
-                selectedIndustrialElements.append(.init(rawValue: element)!)
+                selectedIndustrialElements.append(industrial)
             }
         }
     }
@@ -95,13 +113,25 @@ class SearchModel: ObservableObject {
     func isSegmentFilterSelected(element: String) -> Bool {
         switch selectedSegment {
         case .Residential:
-            return false
+            guard let residential = Residential(rawValue: element) else {
+                SharedLogger.shared().error("Invalid Residential enum case \(element)")
+                return false
+            }
+            return selectedResidentialElements.contains(residential)
         case .NonResidential:
             return false
         case .Infrastructure:
-            return selectedInfrastructureElements.contains(.init(rawValue: element)!)
+            guard let infrastructure = Infrastructure(rawValue: element) else {
+                SharedLogger.shared().error("Invalid Infrastructure enum case \(element)")
+                return false
+            }
+            return selectedInfrastructureElements.contains(infrastructure)
         case .Industrial:
-            return selectedIndustrialElements.contains(.init(rawValue: element)!)
+            guard let industrial = Industrial(rawValue: element) else {
+                SharedLogger.shared().error("Invalid Industrial enum case \(element)")
+                return false
+            }
+            return selectedIndustrialElements.contains(industrial)
         }
     }
 
@@ -137,6 +167,7 @@ class SearchModel: ObservableObject {
     private func resetSegmentFilters() {
         selectedInfrastructureElements = []
         selectedIndustrialElements = []
+        selectedResidentialElements = []
     }
 
     func hasSelectedItems() -> Bool {
@@ -167,7 +198,7 @@ class SearchModel: ObservableObject {
     }
 
     func isSegmentFilterSet() -> Bool {
-        return (isInfrastructureFilterSet() || isIndustrialFilterSet())
+        return (isInfrastructureFilterSet() || isIndustrialFilterSet() || isResidentialFilterSet())
     }
 
     private func isInfrastructureFilterSet() -> Bool {
@@ -178,6 +209,9 @@ class SearchModel: ObservableObject {
         return selectedIndustrialElements.count > 0
     }
 
+    private func isResidentialFilterSet() -> Bool {
+        return selectedResidentialElements.count > 0
+    }
 
     func isSolutionFilterSet() -> Bool {
         return selectedSolutionTags.count > 0
@@ -208,6 +242,7 @@ class SearchModel: ObservableObject {
                       culvertFilter: culvertFilter,
                       infrastructureElements: selectedInfrastructureElements.map { $0.rawValue },
                       industrialElements: selectedIndustrialElements.map{ $0.rawValue },
+                      residentialElements: selectedResidentialElements.map{ $0.rawValue },
                       solutionTags: selectedSolutionTags.map { $0.rawValue })
     }
     

@@ -7,36 +7,6 @@
 
 import SwiftUI
 
-struct Filter: Identifiable, Encodable {
-    var id = UUID()
-    var searchTerm: String
-    var product: String
-    var wallFilter: ThicknessAndHeightFilter
-    var columnFilter: LengthWidthAndHeightFilter
-    var culvertFilter: ThicknessAndHeightFilter
-    var infrastructureElements: [String]
-    var industrialElements: [String]
-    var solutionTags: [String]
-}
-
-struct ThicknessAndHeightFilter: Identifiable, Encodable {
-    var id = UUID()
-    var minThickness: CGFloat?
-    var maxThickness: CGFloat?
-    var minHeight: CGFloat?
-    var maxHeight: CGFloat?
-}
-
-struct LengthWidthAndHeightFilter: Identifiable, Encodable {
-    var id = UUID()
-    var minLength: CGFloat?
-    var maxLength: CGFloat?
-    var minWidth: CGFloat?
-    var maxWidth: CGFloat?
-    var minHeight: CGFloat?
-    var maxHeight: CGFloat?
-}
-
 class Network: ObservableObject {
     @Published var projects: [Project] = []
     @Published var projectsLoading: Bool = false

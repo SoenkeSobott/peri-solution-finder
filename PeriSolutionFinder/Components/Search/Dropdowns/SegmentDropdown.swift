@@ -16,12 +16,8 @@ struct SegmentDropdown: View {
         VStack {
             ForEach(searchModel.segmentElements, id: \.self) { segment in
                 Button(action: {
-                    if (segment != .Infrastructure && segment != .Industrial && segment != .Residential) {
-                        showingFeatureNotImplementedAlert = true
-                    } else {
-                        searchModel.selectedSegment = segment
-                        isOpen = false
-                    }
+                    searchModel.selectedSegment = segment
+                    isOpen = false
                 }, label: {
                     Text(segment.rawValue)
                         .text()

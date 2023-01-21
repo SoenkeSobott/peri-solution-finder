@@ -50,6 +50,8 @@ class SearchModel: ObservableObject {
     @Published var selectedIndustrialElements: [Industrial] = []
     @Published var residentialElements: [Residential] = Residential.allCases
     @Published var selectedResidentialElements: [Residential] = []
+    @Published var nonResidentialElements: [NonResidential] = NonResidential.allCases
+    @Published var selectedNonResidentialElements: [NonResidential] = []
 
     // Segment - Tunnels
     @Published var tunnelElements: [Tunnel] = Tunnel.allCases
@@ -86,7 +88,15 @@ class SearchModel: ObservableObject {
                 selectedResidentialElements.append(residential)
             }
         case .NonResidential:
-            print("NonResidential")
+            guard let nonResidential = NonResidential(rawValue: element) else {
+                SharedLogger.shared().error("Invalid NonResidential enum case \(element)")
+                return
+            }
+            if (selectedNonResidentialElements.contains(nonResidential)) {
+                selectedNonResidentialElements.removeAll { $0 == nonResidential }
+            } else {
+                selectedNonResidentialElements.append(nonResidential)
+            }
         case .Infrastructure:
             guard let infrastructure = Infrastructure(rawValue: element) else {
                 SharedLogger.shared().error("Invalid Infrastructure enum case \(element)")
@@ -119,7 +129,11 @@ class SearchModel: ObservableObject {
             }
             return selectedResidentialElements.contains(residential)
         case .NonResidential:
-            return false
+            guard let nonResidential = NonResidential(rawValue: element) else {
+                SharedLogger.shared().error("Invalid NonResidential enum case \(element)")
+                return false
+            }
+            return selectedNonResidentialElements.contains(nonResidential)
         case .Infrastructure:
             guard let infrastructure = Infrastructure(rawValue: element) else {
                 SharedLogger.shared().error("Invalid Infrastructure enum case \(element)")
@@ -168,6 +182,7 @@ class SearchModel: ObservableObject {
         selectedInfrastructureElements = []
         selectedIndustrialElements = []
         selectedResidentialElements = []
+        selectedNonResidentialElements = []
     }
 
     func hasSelectedItems() -> Bool {
@@ -198,7 +213,7 @@ class SearchModel: ObservableObject {
     }
 
     func isSegmentFilterSet() -> Bool {
-        return (isInfrastructureFilterSet() || isIndustrialFilterSet() || isResidentialFilterSet())
+        return (isInfrastructureFilterSet() || isIndustrialFilterSet() || isResidentialFilterSet() || isNonResidentialFilterSet())
     }
 
     private func isInfrastructureFilterSet() -> Bool {
@@ -211,6 +226,10 @@ class SearchModel: ObservableObject {
 
     private func isResidentialFilterSet() -> Bool {
         return selectedResidentialElements.count > 0
+    }
+
+    private func isNonResidentialFilterSet() -> Bool {
+        return selectedNonResidentialElements.count > 0
     }
 
     func isSolutionFilterSet() -> Bool {
@@ -243,6 +262,7 @@ class SearchModel: ObservableObject {
                       infrastructureElements: selectedInfrastructureElements.map { $0.rawValue },
                       industrialElements: selectedIndustrialElements.map{ $0.rawValue },
                       residentialElements: selectedResidentialElements.map{ $0.rawValue },
+                      nonResidentialElements: selectedNonResidentialElements.map{ $0.rawValue },
                       solutionTags: selectedSolutionTags.map { $0.rawValue })
     }
     

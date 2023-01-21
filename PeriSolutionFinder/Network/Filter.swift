@@ -17,6 +17,7 @@ struct Filter: Identifiable, Encodable {
     var infrastructureElements: [String]
     var industrialElements: [String]
     var residentialElements: [String]
+    var nonResidentialElements: [String]
     var solutionTags: [String]
 }
 

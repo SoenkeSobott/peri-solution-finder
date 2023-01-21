@@ -26,10 +26,10 @@ enum Structure: String, CaseIterable {
 }
 
 enum Segment: String, CaseIterable {
-    case Residential
-    case NonResidential = "Non-Residential"
     case Infrastructure
     case Industrial
+    case NonResidential = "Non-Residential"
+    case Residential
 }
 
 enum SolutionTag: String, CaseIterable {
@@ -90,6 +90,15 @@ enum Residential: String, CaseIterable {
     case MultiFamilyHousingAboveTenFloors = "Multi-Family housing above 10 floors"
     case MultiFamilyHousingUpToTenFloors = "Multi-Family housing up to 10 floors"
     case SingleFamilyHousing = "Single-Family Housing"
+}
+
+enum NonResidential: String, CaseIterable {
+    case OfficeBuildings = "Office Buildings"
+    case RetailBuildings = "Retail Buildings"
+    case LeisureAndHospitalityBuildings = "Leisure & Hospitality Buildings"
+    case CulturalAndInstitutionalBuildings = "Cultural & Institutional Buildings"
+    case HealthcareBuildings = "Healthcare Buildings"
+    case TransportationAndLogisticsBuildings = "Transportation & Logistics Buildings"
 }
 
 // Segment - Infrastructure

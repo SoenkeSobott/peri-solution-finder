@@ -58,7 +58,7 @@ struct segmentGeometryLayout: View {
         case .Residential:
             self.generateContent(in: geometry, items: searchModel.residentialElements.map{ $0.rawValue })
         case .NonResidential:
-            Text(Segment.NonResidential.rawValue)
+            self.generateContent(in: geometry, items: searchModel.nonResidentialElements.map{ $0.rawValue })
         }
     }
 

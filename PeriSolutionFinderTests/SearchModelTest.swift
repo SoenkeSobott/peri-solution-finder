@@ -20,10 +20,6 @@ final class SearchModelTest: XCTestCase {
         XCTAssertEqual(searchModel.searchTerm, "", "Incorrect Default searchTerm")
     }
 
-    func testDefaultSearchCriteriaValue() {
-        XCTAssertEqual(searchModel.selectedCriteria, SearchCriteria.Product, "Incorrect Default selectedCriteria")
-    }
-
     func testDefaultProductValue() {
         XCTAssertEqual(searchModel.getSelectedProduct(), nil, "Incorrect default selectedProduct")
     }
@@ -92,7 +88,6 @@ final class SearchModelTest: XCTestCase {
     }
 
     func testDefaultSolutionTagValues() {
-        XCTAssertEqual(searchModel.solutionTags, [.HighQualityConcreteSurface, .Shaft, .AFrame, .AnchorToExistingWall, .Basement, .ChamferCorner, .CircularWall, .ColumWithTieRodAndNonTieRodVersion, .ColumnWithoutTieRod, .ColumnWithTieRod, .ConcreteShoringBeam, .DoubleSided, .DrainageChannel, .EquipmentFoundation, .Inclined, .MockUp, .Monolithic, .SingleSided, .SlabAndBeamInOnePour, .SludgePumpTank, .SpindleSupport, .StraightWall, .Tank, .TemporaryStructure, .Traveller, .TunnelSideWall, .TWall, .Underground, .UtilityTunnel, .WallAndSlabInOnePour, .WallPost, .WallWithVoids], "Incorrect Default solutionTags")
         XCTAssertEqual(searchModel.selectedSolutionTags, [], "Incorrect Default selectedSolutionTags")
     }
 
@@ -420,5 +415,117 @@ final class SearchModelTest: XCTestCase {
         XCTAssertTrue(searchModel.isSolutionFilterSet(), "Incorrect value for isSolutionFilterSet()")
     }
 
+    // Search filter
 
+    func testSearchFilter() {
+        searchModel.searchTerm = "GRODT"
+        searchModel.setSelectedProduct(product: .Duo)
+
+        searchModel.wallThicknessLowValue = 50
+        searchModel.wallThicknessHighValue = 200
+        searchModel.wallHeightLowValue = 100
+        searchModel.wallHeightHighValue = 760
+
+        searchModel.columnLengthLowValue = 23
+        searchModel.columnLengthHighValue = 353
+        searchModel.columnWidthLowValue = 23
+        searchModel.columnWidthHighValue = 200
+        searchModel.columnHeightLowValue = 89
+        searchModel.columnHeightHighValue = 888
+
+        searchModel.culvertThicknessLowValue = 34
+        searchModel.culvertThicknessHighValue = 200
+        searchModel.culvertHeightLowValue = 100
+        searchModel.culvertHeightHighValue = 762
+
+        searchModel.selectedInfrastructureElements = [.WaterPlants, .Airports, .Tunnels]
+        searchModel.selectedIndustrialElements = [.Power, .IndustrializedManufacturing]
+        searchModel.selectedResidentialElements = [.SingleFamilyHousing]
+        searchModel.selectedNonResidentialElements = [.HealthcareBuildings, .LeisureAndHospitalityBuildings]
+        searchModel.selectedSolutionTags = [.Tank, .ChamferCorner, .ConcreteShoringBeam, .Basement]
+
+        let filter = searchModel.createSearchFilterObject(forSolutionTags: false)
+
+        XCTAssertEqual(filter.searchTerm, "GRODT", "Incorrect searchTerm")
+        XCTAssertEqual(filter.product, Product.Duo.rawValue, "Incorrect selectedProduct")
+
+        XCTAssertEqual(filter.wallFilter.minThickness, 50, "Incorrect wallThicknessLowValue")
+        XCTAssertEqual(filter.wallFilter.maxThickness, 200, "Incorrect wallThicknessHighValue")
+        XCTAssertEqual(filter.wallFilter.minHeight, 100, "Incorrect wallHeightLowValue")
+        XCTAssertEqual(filter.wallFilter.maxHeight, 760, "Incorrect wallHeightHighValue")
+
+        XCTAssertEqual(filter.columnFilter.minLength, 23, "Incorrect columnLengthLowValue")
+        XCTAssertEqual(filter.columnFilter.maxLength, 353, "Incorrect columnLengthHighValue")
+        XCTAssertEqual(filter.columnFilter.minWidth, 23, "Incorrect columnWidthLowValue")
+        XCTAssertEqual(filter.columnFilter.maxWidth, 200, "Incorrect columnWidthHighValue")
+        XCTAssertEqual(filter.columnFilter.minHeight, 89, "Incorrect columnHeightLowValue")
+        XCTAssertEqual(filter.columnFilter.maxHeight, 888, "Incorrect columnHeightHighValue")
+
+        XCTAssertEqual(filter.culvertFilter.minThickness, 34, "Incorrect culvertThicknessLowValue")
+        XCTAssertEqual(filter.culvertFilter.maxThickness, 200, "Incorrect culvertThicknessHighValue")
+        XCTAssertEqual(filter.culvertFilter.minHeight, 100, "Incorrect culvertHeightLowValue")
+        XCTAssertEqual(filter.culvertFilter.maxHeight, 762, "Incorrect culvertHeightHighValue")
+
+        XCTAssertEqual(filter.infrastructureElements, ["Water Plants", "Airports", "Tunnels"], "Incorrect selectedInfrastructureElements")
+        XCTAssertEqual(filter.industrialElements, ["Power", "Industrialized Manufacturing"], "Incorrect selectedIndustrialElements")
+        XCTAssertEqual(filter.residentialElements, ["Single-Family Housing"], "Incorrect selectedResidentialElements")
+        XCTAssertEqual(filter.nonResidentialElements, ["Healthcare Buildings", "Leisure & Hospitality Buildings"], "Incorrect selectedNonResidentialElements")
+        XCTAssertEqual(filter.solutionTags, ["tank", "chamfer corner", "concrete shoring beam", "basement"], "Incorrect selectedSolutionTags")
+    }
+
+    func testSearchFilterForSolutionTags() {
+        searchModel.searchTerm = "GRODT"
+        searchModel.setSelectedProduct(product: .Duo)
+
+        searchModel.wallThicknessLowValue = 50
+        searchModel.wallThicknessHighValue = 200
+        searchModel.wallHeightLowValue = 100
+        searchModel.wallHeightHighValue = 760
+
+        searchModel.columnLengthLowValue = 23
+        searchModel.columnLengthHighValue = 353
+        searchModel.columnWidthLowValue = 23
+        searchModel.columnWidthHighValue = 200
+        searchModel.columnHeightLowValue = 89
+        searchModel.columnHeightHighValue = 888
+
+        searchModel.culvertThicknessLowValue = 34
+        searchModel.culvertThicknessHighValue = 200
+        searchModel.culvertHeightLowValue = 100
+        searchModel.culvertHeightHighValue = 762
+
+        searchModel.selectedInfrastructureElements = [.WaterPlants, .Airports, .Tunnels]
+        searchModel.selectedIndustrialElements = [.Power, .IndustrializedManufacturing]
+        searchModel.selectedResidentialElements = [.SingleFamilyHousing]
+        searchModel.selectedNonResidentialElements = [.HealthcareBuildings, .LeisureAndHospitalityBuildings]
+        searchModel.selectedSolutionTags = [.Tank, .ChamferCorner, .ConcreteShoringBeam, .Basement]
+
+        let filter = searchModel.createSearchFilterObject(forSolutionTags: true)
+
+        XCTAssertEqual(filter.searchTerm, "GRODT", "Incorrect searchTerm")
+        XCTAssertEqual(filter.product, Product.Duo.rawValue, "Incorrect selectedProduct")
+
+        XCTAssertEqual(filter.wallFilter.minThickness, 50, "Incorrect wallThicknessLowValue")
+        XCTAssertEqual(filter.wallFilter.maxThickness, 200, "Incorrect wallThicknessHighValue")
+        XCTAssertEqual(filter.wallFilter.minHeight, 100, "Incorrect wallHeightLowValue")
+        XCTAssertEqual(filter.wallFilter.maxHeight, 760, "Incorrect wallHeightHighValue")
+
+        XCTAssertEqual(filter.columnFilter.minLength, 23, "Incorrect columnLengthLowValue")
+        XCTAssertEqual(filter.columnFilter.maxLength, 353, "Incorrect columnLengthHighValue")
+        XCTAssertEqual(filter.columnFilter.minWidth, 23, "Incorrect columnWidthLowValue")
+        XCTAssertEqual(filter.columnFilter.maxWidth, 200, "Incorrect columnWidthHighValue")
+        XCTAssertEqual(filter.columnFilter.minHeight, 89, "Incorrect columnHeightLowValue")
+        XCTAssertEqual(filter.columnFilter.maxHeight, 888, "Incorrect columnHeightHighValue")
+
+        XCTAssertEqual(filter.culvertFilter.minThickness, 34, "Incorrect culvertThicknessLowValue")
+        XCTAssertEqual(filter.culvertFilter.maxThickness, 200, "Incorrect culvertThicknessHighValue")
+        XCTAssertEqual(filter.culvertFilter.minHeight, 100, "Incorrect culvertHeightLowValue")
+        XCTAssertEqual(filter.culvertFilter.maxHeight, 762, "Incorrect culvertHeightHighValue")
+
+        XCTAssertEqual(filter.infrastructureElements, ["Water Plants", "Airports", "Tunnels"], "Incorrect selectedInfrastructureElements")
+        XCTAssertEqual(filter.industrialElements, ["Power", "Industrialized Manufacturing"], "Incorrect selectedIndustrialElements")
+        XCTAssertEqual(filter.residentialElements, ["Single-Family Housing"], "Incorrect selectedResidentialElements")
+        XCTAssertEqual(filter.nonResidentialElements, ["Healthcare Buildings", "Leisure & Hospitality Buildings"], "Incorrect selectedNonResidentialElements")
+        XCTAssertEqual(filter.solutionTags, nil, "Incorrect selectedSolutionTags")
+    }
 }

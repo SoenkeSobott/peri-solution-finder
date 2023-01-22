@@ -18,7 +18,7 @@ struct Filter: Identifiable, Encodable {
     var industrialElements: [String]
     var residentialElements: [String]
     var nonResidentialElements: [String]
-    var solutionTags: [String]
+    var solutionTags: [String]?
 }
 
 struct ThicknessAndHeightFilter: Identifiable, Encodable {

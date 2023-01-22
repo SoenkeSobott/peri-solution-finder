@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SolutionFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
+    @EnvironmentObject var network: Network
     @State private var totalHeight = CGFloat(100)
 
     var body: some View {
@@ -23,24 +24,36 @@ struct SolutionFiltersView: View {
                         .clipped()
                         .shadow(color: .gray.opacity(0.5), radius: 5)
 
-                    geometryLayoutSolutionTags(geometry: geometry)
-                        .padding(.vertical, 5)
-                        .frame(width: UIScreen.main.bounds.width*0.9)
-                        .cornerRadius(25)
-                        .frame(width: UIScreen.main.bounds.width*0.9)
+                    if (network.solutionTagsLoading) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+                            .padding(30)
+                    } else {
+                        HStack {
+                            geometryLayoutSolutionTags(geometry: geometry,
+                                                       searchModel: searchModel,
+                                                       solutionTags: $network.solutionTags)
+                            Spacer()
+                        }
+                        .padding(5)
+                    }
                 }
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(width: UIScreen.main.bounds.width*0.9)
+                .padding(.leading, UIScreen.main.bounds.width*0.05)
+                .padding(.trailing, UIScreen.main.bounds.width*0.05)
+                .padding(.bottom, 10)
                 .background(GeometryReader {gp -> Color in
                     DispatchQueue.main.async {
                         self.totalHeight = gp.size.height
                     }
                     return Color.clear
                 })
-                .frame(width: UIScreen.main.bounds.width*0.9)
-                .padding(.leading, UIScreen.main.bounds.width*0.05)
-                .padding(.trailing, UIScreen.main.bounds.width*0.05)
-                .padding(.bottom, 10)
             }
             .frame(height: totalHeight)
+        }
+        .onAppear{
+            network.getSolutionTags(searchModel: searchModel)
         }
     }
 }
@@ -49,13 +62,15 @@ struct SolutionFiltersView_Previews: PreviewProvider {
     static var previews: some View {
         SolutionFiltersView()
             .environmentObject(SearchModel())
+            .environmentObject(Network())
     }
 }
 
 struct geometryLayoutSolutionTags: View {
-    @EnvironmentObject var searchModel: SearchModel
-    @State private var isSelected = false
     let geometry: GeometryProxy
+    var searchModel: SearchModel
+    @Binding var solutionTags: [SolutionTag]
+    @State private var isSelected = false
 
     var body: some View {
         self.generateContent(in: geometry)
@@ -64,19 +79,20 @@ struct geometryLayoutSolutionTags: View {
     private func generateContent(in g: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
+        let padding: CGFloat = 5
 
         return ZStack(alignment: .topLeading) {
-            ForEach(searchModel.solutionTags, id: \.self) { solution in
+            ForEach(solutionTags, id: \.self) { solution in
                 self.getButtonText(for: solution, isSelected: isSelected)
                     .padding([.horizontal, .vertical], 5)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if (abs(width - d.width) > g.size.width*0.9)
+                        if (abs(width - d.width) > (g.size.width*0.9)-(padding))
                         {
                             width = 0
                             height -= d.height
                         }
                         let result = width
-                        if solution == searchModel.solutionTags.last! {
+                        if solution == solutionTags.last! {
                             width = 0 //last item
                         } else {
                             width -= d.width
@@ -85,7 +101,7 @@ struct geometryLayoutSolutionTags: View {
                     })
                     .alignmentGuide(.top, computeValue: {d in
                         let result = height
-                        if solution == searchModel.solutionTags.last! {
+                        if solution == solutionTags.last! {
                             height = 0 // last item
                         }
                         return result

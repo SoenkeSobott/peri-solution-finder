@@ -62,7 +62,6 @@ class SearchModel: ObservableObject {
 
 
     // Solution
-    @Published var solutionTags: [SolutionTag] = SolutionTag.allCases
     @Published var selectedSolutionTags: [SolutionTag] = []
 
     func getSelectedProduct() -> Product? {
@@ -236,7 +235,7 @@ class SearchModel: ObservableObject {
         return selectedSolutionTags.count > 0
     }
 
-    func createSearchFilterObject() -> Filter {
+    func createSearchFilterObject(forSolutionTags: Bool) -> Filter {
         let wallFilter = ThicknessAndHeightFilter(minThickness: wallThicknessLowValue,
                                                   maxThickness: wallThicknessHighValue,
                                                   minHeight: wallHeightLowValue,
@@ -263,7 +262,7 @@ class SearchModel: ObservableObject {
                       industrialElements: selectedIndustrialElements.map{ $0.rawValue },
                       residentialElements: selectedResidentialElements.map{ $0.rawValue },
                       nonResidentialElements: selectedNonResidentialElements.map{ $0.rawValue },
-                      solutionTags: selectedSolutionTags.map { $0.rawValue })
+                      solutionTags: forSolutionTags ? nil : selectedSolutionTags.map { $0.rawValue })
     }
     
 }

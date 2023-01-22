@@ -10,9 +10,9 @@ import SwiftUI
 struct CulvertFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
     @State var thicknessLowValue: CGFloat = 0
-    @State var thicknessHighValue: CGFloat = 500
-    @State var heightLowValue: CGFloat = 0
-    @State var heightHighValue: CGFloat = 1000
+    @State var thicknessHighValue: CGFloat = 250
+    @State var heightLowValue: CGFloat = 50
+    @State var heightHighValue: CGFloat = 500
 
     var body: some View {
         VStack {
@@ -25,8 +25,8 @@ struct CulvertFiltersView: View {
                        highValue: $thicknessHighValue,
                        sliderHeader: "Thickness (CM)",
                        startValue: 0,
-                       endValue: 500,
-                       step: 50)
+                       endValue: 250,
+                       step: 25)
             .onChange(of: thicknessLowValue) { _ in
                 searchModel.culvertThicknessLowValue = thicknessLowValue.rounded()
             }
@@ -37,9 +37,9 @@ struct CulvertFiltersView: View {
             SliderView(lowValue: $heightLowValue,
                        highValue: $heightHighValue,
                        sliderHeader: "Height (CM)",
-                       startValue: 0,
-                       endValue: 1000,
-                       step: 100)
+                       startValue: 50,
+                       endValue: 500,
+                       step: 50)
             .onChange(of: heightLowValue) { _ in
                 searchModel.culvertHeightLowValue = heightLowValue.rounded()
             }

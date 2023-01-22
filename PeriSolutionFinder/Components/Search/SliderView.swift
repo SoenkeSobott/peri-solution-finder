@@ -70,7 +70,7 @@ struct SliderView: View {
                                 }
                             }
                         }
-                        .frame(width: innerBoxWidth-30)
+                        .frame(width: innerBoxWidth-10)
 
                         RangeSlider(minValueSelected: $lowValue, maxValueSelected: $highValue)
                             .scaleMinValue(lowValue)
@@ -113,7 +113,7 @@ struct SliderView_Previews: PreviewProvider {
                    highValue: .constant(1),
                    sliderHeader: "Thickness (CM)",
                    startValue: 0,
-                   endValue: 100,
-                   step: 10)
+                   endValue: 600,
+                   step: 100)
     }
 }

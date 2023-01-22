@@ -11,9 +11,9 @@ import RangeUISlider
 struct WallFiltersView: View {
     @EnvironmentObject var searchModel: SearchModel
     @State var thicknessLowValue: CGFloat = 0
-    @State var thicknessHighValue: CGFloat = 500
-    @State var heightLowValue: CGFloat = 0
-    @State var heightHighValue: CGFloat = 1000
+    @State var thicknessHighValue: CGFloat = 600
+    @State var heightLowValue: CGFloat = 100
+    @State var heightHighValue: CGFloat = 900
 
     var body: some View {
         VStack {
@@ -26,8 +26,8 @@ struct WallFiltersView: View {
                        highValue: $thicknessHighValue,
                        sliderHeader: "Thickness (CM)",
                        startValue: 0,
-                       endValue: 500,
-                       step: 50)
+                       endValue: 600,
+                       step: 100)
             .onChange(of: thicknessLowValue) { _ in
                 searchModel.wallThicknessLowValue = thicknessLowValue.rounded()
             }
@@ -38,8 +38,8 @@ struct WallFiltersView: View {
             SliderView(lowValue: $heightLowValue,
                        highValue: $heightHighValue,
                        sliderHeader: "Height (CM)",
-                       startValue: 0,
-                       endValue: 1000,
+                       startValue: 100,
+                       endValue: 900,
                        step: 100)
             .onChange(of: heightLowValue) { _ in
                 searchModel.wallHeightLowValue = heightLowValue.rounded()

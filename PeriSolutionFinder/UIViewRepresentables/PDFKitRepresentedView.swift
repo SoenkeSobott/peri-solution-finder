@@ -9,14 +9,9 @@ import SwiftUI
 import PDFKit
 
 struct PDFKitRepresentedView: UIViewRepresentable {
-
-    var url: String
-    @Binding var pdfDocument: PDFDocument
-    @Binding var pdfIsLoading: Bool
+    @Binding var pdfDocument: PDFDocument?
 
     func makeUIView(context: UIViewRepresentableContext<PDFKitRepresentedView>) -> PDFKitRepresentedView.UIViewType {
-        loadPdfDocumetInBackground(url: url)
-
         let pdfView = PDFView()
         pdfView.document = pdfDocument
         pdfView.autoScales = true
@@ -28,22 +23,5 @@ struct PDFKitRepresentedView: UIViewRepresentable {
         uiView.document = pdfDocument
     }
 
-    func loadPdfDocumetInBackground(url: String) {
-        let dispatchQueue = DispatchQueue(label: "PdfLoadingQueue", qos: .background)
-
-        dispatchQueue.async{
-            let url = URL(string: url)
-            if url == nil { return }
-            let doc = PDFDocument(url: url!)
-            if (doc != nil) {
-                DispatchQueue.main.async{
-                    self.pdfDocument = doc!
-                    self.pdfIsLoading = false
-                }
-            } else {
-                SharedLogger.shared().error("PDF document is nil")
-            }
-        }
-    }
 }
 

@@ -11,7 +11,7 @@ struct ProjectListView: View {
     @EnvironmentObject var searchModel: SearchModel
     @EnvironmentObject var network: Network
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var shouldExecuteSerach = true
+    @State private var shouldExecuteSearch = true
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
 
     var body: some View {
@@ -67,9 +67,9 @@ struct ProjectListView: View {
                     .listStyle(.plain)
                     .opacity(network.projectsLoading ? 0 : 1)
                     .onAppear {
-                        if (shouldExecuteSerach) {
+                        if (shouldExecuteSearch) {
                             loadProjects()
-                            shouldExecuteSerach = false
+                            shouldExecuteSearch = false
                         }
                     }
                     .refreshable {

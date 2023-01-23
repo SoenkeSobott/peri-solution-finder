@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProjectView: View {
-
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @StateObject var twoDModel: TwoDModel = TwoDModel()
     let project: Project
     @State private var selectedView: Int = 0
 
@@ -34,7 +34,7 @@ struct ProjectView: View {
                                .frame(width: UIScreen.main.bounds.width*0.9)
 
                 if selectedView == 0 {
-                    TwoDView(viewLink: project.drawingLink ?? "")
+                    TwoDView(viewLink: project.drawingLink ?? "", twoDModel: twoDModel)
                 } else if selectedView == 1 {
                     BQView(billOfQuantity: project.billOfQuantity ?? [])
                 } else if selectedView == 2 {

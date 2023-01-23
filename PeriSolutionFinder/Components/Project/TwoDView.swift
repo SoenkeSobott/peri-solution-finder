@@ -11,18 +11,26 @@ import PDFKit
 struct TwoDView: View {
 
     let viewLink: String
-    @State private var pdfIsLoading: Bool = true
-    @State private var pdfDocument: PDFDocument = PDFDocument()
+    @ObservedObject var twoDModel: TwoDModel
 
     var body: some View {
         if (viewLink != "") {
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
 
-            PDFKitRepresentedView(url: viewLink, pdfDocument: $pdfDocument, pdfIsLoading: $pdfIsLoading)
-                .opacity(self.pdfIsLoading ? 0 : 1)
-                .frame(width: UIScreen.main.bounds.width*0.9)
-                .cornerRadius(25)
+                PDFKitRepresentedView(pdfDocument: $twoDModel.pdfDocument)
+                    .opacity(twoDModel.pdfIsLoading ? 0  : 1)
+                    .frame(width: UIScreen.main.bounds.width*0.9)
+                    .cornerRadius(25)
+            }
+            .onAppear {
+                if (twoDModel.pdfDocument == nil) {
+                    twoDModel.loadPdfDocumetInBackground(url: viewLink)
+                } else {
+                    twoDModel.pdfIsLoading = false
+                }
+            }
         } else {
             VStack(spacing: 20) {
                 Text("Sorry!")
@@ -38,7 +46,7 @@ struct TwoDView: View {
 
 struct TwoDView_Previews: PreviewProvider {
     static var previews: some View {
-        TwoDView(viewLink: "")
+        TwoDView(viewLink: "", twoDModel: TwoDModel())
     }
 }
 

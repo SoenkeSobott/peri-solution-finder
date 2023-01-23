@@ -29,13 +29,18 @@ struct SolutionFiltersView: View {
                             .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
                             .padding(30)
                     } else {
-                        HStack {
-                            geometryLayoutSolutionTags(geometry: geometry,
-                                                       searchModel: searchModel,
-                                                       solutionTags: $network.solutionTags)
-                            Spacer()
+                        if (network.solutionTags.count > 0) {
+                            HStack {
+                                geometryLayoutSolutionTags(geometry: geometry,
+                                                           searchModel: searchModel,
+                                                           solutionTags: $network.solutionTags)
+                                Spacer()
+                            }
+                            .padding(5)
+                        } else {
+                            Text("No Solution Tags found")
+                                .padding(30)
                         }
-                        .padding(5)
                     }
                 }
                 .fixedSize(horizontal: false, vertical: true)

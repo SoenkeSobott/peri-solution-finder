@@ -17,13 +17,13 @@ struct InfoView: View {
                     InfoRowView(name: "Project Name", value: project.projectName)
                     InfoRowView(name: "Project Number", value: project.projectNumber)
                     InfoRowView(name: "Main Structure", value: project.mainStructure?.description ?? "-")
-                    InfoRowView(name: "M2 of Concrete", value: project.m2OfConcrete?.description ?? "-")
-                    InfoRowView(name: "M2 of Formwork", value: project.m2OfFormwork?.description ?? "-")
-                    InfoRowView(name: "Length", value: project.lenght?.description ?? "-")
-                    InfoRowView(name: "Width", value: project.width?.description ?? "-")
-                    InfoRowView(name: "Thickness", value: project.thickness?.description ?? "-")
-                    InfoRowView(name: "Formwork Height", value: project.height?.description ?? "-")
-                    InfoRowView(name: "Max. Pour Height", value: project.maxPourHeight?.description ?? "-")
+                    InfoRowView(name: "M2 of Concrete", value: formatNumber(number: project.m2OfConcrete))
+                    InfoRowView(name: "M2 of Formwork", value: formatNumber(number: project.m2OfFormwork))
+                    InfoRowView(name: "Length [cm]", value: formatNumber(number: project.lenght))
+                    InfoRowView(name: "Width [cm]", value: formatNumber(number: project.width))
+                    InfoRowView(name: "Thickness [cm]", value: formatNumber(number: project.thickness))
+                    InfoRowView(name: "Formwork Height [cm]", value: formatNumber(number: project.height))
+                    InfoRowView(name: "Max. Pour Height [cm]", value: formatNumber(number: project.maxPourHeight))
                 }
 
                 Group {
@@ -42,6 +42,16 @@ struct InfoView: View {
         .padding(15)
         .frame(width: UIScreen.main.bounds.width*0.9)
         .cornerRadius(20)
+    }
+
+    private func formatNumber(number: Float?) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0;
+        if (number != nil) {
+            return formatter.string(from: number! as NSNumber) ?? "-"
+        }
+        return "-"
     }
 }
 

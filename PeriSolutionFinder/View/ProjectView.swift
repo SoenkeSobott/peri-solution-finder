@@ -91,11 +91,12 @@ struct ProjectView: View {
             .frame(height: 60)
             .frame(maxWidth: UIScreen.main.bounds.width*0.85)
 
-
-
         }
         .navigationBarHidden(true)
         .background(Color("BackgroundGray"))
+        .onDisappear {
+            twoDModel.cancelDownloadTask()
+        }
 
     }
 }

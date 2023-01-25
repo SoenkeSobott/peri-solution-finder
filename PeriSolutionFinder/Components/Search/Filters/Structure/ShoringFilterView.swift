@@ -10,9 +10,9 @@ import SwiftUI
 struct ShoringFilterView: View {
     @EnvironmentObject var searchModel: SearchModel
     @State var heightLowValue: CGFloat = 0
-    @State var heightHighValue: CGFloat = 10
+    @State var heightHighValue: CGFloat = 20
     @State var thicknessLowValue: CGFloat = 0
-    @State var thicknessHighValue: CGFloat = 1000
+    @State var thicknessHighValue: CGFloat = 500
 
     var body: some View {
         VStack {
@@ -25,8 +25,8 @@ struct ShoringFilterView: View {
                        highValue: $heightHighValue,
                        sliderHeader: "Shoring Height (M)",
                        startValue: 0,
-                       endValue: 10,
-                       step: 1)
+                       endValue: 20,
+                       step: 2)
             .onChange(of: heightLowValue) { _ in
                 searchModel.shoringHeightLowValue = heightLowValue.rounded()
             }
@@ -38,8 +38,8 @@ struct ShoringFilterView: View {
                        highValue: $thicknessHighValue,
                        sliderHeader: "Slab Thickness (CM)",
                        startValue: 0,
-                       endValue: 1000,
-                       step: 100)
+                       endValue: 500,
+                       step: 50)
             .onChange(of: thicknessLowValue) { _ in
                 searchModel.shoringThicknessLowValue = thicknessLowValue.rounded()
             }

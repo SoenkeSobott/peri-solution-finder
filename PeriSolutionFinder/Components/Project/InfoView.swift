@@ -16,14 +16,27 @@ struct InfoView: View {
                 Group {
                     InfoRowView(name: "Project Name", value: project.projectName)
                     InfoRowView(name: "Project Number", value: project.projectNumber)
+                    InfoRowView(name: "Product", value: project.product ?? "-")
                     InfoRowView(name: "Main Structure", value: project.mainStructure?.description ?? "-")
-                    InfoRowView(name: "M2 of Concrete", value: formatNumber(number: project.m2OfConcrete))
-                    InfoRowView(name: "M2 of Formwork", value: formatNumber(number: project.m2OfFormwork))
-                    InfoRowView(name: "Length [cm]", value: formatNumber(number: project.lenght))
-                    InfoRowView(name: "Width [cm]", value: formatNumber(number: project.width))
-                    InfoRowView(name: "Thickness [cm]", value: formatNumber(number: project.thickness))
-                    InfoRowView(name: "Formwork Height [cm]", value: formatNumber(number: project.height))
-                    InfoRowView(name: "Max. Pour Height [cm]", value: formatNumber(number: project.maxPourHeight))
+                }
+
+                if (project.product != nil && project.product == Product.DUO.rawValue) {
+                    Group {
+                        InfoRowView(name: "Length [cm]", value: formatNumber(number: project.lenght))
+                        InfoRowView(name: "Width [cm]", value: formatNumber(number: project.width))
+                        InfoRowView(name: "Thickness [cm]", value: formatNumber(number: project.thickness))
+                        InfoRowView(name: "Formwork Height [cm]", value: formatNumber(number: project.height))
+                        InfoRowView(name: "Max. Pour Height [cm]", value: formatNumber(number: project.maxPourHeight))
+                        InfoRowView(name: "M2 of Concrete", value: formatNumber(number: project.m2OfConcrete))
+                        InfoRowView(name: "M2 of Formwork", value: formatNumber(number: project.m2OfFormwork))
+                    }
+                }
+                if (project.product != nil && project.product == Product.PS100.rawValue) {
+                    Group {
+                        InfoRowView(name: "Shoring Height [m]", value: formatNumber(number: project.shoringHeight))
+                        InfoRowView(name: "Slab Thickness [cm]", value: formatNumber(number: project.slabThickness))
+                        InfoRowView(name: "M3 of Shoring", value: formatNumber(number: project.m3OfShoring))
+                    }
                 }
 
                 Group {

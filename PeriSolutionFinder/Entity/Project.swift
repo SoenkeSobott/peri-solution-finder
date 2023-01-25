@@ -28,6 +28,9 @@ struct Project: Identifiable, Decodable, Hashable {
     var width: Float?
     var maxPourHeight: Float?
     var thickness: Float?
+    var shoringHeight: Float?
+    var slabThickness: Float?
+    var m3OfShoring: Float?
     var m2OfFormwork: Float?
     var m2OfConcrete: Float?
     var planViewSize: String?

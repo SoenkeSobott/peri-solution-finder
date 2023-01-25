@@ -58,7 +58,7 @@ struct SearchCriteriaView: View {
                     .overlay(
                         HStack {
                             StructureDropdown(isOpen: $isStructureDropdownOpen)
-                                .offset(y: 82)
+                                .offset(y: 68)
                         }
                     )
                     .accessibilityIdentifier("structureButton")
@@ -94,7 +94,7 @@ struct SearchCriteriaView: View {
                     .overlay(
                         HStack {
                             SegmentDropdown(isOpen: $isSegmentDropdownOpen)
-                                .offset(y: 80)
+                                .offset(y: 82)
                         }
                     )
                     .accessibilityIdentifier("segmentButton")

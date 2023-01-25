@@ -15,7 +15,6 @@ struct FooterItem: Hashable {
 struct FooterView: View {
     private var footerItems = [
         FooterItem(name: "Search", systemImageName: "magnifyingglass.circle.fill"),
-        FooterItem(name: "My Solutions", systemImageName: "shippingbox.fill")
     ]
     @State private var selectedIndex: Int = 0
     @State private var showingFeatureNotImplementedAlert: Bool = false
@@ -34,11 +33,7 @@ struct FooterView: View {
 
                 ForEach(Array(footerItems.enumerated()), id: \.offset) { index, item in
                     Button {
-                        if (item.name != "Search") {
-                            showingFeatureNotImplementedAlert = true
-                        } else {
-                            selectedIndex = index
-                        }
+                        selectedIndex = index
                     } label: {
                         VStack() {
                             Image(systemName: item.systemImageName)
@@ -55,9 +50,6 @@ struct FooterView: View {
                         .opacity(isSelected(index: index) ? 1 : 0.7)
                         .frame(maxWidth: .infinity)
 
-                    }
-                    .alert(isPresented: $showingFeatureNotImplementedAlert) {
-                        Alerts.shared().featureNotAvailableAlert()
                     }
                 }
 

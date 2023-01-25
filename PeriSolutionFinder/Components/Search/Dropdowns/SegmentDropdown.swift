@@ -25,9 +25,6 @@ struct SegmentDropdown: View {
                         .foregroundColor(segment == searchModel.selectedSegment ? Color("PeriRed") : .gray)
 
                 })
-                .alert(isPresented: $showingFeatureNotImplementedAlert) {
-                    Alerts.shared().featureNotAvailableAlert()
-                }
             }
         }
         .padding(5)

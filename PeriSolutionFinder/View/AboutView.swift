@@ -35,7 +35,7 @@ struct AboutView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Feedback")
                     .headlineOne()
-                Text("Thanks for testing our Beta Version. We'd love to hear your feedback. " +
+                Text("Thanks for testing our first Version. We'd love to hear your feedback. " +
                         "You can simply send all comments and questions to:")
 
                 HStack {

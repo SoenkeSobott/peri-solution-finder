@@ -25,7 +25,7 @@ final class SearchModelTest: XCTestCase {
     }
 
     func testDefaultStructureValues() {
-        XCTAssertEqual(searchModel.structureElements, [.Wall, .Column, .Slab, .Culvert], "Incorrect default structureElements")
+        XCTAssertEqual(searchModel.structureElements, [.Wall, .Column, .Culvert], "Incorrect default structureElements")
         XCTAssertEqual(searchModel.selectedStructure, .Wall, "Incorrect Default selectedStructure")
     }
 

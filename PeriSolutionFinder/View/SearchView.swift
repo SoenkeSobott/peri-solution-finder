@@ -50,8 +50,6 @@ struct SearchView: View {
                                             ColumnFiltersView()
                                         case .Culvert:
                                             CulvertFiltersView()
-                                        case .Slab:
-                                            Text(searchModel.selectedStructure.rawValue)
                                         }
                                     case .Segment:
                                         SegmentFiltersView()

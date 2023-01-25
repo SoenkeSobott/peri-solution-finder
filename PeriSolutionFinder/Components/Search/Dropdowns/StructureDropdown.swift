@@ -16,12 +16,8 @@ struct StructureDropdown: View {
         VStack {
             ForEach(searchModel.structureElements, id: \.self) { structure in
                 Button(action: {
-                    if (structure != .Wall && structure != .Column && structure != .Culvert) {
-                        showingFeatureNotImplementedAlert = true
-                    } else {
-                        searchModel.selectedStructure = structure
-                        isOpen = false
-                    }
+                    searchModel.selectedStructure = structure
+                    isOpen = false
                 }, label: {
                     Text(structure.rawValue)
                         .text()
@@ -29,9 +25,6 @@ struct StructureDropdown: View {
                         .foregroundColor(structure == searchModel.selectedStructure ? Color("PeriRed") : .gray)
 
                 })
-                .alert(isPresented: $showingFeatureNotImplementedAlert) {
-                    Alerts.shared().featureNotAvailableAlert()
-                }
             }
         }
         .padding(5)

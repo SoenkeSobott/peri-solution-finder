@@ -21,7 +21,6 @@ enum Product: String, CaseIterable {
 enum Structure: String, CaseIterable {
     case Wall
     case Column
-    case Slab
     case Culvert
 }
 

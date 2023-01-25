@@ -15,13 +15,15 @@ enum SearchCriteria: String, CaseIterable {
 }
 
 enum Product: String, CaseIterable {
-    case Duo
+    case DUO
+    case PS100
 }
 
 enum Structure: String, CaseIterable {
     case Wall
     case Column
     case Culvert
+    case Shoring
 }
 
 enum Segment: String, CaseIterable {

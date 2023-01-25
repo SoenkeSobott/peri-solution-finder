@@ -10,20 +10,22 @@ import SwiftUI
 struct ProductSelectionBoxView: View {
     @EnvironmentObject var searchModel: SearchModel
 
-    private let outerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.4
-    private let outerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.45
-    private let outerBoxCornerRadius: CGFloat = 20
+    private let outerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.425
+    private let outerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.5
+    private let outerBoxCornerRadius: CGFloat = 18
 
-    private let innerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.35
-    private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.32
+    private let innerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.38
+    private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.35
     private let innerBoxCornerRadius: CGFloat = 10
+
+    let product: Product
 
     private func outerToInnerBoxPadding() -> CGFloat {
         return (outerBoxWidth - innerBoxWidth)/2
     }
 
     private func isSelected() -> Bool {
-        return searchModel.getSelectedProduct() == Product.Duo
+        return searchModel.selectedProduct == product
     }
 
     var body: some View {
@@ -42,7 +44,7 @@ struct ProductSelectionBoxView: View {
                         .frame(width: innerBoxWidth, height: innerBoxHeight)
                         .shadow(color: .gray.opacity(0.1), radius: 5, y: 5)
 
-                    Image("duo-imperial-sized-column")
+                    Image(getImageNameForProduct(product: product))
                         .resizable()
                         .scaledToFit()
                         .frame(height: innerBoxHeight)
@@ -52,7 +54,7 @@ struct ProductSelectionBoxView: View {
                 Spacer()
 
                 HStack() {
-                    Text("DUO")
+                    Text(product.rawValue)
                         .headlineThree()
                         .multilineTextAlignment(.leading)
                         .padding(.leading, outerToInnerBoxPadding()+innerBoxCornerRadius)
@@ -67,17 +69,26 @@ struct ProductSelectionBoxView: View {
         }
         .onTapGesture {
             if (!isSelected()) {
-                searchModel.setSelectedProduct(product: Product.Duo)
+                searchModel.selectedProduct = product
             } else {
-                searchModel.setSelectedProduct(product: nil)
+                searchModel.selectedProduct = nil
             }
+        }
+    }
+
+    private func getImageNameForProduct(product: Product) -> String {
+        switch product {
+        case .DUO:
+            return "duo-imperial-sized-column"
+        case .PS100:
+            return "ps100"
         }
     }
 }
 
 struct ProductSelectionBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductSelectionBoxView()
+        ProductSelectionBoxView(product: .PS100)
             .environmentObject(SearchModel())
     }
 }

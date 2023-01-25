@@ -14,15 +14,15 @@ struct StructureDropdown: View {
 
     var body: some View {
         VStack {
-            ForEach(searchModel.structureElements, id: \.self) { structure in
+            ForEach(searchModel.structureElements(), id: \.self) { structure in
                 Button(action: {
-                    searchModel.selectedStructure = structure
+                    searchModel.setSelectedStructure(structure: structure)
                     isOpen = false
                 }, label: {
                     Text(structure.rawValue)
                         .text()
                         .padding(2)
-                        .foregroundColor(structure == searchModel.selectedStructure ? Color("PeriRed") : .gray)
+                        .foregroundColor(structure == searchModel.getSelectedStructure() ? Color("PeriRed") : .gray)
 
                 })
             }

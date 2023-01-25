@@ -42,19 +42,15 @@ struct SearchView: View {
                                     switch searchModel.selectedCriteria {
                                     case .Product:
                                         ProductFiltersView()
+                                            .frame(width: UIScreen.main.bounds.width*0.9)
                                     case .Structure:
-                                        switch searchModel.selectedStructure {
-                                        case .Wall:
-                                            WallFiltersView()
-                                        case .Column:
-                                            ColumnFiltersView()
-                                        case .Culvert:
-                                            CulvertFiltersView()
-                                        }
+                                        StructureFilterView()
                                     case .Segment:
                                         SegmentFiltersView()
+                                            .frame(width: UIScreen.main.bounds.width*0.9)
                                     case .Solution:
                                         SolutionFiltersView()
+                                            .frame(width: UIScreen.main.bounds.width*0.9)
                                     }
 
                                     Spacer()

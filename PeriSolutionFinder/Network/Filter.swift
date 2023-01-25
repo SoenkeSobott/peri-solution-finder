@@ -11,9 +11,10 @@ struct Filter: Identifiable, Encodable {
     var id = UUID()
     var searchTerm: String
     var product: String
-    var wallFilter: ThicknessAndHeightFilter
-    var columnFilter: LengthWidthAndHeightFilter
-    var culvertFilter: ThicknessAndHeightFilter
+    var wallFilter: ThicknessAndHeightFilter?
+    var columnFilter: LengthWidthAndHeightFilter?
+    var culvertFilter: ThicknessAndHeightFilter?
+    var shoringFilter: ThicknessAndHeightFilter?
     var infrastructureElements: [String]
     var industrialElements: [String]
     var residentialElements: [String]

@@ -30,8 +30,6 @@ struct SegmentFiltersView: View {
                     .padding(5)
                 }
                 .fixedSize(horizontal: false, vertical: true)
-                .frame(width: UIScreen.main.bounds.width*0.9)
-                .padding(.leading, UIScreen.main.bounds.width*0.05)
                 .padding(.bottom, 10)
                 .background(GeometryReader {gp -> Color in
                     DispatchQueue.main.async {

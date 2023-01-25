@@ -11,6 +11,7 @@ struct SearchCriteriaView: View {
     @EnvironmentObject var searchModel: SearchModel
     @State var isStructureDropdownOpen: Bool = false
     @State var isSegmentDropdownOpen: Bool = false
+    @State private var structureDropdownHeigth = CGFloat(100)
 
     var body: some View {
         ZStack {
@@ -58,7 +59,13 @@ struct SearchCriteriaView: View {
                     .overlay(
                         HStack {
                             StructureDropdown(isOpen: $isStructureDropdownOpen)
-                                .offset(y: 68)
+                                .offset(y: (structureDropdownHeigth/2)+25)
+                                .background(GeometryReader {gp -> Color in
+                                    DispatchQueue.main.async {
+                                        self.structureDropdownHeigth = gp.size.height
+                                    }
+                                    return Color.clear
+                                })
                         }
                     )
                     .accessibilityIdentifier("structureButton")

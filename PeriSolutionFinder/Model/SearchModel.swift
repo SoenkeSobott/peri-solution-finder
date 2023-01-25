@@ -15,11 +15,20 @@ class SearchModel: ObservableObject {
     @Published var selectedCriteria: SearchCriteria = SearchCriteria.Product
 
     // Product
-    @Published private var selectedProduct: Product?
+    @Published var selectedProduct: Product?
 
     // Structure
-    @Published var structureElements: [Structure] = Structure.allCases
-    @Published var selectedStructure: Structure = Structure.Wall
+    func structureElements() -> [Structure] {
+        switch selectedProduct {
+        case nil:
+            return Structure.allCases
+        case .DUO:
+            return [.Wall, .Column, .Culvert]
+        case .PS100:
+            return [.Shoring]
+        }
+    }
+    @Published private var selectedStructure: Structure?
 
     // Structure - Wall
     @Published var wallThicknessLowValue: CGFloat? = nil
@@ -40,6 +49,12 @@ class SearchModel: ObservableObject {
     @Published var culvertThicknessHighValue: CGFloat? = nil
     @Published var culvertHeightLowValue: CGFloat? = nil
     @Published var culvertHeightHighValue: CGFloat? = nil
+
+    // Structure - Shoring
+    @Published var shoringThicknessLowValue: CGFloat? = nil
+    @Published var shoringThicknessHighValue: CGFloat? = nil
+    @Published var shoringHeightLowValue: CGFloat? = nil
+    @Published var shoringHeightHighValue: CGFloat? = nil
 
     // Segment
     @Published var segmentElements: [Segment] = Segment.allCases
@@ -64,12 +79,24 @@ class SearchModel: ObservableObject {
     // Solution
     @Published var selectedSolutionTags: [SolutionTag] = []
 
-    func getSelectedProduct() -> Product? {
-        return selectedProduct
+    // Structure
+    func getSelectedStructure() -> Structure {
+        if (selectedStructure != nil) {
+            return selectedStructure!
+        }
+
+        switch selectedProduct {
+        case nil:
+            return .Wall
+        case .DUO:
+            return .Wall
+        case .PS100:
+            return .Shoring
+        }
     }
 
-    func setSelectedProduct(product: Product?) {
-        self.selectedProduct = product
+    func setSelectedStructure(structure: Structure?) {
+        self.selectedStructure = structure
     }
 
     // Segment
@@ -152,7 +179,8 @@ class SearchModel: ObservableObject {
 
     func resetAllFilters() {
         searchTerm = ""
-        setSelectedProduct(product: nil)
+        selectedProduct = nil
+        selectedStructure = nil
         resetStructureFilters()
         resetSegmentFilters()
         selectedSolutionTags = []
@@ -175,6 +203,11 @@ class SearchModel: ObservableObject {
         culvertThicknessHighValue = nil
         culvertHeightLowValue = nil
         culvertHeightHighValue = nil
+
+        shoringThicknessLowValue = nil
+        shoringThicknessHighValue = nil
+        shoringHeightLowValue = nil
+        shoringHeightHighValue = nil
     }
 
     private func resetSegmentFilters() {
@@ -195,7 +228,7 @@ class SearchModel: ObservableObject {
     }
 
     func isStructureFilterSet() -> Bool {
-        return isWallFilterSet() || isColumnFilterSet() || isCulvertFilterSet()
+        return isWallFilterSet() || isColumnFilterSet() || isCulvertFilterSet() || isShoringFilterSet()
     }
 
     func isWallFilterSet() -> Bool {
@@ -209,6 +242,10 @@ class SearchModel: ObservableObject {
 
     func isCulvertFilterSet() -> Bool {
         return (culvertThicknessLowValue != nil || culvertThicknessHighValue != nil || culvertHeightLowValue != nil || culvertHeightHighValue != nil)
+    }
+
+    func isShoringFilterSet() -> Bool {
+        return (shoringHeightLowValue != nil || shoringHeightHighValue != nil || shoringThicknessLowValue != nil || shoringThicknessHighValue != nil)
     }
 
     func isSegmentFilterSet() -> Bool {
@@ -253,16 +290,26 @@ class SearchModel: ObservableObject {
                                                      minHeight: culvertHeightLowValue,
                                                      maxHeight: culvertHeightHighValue)
 
+        let shoringFilter = ThicknessAndHeightFilter(minThickness: shoringThicknessLowValue,
+                                                     maxThickness: shoringThicknessHighValue,
+                                                     minHeight: shoringHeightLowValue,
+                                                     maxHeight: shoringHeightHighValue)
+
         return Filter(searchTerm: searchTerm,
-                      product: getSelectedProduct()?.rawValue ?? "",
-                      wallFilter: wallFilter,
-                      columnFilter: columnFilter,
-                      culvertFilter: culvertFilter,
+                      product: selectedProduct?.rawValue ?? "",
+                      wallFilter: isDuoSelected() ? wallFilter : nil,
+                      columnFilter: isDuoSelected() ? columnFilter : nil,
+                      culvertFilter: isDuoSelected() ? culvertFilter : nil,
+                      shoringFilter: isDuoSelected() ? nil : shoringFilter,
                       infrastructureElements: selectedInfrastructureElements.map { $0.rawValue },
                       industrialElements: selectedIndustrialElements.map{ $0.rawValue },
                       residentialElements: selectedResidentialElements.map{ $0.rawValue },
                       nonResidentialElements: selectedNonResidentialElements.map{ $0.rawValue },
                       solutionTags: forSolutionTags ? nil : selectedSolutionTags.map { $0.rawValue })
+    }
+
+    private func isDuoSelected() -> Bool {
+        return selectedProduct == .DUO
     }
     
 }

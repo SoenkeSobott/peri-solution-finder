@@ -50,8 +50,6 @@ extension Text {
         self.headlineOne()
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 0)
-            .padding(.leading, UIScreen.main.bounds.width*0.05)
-            .padding(.trailing, UIScreen.main.bounds.width*0.05)
     }
 
     func headline() -> some View {

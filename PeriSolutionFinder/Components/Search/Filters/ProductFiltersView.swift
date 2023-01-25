@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ProductFiltersView: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Search by Product")
                 .filterHeadlineStyle()
 
             HStack {
-                ProductSelectionBoxView()
-                    .padding(.leading, UIScreen.main.bounds.width*0.05)
+                ProductSelectionBoxView(product: .DUO)
                 Spacer()
+                ProductSelectionBoxView(product: .PS100)
             }
         }
     }

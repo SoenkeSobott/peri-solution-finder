@@ -33,41 +33,6 @@ enum Segment: String, CaseIterable {
     case Residential
 }
 
-enum SolutionTag: String, CaseIterable, Decodable {
-    case HighQualityConcreteSurface = "high quality concrete surface"
-    case Shaft = "shaft"
-    case AFrame = "a-frame"
-    case AnchorToExistingWall = "anchor to existing wall"
-    case Basement = "basement"
-    case ChamferCorner = "chamfer corner"
-    case CircularWall = "circular wall"
-    case ColumWithTieRodAndNonTieRodVersion = "colum with tie-rod and non tie-rod version"
-    case ColumnWithoutTieRod = "column w/o tie-rod"
-    case ColumnWithTieRod = "column with tie-rod"
-    case ConcreteShoringBeam = "concrete shoring beam"
-    case DoubleSided = "double-sided"
-    case DrainageChannel = "drainage channel"
-    case EquipmentFoundation = "equipment foundation"
-    case Inclined = "inclined"
-    case MockUp = "mock-up"
-    case Monolithic = "monolithic"
-    case SingleSided = "single-sided"
-    case SlabAndBeamInOnePour = "slab & beam in one pour"
-    case SludgePumpTank = "sludge pump tank"
-    case SpindleSupport = "spindle support"
-    case StraightWall = "straight wall"
-    case Tank = "tank"
-    case TemporaryStructure = "temporary structure"
-    case Traveler = "traveler"
-    case TunnelSideWall = "tunnel side wall"
-    case TWall = "t-wall"
-    case Underground = "underground"
-    case UtilityTunnel = "utility tunnel"
-    case WallAndSlabInOnePour = "wall & slab in one pour"
-    case WallPost = "wall post"
-    case WallWithVoids = "wall with voids"
-}
-
 // Segment
 
 enum Infrastructure: String, CaseIterable {

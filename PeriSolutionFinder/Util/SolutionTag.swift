@@ -1,0 +1,62 @@
+//
+//  SolutionTag.swift
+//  PeriSolutionFinder
+//
+//  Created by Sönke Sobott on 26.01.23.
+//
+
+import Foundation
+
+enum SolutionTag: String, CaseIterable, Decodable {
+    case Shaft = "shaft"
+    case AnchorToExistingWall = "anchor to existing wall"
+    case Basement = "basement"
+    case ChamferCorner = "chamfer corner"
+    case CircularWall = "circular wall"
+    case ColumnWithoutTieRod = "column w/o tie-rod"
+    case ColumnWithTieRod = "column with tie-rod"
+    case ConcreteShoringBeam = "concrete shoring beam"
+    case DoubleSided = "double-sided"
+    case DrainageChannel = "drainage channel"
+    case EquipmentFoundation = "equipment foundation"
+    case Inclined = "inclined"
+    case MockUp = "mock-up"
+    case Monolithic = "monolithic"
+    case SingleSided = "single-sided"
+    case SlabPlusBeamInOnePour = "slab + beam in one pour"
+    case SpindleSupport = "spindle support"
+    case StraightWall = "straight wall"
+    case SteelFrame = "steel frame"
+    case Tank = "tank"
+    case TemporaryStructure = "temporary structure"
+    case Traveler = "traveler"
+    case TunnelSideWall = "tunnel side wall"
+    case TWall = "t-wall"
+    case HighQualityConcreteSurface = "high quality concrete surface"
+    case Underground = "underground"
+    case UtilityTunnel = "utility tunnel"
+    case WallPlusSlabInOnePour = "wall + slab in one pour"
+    case WallPost = "wall post"
+    case WallWithVoids = "wall with voids"
+    case SlabWithBeams = "slab with beams"
+    case InclinedSlab = "inclined slab"
+    case PortalBeam = "portal beam"
+    case WorkingPlatform = "working platform"
+    case SteelBeamSupport = "steel beam support"
+    case RoofSlab = "roof slab"
+    case FlatSlab = "flat slab"
+    case StructureConcreteBeams = "strut concrete beams"
+    case TimberPacker = "timber packer"
+    case InclinedFoundation = "inclined foundation"
+    case TimberBoxOut = "timber box-out"
+    case AnchorToExistingStructure = "anchor to existing structure"
+    case PreCastSlab = "pre-cast slab"
+    case Underpass = "underpass"
+    case UnderwaterTunnel = "underwater tunnel"
+    case MultiStoreyShoring = "multi-storey shoring"
+    case IntermediateSlab = "intermediate slab"
+    case IntermediateWall = "intermediate wall"
+    case DepressedRoad = "depressed road"
+    case CutAndCover = "cut & cover"
+    case HollowSlab = "hollow slab"
+}

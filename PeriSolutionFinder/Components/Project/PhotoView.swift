@@ -15,28 +15,25 @@ struct PhotoView: View {
     var body: some View {
         if (!photoUrls.isEmpty) {
             VStack(spacing: 0) {
-                VStack {
-                    Spacer()
-                    WebImage(url: URL(string: photoUrls[selectedTab]))
-                        .resizable()
-                        .placeholder(Image(systemName: "photo"))
-                        .placeholder {
-                            Spacer()
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
-                            Spacer()
-                        }
-                        .transition(.fade(duration: 0.5))
-                        .scaledToFit()
-                        .frame(width: UIScreen.main.bounds.width*0.9)
-                        .clipped()
-                    Spacer()
-                }
-                .cornerRadius(25, corners: [.topLeft, .topRight])
+                Spacer()
+                WebImage(url: URL(string: photoUrls[selectedTab]))
+                    .resizable()
+                    .placeholder(Image(systemName: "photo"))
+                    .placeholder {
+                        Spacer()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+                        Spacer()
+                    }
+                    .transition(.fade(duration: 0.5))
+                    .scaledToFit()
+                    .frame(width: UIScreen.main.bounds.width*0.9)
+                Spacer()
 
                 ImageControl(selectedTab: $selectedTab, maxImages: photoUrls.count)
                     .frame(width: UIScreen.main.bounds.width*0.9, height: 80)
             }
+            .cornerRadius(25, corners: [.topLeft, .topRight])
         } else {
             VStack(spacing: 20) {
                 Text("Sorry!")

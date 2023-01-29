@@ -15,7 +15,8 @@ struct PhotoView: View {
     var body: some View {
         if (!photoUrls.isEmpty) {
             VStack(spacing: 0) {
-                ScrollView([.horizontal,.vertical], showsIndicators: false) {
+                VStack {
+                    Spacer()
                     WebImage(url: URL(string: photoUrls[selectedTab]))
                         .resizable()
                         .placeholder(Image(systemName: "photo"))
@@ -26,8 +27,10 @@ struct PhotoView: View {
                             Spacer()
                         }
                         .transition(.fade(duration: 0.5))
-                        .scaledToFill()
+                        .scaledToFit()
                         .frame(width: UIScreen.main.bounds.width*0.9)
+                        .clipped()
+                    Spacer()
                 }
                 .cornerRadius(25, corners: [.topLeft, .topRight])
 

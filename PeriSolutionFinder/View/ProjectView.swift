@@ -26,7 +26,12 @@ struct ProjectView: View {
 
                 Spacer()
             }
-            .padding(.bottom, 10)
+
+            Text(project.projectName)
+                .headlineTwo()
+                .frame(width: UIScreen.main.bounds.width*0.9)
+                .lineLimit(1)
+                .padding(10)
 
             ZStack() {
                 RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -106,7 +111,7 @@ struct ProjectView_Previews: PreviewProvider {
         let project = Project(
             id: "123ID",
             projectNumber: "123",
-            projectName: "My Project",
+            projectName: "My Project with a really long name that does not fit",
             drawingNumber: "Drawing 123")
         ProjectView(project: project)
     }

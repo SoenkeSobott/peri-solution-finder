@@ -44,7 +44,7 @@ struct BQView: View {
                         Spacer()
                         Divider()
 
-                        Text(String(entry.quantity ?? 0))
+                        Text(entry.quantity?.description ?? "-")
                             .padding(.trailing, 5)
                             .frame(width: UIScreen.main.bounds.width*0.22, alignment: .center)
                             .lineLimit(1)

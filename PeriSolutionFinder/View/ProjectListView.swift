@@ -26,7 +26,7 @@ struct ProjectListView: View {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        BackButton()
+                        NavigationButton(systemName: "arrow.left")
                     })
                     .padding(.leading, 20)
 

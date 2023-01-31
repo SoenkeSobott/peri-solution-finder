@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct BackButton: View {
+struct NavigationButton: View {
+    let systemName: String
     var body: some View {
-        Image(systemName: "arrow.left")
-            .resizable()
+        Image(systemName: systemName)
             .frame(width: 20, height: 20)
+            .font(.system(size: 20))
             .foregroundColor(.red)
             .padding(20)
             .background(Color.white)
@@ -21,6 +22,6 @@ struct BackButton: View {
 
 struct BackButton_Previews: PreviewProvider {
     static var previews: some View {
-        BackButton()
+        NavigationButton(systemName: "ellipsis")
     }
 }

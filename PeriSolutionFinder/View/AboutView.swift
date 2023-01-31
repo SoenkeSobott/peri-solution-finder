@@ -17,7 +17,7 @@ struct AboutView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    BackButton()
+                    NavigationButton(systemName: "arrow.left")
                 })
                 .padding(.leading, UIScreen.main.bounds.width*0.05)
                 .frame(maxWidth: .infinity, alignment: .leading)

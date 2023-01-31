@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProjectView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var twoDModel: TwoDModel = TwoDModel()
     let project: Project
     @State private var selectedView: Int = 0
@@ -16,16 +15,7 @@ struct ProjectView: View {
     var body: some View {
 
         VStack() {
-            HStack() {
-                Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    BackButton()
-                })
-                .padding(.leading, 20)
-
-                Spacer()
-            }
+            ProjectHeaderBar(twoDModel: twoDModel, project: project)
 
             Text(project.projectName)
                 .headlineTwo()

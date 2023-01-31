@@ -218,10 +218,14 @@ class SearchModel: ObservableObject {
     }
 
     func hasSelectedItems() -> Bool {
-        return (isProductFilterSet() || isStructureFilterSet() || isSegmentFilterSet() || isSolutionFilterSet())
+        return (isSearchTermSet() || isProductFilterSet() || isStructureFilterSet() || isSegmentFilterSet() || isSolutionFilterSet())
     }
 
     // Filter set helper functions
+
+    func isSearchTermSet() -> Bool {
+        return !searchTerm.isEmpty
+    }
 
     func isProductFilterSet() -> Bool {
         return selectedProduct != nil

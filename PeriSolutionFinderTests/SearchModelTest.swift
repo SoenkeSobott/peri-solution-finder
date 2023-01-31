@@ -164,6 +164,13 @@ final class SearchModelTest: XCTestCase {
         XCTAssertEqual(searchModel.selectedSolutionTags, [], "Incorrect Default selectedSolutionTags")
     }
 
+    func testHasSelectedItemsWhenOnlySearchTermIsSet() {
+        XCTAssertFalse(searchModel.hasSelectedItems(), "Incorrect value for hasSelectedItems()")
+
+        searchModel.searchTerm = "BlaBlub"
+        XCTAssertTrue(searchModel.hasSelectedItems(), "Incorrect value for hasSelectedItems()")
+    }
+
     func testHasSelectedItemsWhenOnlyProductIsSet() {
         XCTAssertFalse(searchModel.hasSelectedItems(), "Incorrect value for hasSelectedItems()")
 
@@ -191,6 +198,13 @@ final class SearchModelTest: XCTestCase {
 
         searchModel.selectedSolutionTags = [.Tank, .ConcreteShoringBeam, .Basement]
         XCTAssertTrue(searchModel.hasSelectedItems(), "Incorrect value for hasSelectedItems()")
+    }
+
+    func testIsSearchTermSet() {
+        XCTAssertFalse(searchModel.isSearchTermSet(), "Incorrect value for isSearchTermSet()")
+
+        searchModel.searchTerm = "GRODT"
+        XCTAssertTrue(searchModel.isSearchTermSet(), "Incorrect value for isSearchTermSet()")
     }
 
     func testIsProductFilterSet() {

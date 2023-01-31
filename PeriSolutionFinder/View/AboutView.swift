@@ -60,9 +60,9 @@ struct AboutView: View {
                     }
                 }
 
-                Text("Data")
+                Text("Data & Logo")
                     .headlineOne()
-                Text("All project data is owned by PERI (Hong Kong) Limited")
+                Text("All project data and brand assets are owned by PERI (Hong Kong) Limited")
 
                 Text("Used Libraries")
                     .headlineOne()

@@ -13,8 +13,9 @@ struct DownloadButton: View {
     @StateObject var downloadModel: DownloadModel = DownloadModel()
     @State private var showDownloadDialog: Bool = false
     @State private var showing2DAlert: Bool = false
+    @State private var showingBQAlert: Bool = false
     @State private var showingPhotosAlert: Bool = false
-    @State private var showingExporter = false
+    @State private var showingPDFExporter = false
     @State private var pdfFile: PdfFile = PdfFile()
     var twoDModel: TwoDModel
     var project: Project
@@ -31,11 +32,18 @@ struct DownloadButton: View {
                 if (twoDModel.pdfDocument != nil && twoDModel.pdfDocument != PDFDocument()) {
                     pdfFile.pdfDocument = twoDModel.pdfDocument!
                     self.showDownloadDialog = false
-                    self.showingExporter = true
+                    self.showingPDFExporter = true
                 } else {
                     self.showing2DAlert = true
                 }
             }
+
+            Button(action: {
+                showingBQAlert = true
+            }) {
+                Text("Download BQ")
+            }
+            .disabled(showDownloadBQOption())
 
             Button("Download Photos") {
                 downloadModel.allPhotosDownloadedSuccessful = false
@@ -50,20 +58,33 @@ struct DownloadButton: View {
         .alert("Please wait until the download is complete.", isPresented: $showing2DAlert) {
             Button("OK", role: .cancel) { }
         }
+        .alert(isPresented: $showingBQAlert) {
+            Alert(title: Text("Notice"),
+                  message: Text("You are being redirected to download the file. Once the download is complete, the file will be available in your local files."),
+                  primaryButton: .default(Text("Download"), action: {
+                if let url = URL(string: project.originBQLink ?? "") {
+                   UIApplication.shared.open(url)
+                }
+            }), secondaryButton: .cancel(Text("Cancel")))
+        }
         .alert("All photos downloaded.", isPresented: $showingPhotosAlert) {
             Button("OK", role: .cancel) { }
         }
-        .fileExporter(isPresented: $showingExporter,
+        .fileExporter(isPresented: $showingPDFExporter,
                       document: pdfFile,
                       contentType: UTType.pdf,
                       defaultFilename: project.drawingNumber) { result in
             switch result {
             case .success(let url):
-                SharedLogger.shared().info("Saved to \(url)")
+                SharedLogger.shared().info("Saved PDF to \(url)")
             case .failure(let error):
                 SharedLogger.shared().error("Error downloading PDF: \(error.localizedDescription)")
             }
         }
+    }
+
+    private func showDownloadBQOption() -> Bool {
+        return project.billOfQuantity == nil || project.billOfQuantity!.count < 1 ||  project.originBQLink == nil || project.originBQLink!.isEmpty
     }
 }
 

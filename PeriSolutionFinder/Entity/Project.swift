@@ -22,6 +22,7 @@ struct Project: Identifiable, Decodable, Hashable {
     var drawingNumber: String
     var drawingLink: String?
     var billOfQuantity: [BillOffQuantityEntry]?
+    var originBQLink: String?
     var pictures: [String]?
     var height: Float?
     var lenght: Float?

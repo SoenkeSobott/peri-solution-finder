@@ -15,7 +15,7 @@ struct BQListHeader: View {
         HStack(spacing: 0) {
 
             Text("Article No.")
-                .frame(width: UIScreen.main.bounds.width*0.25, height: 50)
+                .frame(width: UIScreen.main.bounds.width*0.2)
 
             HStack(spacing: 0) {
                 Button(action: {
@@ -47,13 +47,14 @@ struct BQListHeader: View {
                         .foregroundColor(Color("PeriRed"))
                 })
             }
-            .frame(width: UIScreen.main.bounds.width*0.4, height: 50)
+            .frame(width: UIScreen.main.bounds.width*0.4)
 
             Text("Qty")
-                .frame(width: UIScreen.main.bounds.width*0.25, height: 50)
+                .frame(width: UIScreen.main.bounds.width*0.2)
 
         }
         .font(.system(size: 12))
+        .frame(height: 40)
         .fontWeight(.bold)
     }
 }

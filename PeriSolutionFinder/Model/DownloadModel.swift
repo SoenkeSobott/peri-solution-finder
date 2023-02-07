@@ -9,5 +9,4 @@ import SwiftUI
 
 class DownloadModel: ObservableObject {
     @Published var allPhotosDownloadedSuccessful: Bool = false
-
 }

@@ -16,7 +16,7 @@ struct SearchCriteriaView: View {
     var body: some View {
         ZStack {
             VStack {
-                SearchField()
+                SearchProjectsField()
 
                 HStack {
                     Button(action: {

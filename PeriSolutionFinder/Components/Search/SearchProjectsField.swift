@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchField: View {
+struct SearchProjectsField: View {
     @EnvironmentObject var searchModel: SearchModel
     @State private var searchTerm: String = ""
 
@@ -42,7 +42,7 @@ struct SearchField: View {
 
 struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
-        SearchField()
+        SearchProjectsField()
             .environmentObject(SearchModel())
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
+    @StateObject var rootModel: RootModel = RootModel()
     @State private var selectedIndex: Int = 0
 
     var body: some View {
@@ -17,7 +18,7 @@ struct RootView: View {
                 case 0:
                     SearchView()
                 case 1:
-                    ProductListView()
+                    ProductListView(rootModel: rootModel)
                 default:
                     Spacer()
                     Button(action: {

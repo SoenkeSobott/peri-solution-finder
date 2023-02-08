@@ -9,30 +9,29 @@ import SwiftUI
 import PDFKit
 
 struct TwoDView: View {
-
     let viewLink: String
-    @ObservedObject var twoDModel: TwoDModel
+    @ObservedObject var projectModel: ProjectModel
 
     var body: some View {
         if (viewLink != "") {
             ZStack {
-                ProgressView(String(format: "%.0f%%", twoDModel.downloadProgress * 100), value: twoDModel.downloadProgress, total: 1)
+                ProgressView(String(format: "%.0f%%", projectModel.downloadProgress * 100), value: projectModel.downloadProgress, total: 1)
                     .tint(Color("PeriRed"))
                     .progressViewStyle(.linear)
-                    .opacity(twoDModel.pdfIsLoading ? 1 : 0)
+                    .opacity(projectModel.pdfIsLoading ? 1 : 0)
                     .frame(width: UIScreen.main.bounds.width*0.8)
 
-                PDFKitRepresentedView(pdfDocument: $twoDModel.pdfDocument)
-                    .opacity(twoDModel.pdfIsLoading ? 0 : 1)
+                PDFKitRepresentedView(pdfDocument: $projectModel.pdfDocument)
+                    .opacity(projectModel.pdfIsLoading ? 0 : 1)
                     .frame(width: UIScreen.main.bounds.width*0.9)
                     .cornerRadius(25)
 
                 NotLoadableTwoDViewMessage()
-                    .opacity(twoDModel.isPdfNotLoadable() ? 1 : 0)
+                    .opacity(projectModel.isPdfNotLoadable() ? 1 : 0)
             }
             .onAppear {
-                if (twoDModel.pdfDocument == nil && !twoDModel.pdfIsLoading) {
-                    twoDModel.downloadPDF(url: viewLink)
+                if (projectModel.pdfDocument == nil && !projectModel.pdfIsLoading) {
+                    projectModel.downloadPDF(url: viewLink)
                 }
             }
         } else {
@@ -44,7 +43,7 @@ struct TwoDView: View {
 
 struct TwoDView_Previews: PreviewProvider {
     static var previews: some View {
-        TwoDView(viewLink: "", twoDModel: TwoDModel())
+        TwoDView(viewLink: "", projectModel: ProjectModel())
     }
 }
 

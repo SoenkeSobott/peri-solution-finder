@@ -9,8 +9,8 @@ import SwiftUI
 
 struct BQView: View {
     @EnvironmentObject var network: Network
+    @ObservedObject var projectModel: ProjectModel
     let billOfQuantity: [BillOffQuantityEntry]
-    @State private var articleAvailabilities: [ArticleAvailability] = []
     @State private var columnsIndex = 0
 
     var body: some View {
@@ -20,7 +20,7 @@ struct BQView: View {
                     BQListHeader(columnsIndex: $columnsIndex)
 
                     List(billOfQuantity, id: \.id) { entry in
-                        BQListEntryView(entry: entry, columnsIndex: $columnsIndex, articleAvailabilities: $articleAvailabilities)
+                        BQListEntryView(entry: entry, columnsIndex: $columnsIndex, articleAvailabilities: $projectModel.articleAvailabilities)
                     }
                     .scrollIndicators(.hidden)
                     .scrollContentBackground(.hidden)
@@ -32,35 +32,21 @@ struct BQView: View {
                 .padding(.top, UIScreen.main.bounds.width*0.05)
                 .padding(.bottom, UIScreen.main.bounds.width*0.05)
 
-                HStack {
-                    Image(systemName: "capsule.fill")
-                        .font(.system(size: 15))
-                        .foregroundColor(Color("InStockGreen"))
-                        .padding(.leading, UIScreen.main.bounds.width*0.05)
-
-                    Text("In Stock")
-                        .text()
-
-                    Image(systemName: "capsule.fill")
-                        .font(.system(size: 15))
-                        .foregroundColor(Color("OutOfStockYellow"))
-
-                    Text("Out Of Stock")
-                        .text()
-
-                    Spacer()
-                }
-                .frame(width: UIScreen.main.bounds.width*0.9,
-                       height: articleAvailabilities.isEmpty ? 0 : 15)
-                .padding(.bottom, articleAvailabilities.isEmpty ? 0 : UIScreen.main.bounds.width*0.05)
-                .opacity(articleAvailabilities.isEmpty ? 0 : 1)
+                AvailabilityLegendView()
+                    .frame(width: UIScreen.main.bounds.width*0.9,
+                           height: projectModel.articleAvailabilities.isEmpty ? 0 : 15)
+                    .padding(.bottom, projectModel.articleAvailabilities.isEmpty ? 0 : UIScreen.main.bounds.width*0.05)
+                    .opacity(projectModel.articleAvailabilities.isEmpty ? 0 : 1)
             }
             .frame(width: UIScreen.main.bounds.width*0.9)
             .cornerRadius(25)
             .onAppear {
-                let articleNumbers: [String] = billOfQuantity.compactMap { $0.articleNumber }
-                network.getAvailabilityForArticles(articleNumbers: articleNumbers) { availabilities in
-                    articleAvailabilities = availabilities
+                if (projectModel.shouldDownloadAvailabilities) {
+                    projectModel.shouldDownloadAvailabilities = false
+                    let articleNumbers: [String] = billOfQuantity.compactMap { $0.articleNumber }
+                    network.getAvailabilityForArticles(articleNumbers: articleNumbers) { availabilities in
+                        projectModel.articleAvailabilities = availabilities
+                    }
                 }
             }
         } else {
@@ -91,7 +77,8 @@ struct BQView_Previews: PreviewProvider {
             BillOffQuantityEntry(articleNumber: "789", description: "so das aber nice", unit: "VG", quantity: 20, weightPerUnit: 9),
             BillOffQuantityEntry(articleNumber: "12312323", description: "my fancy descritpion", unit: "VG", quantity: 20, weightPerUnit: 5)
         ]
-        BQView(billOfQuantity: billOfQuantity)
+
+        BQView(projectModel: ProjectModel(), billOfQuantity: billOfQuantity)
             .environmentObject(Network())
     }
 }

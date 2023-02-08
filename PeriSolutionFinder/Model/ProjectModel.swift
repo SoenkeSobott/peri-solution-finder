@@ -1,19 +1,29 @@
 //
-//  TwoDModel.swift
+//  ProjectModel.swift
 //  PeriSolutionFinder
 //
-//  Created by Sönke Sobott on 23.01.23.
+//  Created by Sönke Sobott on 08.02.23.
 //
 
 import SwiftUI
 import PDFKit
 
-class TwoDModel: ObservableObject {
+class ProjectModel: ObservableObject {
+    // 2D View
     @Published var pdfDocument: PDFDocument?
     @Published var pdfIsLoading: Bool = false
     @Published var downloadProgress: Double = 0
     private var downloadTask: URLSessionDataTask?
 
+    // BQ View
+    @Published var shouldDownloadAvailabilities: Bool = true
+    @Published var articleAvailabilities: [ArticleAvailability] = []
+
+    // Download
+    @Published var allPhotosDownloadedSuccessful: Bool = false
+
+
+    // 2D View
     func downloadPDF(url: String) {
         pdfIsLoading = true
         let url = URL(string: url)!
@@ -57,4 +67,5 @@ class TwoDModel: ObservableObject {
         SharedLogger.shared().info("Canceled Task: \(self.downloadTask.debugDescription)")
         downloadTask?.cancel()
     }
+
 }

@@ -11,13 +11,13 @@ import SDWebImageSwiftUI
 import SDWebImage
 
 class ImageSaver: NSObject {
-    private var downloadModel: DownloadModel
+    private var projectModel: ProjectModel
     private var urls: [String]
     private var downloadErrorOccured = false
     private var downloadCounter = 0
 
-    init(downloadModel: DownloadModel, urls: [String]) {
-        self.downloadModel = downloadModel
+    init(projectModel: ProjectModel, urls: [String]) {
+        self.projectModel = projectModel
         self.urls = urls
     }
 
@@ -34,7 +34,7 @@ class ImageSaver: NSObject {
             SharedLogger.shared().info("Saved image succesfull to local photos")
         }
         if (downloadCounter >= urls.count && !downloadErrorOccured) {
-            downloadModel.allPhotosDownloadedSuccessful = true
+            projectModel.allPhotosDownloadedSuccessful = true
         }
     }
 

@@ -41,11 +41,11 @@ struct BQListEntryView: View {
             Spacer()
             Divider()
 
-            HStack(spacing: 5) {
+            HStack(spacing: 0) {
                 Text(entry.quantity?.description ?? "-")
                     .text()
                     .lineLimit(1)
-                    .frame(width: 35)
+                    .frame(width: 40)
 
                 Image(systemName: "circle.fill")
                     .font(.system(size: 10))

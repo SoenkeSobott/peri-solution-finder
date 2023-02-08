@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProjectView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var twoDModel: TwoDModel = TwoDModel()
+    @StateObject var projectModel: ProjectModel = ProjectModel()
     let project: Project
     @State private var selectedView: Int = 0
 
@@ -26,7 +26,7 @@ struct ProjectView: View {
 
                 Spacer()
 
-                DownloadButton(twoDModel: twoDModel, project: project)
+                DownloadButton(projectModel: projectModel, project: project)
             }
 
             Text(project.projectName)
@@ -41,9 +41,9 @@ struct ProjectView: View {
                                .frame(width: UIScreen.main.bounds.width*0.9)
 
                 if selectedView == 0 {
-                    TwoDView(viewLink: project.drawingLink ?? "", twoDModel: twoDModel)
+                    TwoDView(viewLink: project.drawingLink ?? "", projectModel: projectModel)
                 } else if selectedView == 1 {
-                    BQView(billOfQuantity: project.billOfQuantity ?? [])
+                    BQView(projectModel: projectModel, billOfQuantity: project.billOfQuantity ?? [])
                 } else if selectedView == 2 {
                     PhotoView(photoUrls: project.pictures ?? [])
                 } else if selectedView == 3 {
@@ -102,7 +102,7 @@ struct ProjectView: View {
         .navigationBarHidden(true)
         .background(Color("BackgroundGray"))
         .onDisappear {
-            twoDModel.cancelDownloadTask()
+            projectModel.cancelDownloadTask()
         }
 
     }

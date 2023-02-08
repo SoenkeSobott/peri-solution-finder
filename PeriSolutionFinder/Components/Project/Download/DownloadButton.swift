@@ -10,14 +10,13 @@ import UniformTypeIdentifiers
 import PDFKit
 
 struct DownloadButton: View {
-    @StateObject var downloadModel: DownloadModel = DownloadModel()
     @State private var showDownloadDialog: Bool = false
     @State private var showing2DAlert: Bool = false
     @State private var showingBQAlert: Bool = false
     @State private var showingPhotosAlert: Bool = false
     @State private var showingExporter = false
     @State var pdfFile: PdfFile = PdfFile()
-    var twoDModel: TwoDModel
+    var projectModel: ProjectModel
     var project: Project
 
     var body: some View {
@@ -29,8 +28,8 @@ struct DownloadButton: View {
         .padding(.trailing, 20)
         .confirmationDialog("Download", isPresented: $showDownloadDialog, titleVisibility: .visible) {
             Button("Download 2D") {
-                if (twoDModel.pdfDocument != nil && twoDModel.pdfDocument != PDFDocument()) {
-                    pdfFile.pdfDocument = twoDModel.pdfDocument!
+                if (projectModel.pdfDocument != nil && projectModel.pdfDocument != PDFDocument()) {
+                    pdfFile.pdfDocument = projectModel.pdfDocument!
                     self.showingExporter = true
                     self.showDownloadDialog = false
                 } else {
@@ -46,12 +45,12 @@ struct DownloadButton: View {
             .disabled(showDownloadBQOption())
 
             Button("Download Photos") {
-                downloadModel.allPhotosDownloadedSuccessful = false
-                ImageSaver(downloadModel: downloadModel, urls: project.pictures!).saveToLibrary()
+                projectModel.allPhotosDownloadedSuccessful = false
+                ImageSaver(projectModel: projectModel, urls: project.pictures!).saveToLibrary()
                 self.showDownloadDialog = false
             }
             .disabled(project.pictures == nil || project.pictures!.count < 1)
-            .onChange(of: downloadModel.allPhotosDownloadedSuccessful) { downloadSuccessful in
+            .onChange(of: projectModel.allPhotosDownloadedSuccessful) { downloadSuccessful in
                 showingPhotosAlert = downloadSuccessful
             }
         }
@@ -94,6 +93,6 @@ struct DownloadButton_Previews: PreviewProvider {
                               projectNumber: "dasd",
                               projectName: "adsd",
                               drawingNumber: "dasd")
-        DownloadButton(twoDModel: TwoDModel(), project: project)
+        DownloadButton(projectModel: ProjectModel(), project: project)
     }
 }

@@ -22,7 +22,7 @@ struct AboutView: View {
                 .padding(.leading, UIScreen.main.bounds.width*0.05)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                Text("About")
+                Text("AbouT")
                     .headline()
                     .frame(maxWidth: .infinity, alignment: .center)
 

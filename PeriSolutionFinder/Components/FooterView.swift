@@ -13,15 +13,12 @@ struct FooterItem: Hashable {
 }
 
 struct FooterView: View {
-    private var footerItems = [
-        FooterItem(name: "Search", systemImageName: "magnifyingglass.circle.fill"),
-    ]
-    @State private var selectedIndex: Int = 0
+    @Binding var selectedIndex: Int
     @State private var showingFeatureNotImplementedAlert: Bool = false
-
-    private func isSelected(index: Int) -> Bool {
-        return selectedIndex == index
-    }
+    private let footerItems = [
+        FooterItem(name: "Search", systemImageName: "magnifyingglass.circle.fill"),
+        FooterItem(name: "Product", systemImageName: "magnifyingglass.circle.fill"),
+    ]
 
     var body: some View {
         ZStack(alignment: .center) {
@@ -72,10 +69,13 @@ struct FooterView: View {
             }
         }
     }
+    func isSelected(index: Int) -> Bool {
+        return selectedIndex == index
+    }
 }
 
 struct FooterView_Previews: PreviewProvider {
     static var previews: some View {
-        FooterView()
+        FooterView(selectedIndex: .constant(0))
     }
 }

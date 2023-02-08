@@ -10,24 +10,15 @@ on:
     branches: [ "master" ]
 
 jobs:
-  test:
-    runs-on: macos-11
+  build:
+
+    runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Swift Packages Cache
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: |
-            Build/SourcePackages
-            Build/Build/Products
-          key: ${{ runner.os }}-deps-v1-${{ hashFiles('BILDsolid.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
-          restore-keys: ${{ runner.os }}-deps-v1-
- 
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_13.0.app && /usr/bin/xcodebuild -version
-
-      - name: Run tests
-        run: xcodebuild test -scheme PeriSolutionFinder -project PeriSolutionFinder.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12' | xcpretty && exit ${PIPESTATUS[0]}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: xcodebuild -scheme ZUKH -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
+      - name: Test
+        run: xcodebuild -scheme ZUKH -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
         

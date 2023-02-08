@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct BQView: View {
-
+    @EnvironmentObject var network: Network
     let billOfQuantity: [BillOffQuantityEntry]
+    @State private var articleAvailabilities: [ArticleAvailability] = []
     @State private var columnsIndex = 0
 
     var body: some View {
@@ -19,44 +20,9 @@ struct BQView: View {
                     BQListHeader(columnsIndex: $columnsIndex)
 
                     List(billOfQuantity, id: \.id) { entry in
-                        HStack {
-                            Text(entry.articleNumber ?? "")
-                                .text()
-                                .padding(.leading, 5)
-                                .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
-                                .lineLimit(1)
-
-                            Divider()
-                            Spacer()
-
-                            HStack {
-                                if columnsIndex == 0 {
-                                    Text(entry.description ?? "")
-                                        .text()
-                                } else if columnsIndex == 1 {
-                                    Text(entry.unit ?? "")
-                                        .text()
-                                        .lineLimit(1)
-                                } else if columnsIndex == 2 {
-                                    Text(String(entry.weightPerUnit ?? 0))
-                                        .text()
-                                        .lineLimit(1)
-                                }
-
-                            }
-                            Spacer()
-                            Divider()
-
-                            Text(entry.quantity?.description ?? "-")
-                                .text()
-                                .padding(.trailing, 5)
-                                .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
-                                .lineLimit(1)
-                        }
-                        .frame(width: UIScreen.main.bounds.width*0.8)
-                        .listRowBackground(Color.clear)
+                        BQListEntryView(entry: entry, columnsIndex: $columnsIndex, articleAvailabilities: $articleAvailabilities)
                     }
-                    .padding(.top, 0)
+                    .scrollIndicators(.hidden)
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
                 }
@@ -84,20 +50,21 @@ struct BQView: View {
 
                     Spacer()
                 }
-                .frame(width: UIScreen.main.bounds.width*0.9)
-                .padding(.bottom, UIScreen.main.bounds.width*0.05)
+                .frame(width: UIScreen.main.bounds.width*0.9,
+                       height: articleAvailabilities.isEmpty ? 0 : 15)
+                .padding(.bottom, articleAvailabilities.isEmpty ? 0 : UIScreen.main.bounds.width*0.05)
+                .opacity(articleAvailabilities.isEmpty ? 0 : 1)
             }
             .frame(width: UIScreen.main.bounds.width*0.9)
             .cornerRadius(25)
-        } else {
-            Spacer()
-            VStack(spacing: 20) {
-                Text("Sorry!")
-                    .text()
-                Text("There is no data for this project.")
-                    .text()
+            .onAppear {
+                let articleNumbers: [String] = billOfQuantity.compactMap { $0.articleNumber }
+                network.getAvailabilityForArticles(articleNumbers: articleNumbers) { availabilities in
+                    articleAvailabilities = availabilities
+                }
             }
-            Spacer()
+        } else {
+            NoDataView()
         }
     }
 }
@@ -105,12 +72,12 @@ struct BQView: View {
 struct BQView_Previews: PreviewProvider {
     static var previews: some View {
         let billOfQuantity = [
-            BillOffQuantityEntry(articleNumber: "231212", description: "my fancy descritpion", unit: "VG", quantity: 20, weightPerUnit: 5),
-            BillOffQuantityEntry(articleNumber: "123423", description: "bla blub undos 123", unit: "VG", quantity: 20, weightPerUnit: 2),
-            BillOffQuantityEntry(articleNumber: "234123", description: "so das aber nice", unit: "VG", quantity: 20, weightPerUnit: 9),
-            BillOffQuantityEntry(articleNumber: "23424", description: "so das aber nice", unit: "VG", quantity: 20, weightPerUnit: 9),
+            BillOffQuantityEntry(articleNumber: "231212", description: "my fancy descritpion", unit: "VG", quantity: 4, weightPerUnit: 5),
+            BillOffQuantityEntry(articleNumber: "123423", description: "bla blub undos 123", unit: "VG", quantity: 2, weightPerUnit: 2),
+            BillOffQuantityEntry(articleNumber: "234123", description: "so das aber nice", unit: "VG", quantity: 1232, weightPerUnit: 9),
+            BillOffQuantityEntry(articleNumber: "23424", description: "so das aber nice", unit: "VG", quantity: 20001, weightPerUnit: 9),
             BillOffQuantityEntry(articleNumber: "342345", description: "my fancy descritpion", unit: "VG", quantity: 20, weightPerUnit: 5),
-            BillOffQuantityEntry(articleNumber: "23456", description: "so das aber nice", unit: "VG", quantity: 20, weightPerUnit: 9),
+            BillOffQuantityEntry(articleNumber: "23456", description: "so das aber nice", unit: "VG", quantity: 234, weightPerUnit: 9),
             BillOffQuantityEntry(articleNumber: "123", description: "so das aber nice", unit: "VG", quantity: 20, weightPerUnit: 9),
             BillOffQuantityEntry(articleNumber: "12312323", description: "my fancy descritpion", unit: "VG", quantity: 20, weightPerUnit: 5),
             BillOffQuantityEntry(articleNumber: "789", description: "so das aber nice", unit: "VG", quantity: 20, weightPerUnit: 9),
@@ -125,5 +92,6 @@ struct BQView_Previews: PreviewProvider {
             BillOffQuantityEntry(articleNumber: "12312323", description: "my fancy descritpion", unit: "VG", quantity: 20, weightPerUnit: 5)
         ]
         BQView(billOfQuantity: billOfQuantity)
+            .environmentObject(Network())
     }
 }

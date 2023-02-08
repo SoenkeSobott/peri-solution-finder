@@ -30,8 +30,8 @@
 		2D31157D295CB0F00091D4A3 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31157C295CB0F00091D4A3 /* SliderView.swift */; };
 		2D31157F295CBEF00091D4A3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31157E295CBEF00091D4A3 /* Enums.swift */; };
 		2D31158E295DB0290091D4A3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31158D295DB0290091D4A3 /* SearchModel.swift */; };
-		2D43094D2993958D009D10B0 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2D43094C2993958D009D10B0 /* SDWebImageSwiftUI */; };
 		2D430950299395B4009D10B0 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 2D43094F299395B4009D10B0 /* RangeUISlider */; };
+		2D57D53D29939C62003F4B2F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2D57D53C29939C62003F4B2F /* SDWebImageSwiftUI */; };
 		2D6C2CC62977F9CB009F8164 /* SearchModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C2CC52977F9CB009F8164 /* SearchModelTest.swift */; };
 		2D6C2CCD29780FC1009F8164 /* SearchViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C2CCC29780FC1009F8164 /* SearchViewUITest.swift */; };
 		2D6C2CD129781317009F8164 /* SearchCriteriaViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C2CD029781317009F8164 /* SearchCriteriaViewUITest.swift */; };
@@ -161,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D43094D2993958D009D10B0 /* SDWebImageSwiftUI in Frameworks */,
+				2D57D53D29939C62003F4B2F /* SDWebImageSwiftUI in Frameworks */,
 				2D430950299395B4009D10B0 /* RangeUISlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,8 +471,8 @@
 			);
 			name = PeriSolutionFinder;
 			packageProductDependencies = (
-				2D43094C2993958D009D10B0 /* SDWebImageSwiftUI */,
 				2D43094F299395B4009D10B0 /* RangeUISlider */,
+				2D57D53C29939C62003F4B2F /* SDWebImageSwiftUI */,
 			);
 			productName = PeriSolutionFinder;
 			productReference = 2D2CE72D291D14B400C369D4 /* PeriSolutionFinder.app */;
@@ -549,8 +549,8 @@
 			);
 			mainGroup = 2D2CE724291D14B400C369D4;
 			packageReferences = (
-				2D43094B2993958D009D10B0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				2D43094E299395B4009D10B0 /* XCRemoteSwiftPackageReference "RangeUISlider" */,
+				2D57D53B29939C62003F4B2F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 2D2CE72E291D14B400C369D4 /* Products */;
 			projectDirPath = "";
@@ -991,14 +991,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2D43094B2993958D009D10B0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = exactVersion;
-				version = 2.2.2;
-			};
-		};
 		2D43094E299395B4009D10B0 /* XCRemoteSwiftPackageReference "RangeUISlider" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/chicio/RangeUISlider";
@@ -1007,18 +999,26 @@
 				version = 4.0.0;
 			};
 		};
+		2D57D53B29939C62003F4B2F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2D43094C2993958D009D10B0 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2D43094B2993958D009D10B0 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
 		2D43094F299395B4009D10B0 /* RangeUISlider */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2D43094E299395B4009D10B0 /* XCRemoteSwiftPackageReference "RangeUISlider" */;
 			productName = RangeUISlider;
+		};
+		2D57D53C29939C62003F4B2F /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D57D53B29939C62003F4B2F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

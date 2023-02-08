@@ -45,7 +45,7 @@ struct BQListEntryView: View {
                 Text(entry.quantity?.description ?? "-")
                     .text()
                     .lineLimit(1)
-                    .frame(width: 40)
+                    .frame(width: 45)
 
                 Image(systemName: "circle.fill")
                     .font(.system(size: 10))

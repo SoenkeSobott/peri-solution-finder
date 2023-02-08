@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "rangeuislider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/chicio/RangeUISlider",
+      "state" : {
+        "revision" : "e249f3216fed6e6e49ccd2a003ada642713ed587",
+        "version" : "4.0.0"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "7ccdcb02fb0ab47409a6602769cea0486be2a209",
+        "version" : "5.15.2"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "61fefe9c284fd41ddef77d02749e88f00c305196",
+        "version" : "2.2.2"
+      }
+    }
+  ],
+  "version" : 2
+}

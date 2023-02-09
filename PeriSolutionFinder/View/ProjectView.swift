@@ -14,8 +14,7 @@ struct ProjectView: View {
     @State private var selectedView: Int = 0
 
     var body: some View {
-
-        VStack() {
+        VStack(spacing: 0) {
             HStack() {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
@@ -33,12 +32,13 @@ struct ProjectView: View {
                 .headlineTwo()
                 .frame(width: UIScreen.main.bounds.width*0.9)
                 .lineLimit(1)
-                .padding(10)
+                .padding(UIScreen.main.bounds.width*0.05)
 
             ZStack() {
-                RoundedRectangle(cornerRadius: 25, style: .continuous)
+                RoundedRectangle(cornerRadius: 25)
                                .fill(.white)
                                .frame(width: UIScreen.main.bounds.width*0.9)
+                               .grayViewShadow()
 
                 if selectedView == 0 {
                     TwoDView(viewLink: project.drawingLink ?? "", projectModel: projectModel)
@@ -50,8 +50,7 @@ struct ProjectView: View {
                     InfoView(project: project)
                 }
             }
-
-            Spacer()
+            .padding(.bottom, UIScreen.main.bounds.width*0.05)
 
             ZStack() {
                 RoundedRectangle(cornerRadius: 30, style: .continuous)

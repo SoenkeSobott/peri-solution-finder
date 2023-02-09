@@ -17,10 +17,11 @@ struct NavigationButton: View {
             .padding(20)
             .background(Color.white)
             .clipShape(Circle())
+            .grayViewShadow()
     }
 }
 
-struct BackButton_Previews: PreviewProvider {
+struct NavigationButton_Previews: PreviewProvider {
     static var previews: some View {
         NavigationButton(systemName: "ellipsis")
     }

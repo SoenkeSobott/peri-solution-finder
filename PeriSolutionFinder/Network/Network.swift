@@ -12,6 +12,8 @@ class Network: ObservableObject {
     @Published var projectsLoading: Bool = false
     @Published var solutionTags: [SolutionTag] = []
     @Published var solutionTagsLoading: Bool = false
+    @Published var articles: [Article] = []
+    @Published var articlesLoading: Bool = false
     @Published var articlesAvailabilityLoading: Bool = false
 
     // URLS
@@ -120,6 +122,52 @@ class Network: ObservableObject {
                 SharedLogger.shared().error("Request error: \(response.statusCode)")
                 DispatchQueue.main.async {
                     self.solutionTagsLoading = false
+                }
+            }
+        }
+
+        dataTask.resume()
+    }
+
+    func getAllArticles() {
+        articlesLoading = true
+        // Create URL
+        guard let url = URL(string: baseURL + "/warehouse/articles") else { fatalError("Missing URL") }
+        SharedLogger.shared().info("URL: \(url)")
+
+        // Create Request
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+
+
+        // Send Request
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                SharedLogger.shared().error("Request error: \(error)")
+                DispatchQueue.main.async {
+                    self.articlesLoading = false
+                }
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse else { return }
+
+            if response.statusCode == 200 {
+                guard let data = data else { return }
+                DispatchQueue.main.async {
+                    do {
+                        let articlesResponse = try JSONDecoder().decode([Article].self, from: data)
+                        self.articles = articlesResponse
+                        self.articlesLoading = false
+                    } catch let error {
+                        SharedLogger.shared().error("Error decoding: \(error)")
+                        self.articlesLoading = false
+                    }
+                }
+            } else {
+                SharedLogger.shared().error("Request error: \(response.statusCode)")
+                DispatchQueue.main.async {
+                    self.articlesLoading = false
                 }
             }
         }

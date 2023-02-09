@@ -22,7 +22,7 @@ struct ProjectRow : View {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(isSelected ? Color("PeriRed") : Color.white)
                         .frame(width: 60, height: 60)
-                        .shadow(color: .black.opacity(0.05), radius: 15)
+                        .grayViewShadow()
                     Image(systemName: "doc.fill")
                         .resizable()
                         .scaledToFill()

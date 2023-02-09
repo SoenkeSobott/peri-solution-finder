@@ -53,7 +53,7 @@ struct AboutView: View {
                             .frame(height: 40)
                             .background(Color.white)
                             .cornerRadius(50)
-                            .shadow(color: .gray.opacity(0.2), radius: 5)
+                            .grayViewShadow()
                     })
                     .alert("Mail copied to clipboard", isPresented: $showingCopiedMailAlert) {
                         Button("OK", role: .cancel) { }

@@ -15,7 +15,7 @@ struct PeriSolutionFinderApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SearchView()
+            RootView()
                 .environmentObject(network)
                 .environmentObject(searchModel)
         }

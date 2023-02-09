@@ -16,7 +16,7 @@ extension Text {
             .background(isSelected ? Color("PeriRed") : Color.clear)
             .cornerRadius(25)
             .foregroundColor(isSelected ? Color.white : Color.gray)
-            .shadow(color: isSelected ? Color("PeriRed").opacity(0.3) : Color.clear, radius: 5, y:3)
+            .redViewShadow(selected: isSelected)
             .scaledToFill()
             .minimumScaleFactor(0.8)
             .lineLimit(1)

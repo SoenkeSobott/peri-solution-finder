@@ -21,7 +21,7 @@ struct SegmentFiltersView: View {
                     RoundedRectangle(cornerRadius: 25)
                         .fill(.white)
                         .clipped()
-                        .shadow(color: .gray.opacity(0.5), radius: 5)
+                        .grayViewShadow()
 
                     HStack {
                         segmentGeometryLayout(geometry: geometry, searchModel: searchModel)

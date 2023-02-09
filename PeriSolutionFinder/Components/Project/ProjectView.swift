@@ -14,8 +14,7 @@ struct ProjectView: View {
     @State private var selectedView: Int = 0
 
     var body: some View {
-
-        VStack() {
+        VStack(spacing: 0) {
             HStack() {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
@@ -33,12 +32,13 @@ struct ProjectView: View {
                 .headlineTwo()
                 .frame(width: UIScreen.main.bounds.width*0.9)
                 .lineLimit(1)
-                .padding(10)
+                .padding(UIScreen.main.bounds.width*0.05)
 
             ZStack() {
-                RoundedRectangle(cornerRadius: 25, style: .continuous)
+                RoundedRectangle(cornerRadius: 25)
                                .fill(.white)
                                .frame(width: UIScreen.main.bounds.width*0.9)
+                               .grayViewShadow()
 
                 if selectedView == 0 {
                     TwoDView(viewLink: project.drawingLink ?? "", projectModel: projectModel)
@@ -50,53 +50,11 @@ struct ProjectView: View {
                     InfoView(project: project)
                 }
             }
+            .padding(.bottom, UIScreen.main.bounds.width*0.05)
 
-            Spacer()
-
-            ZStack() {
-                RoundedRectangle(cornerRadius: 30, style: .continuous)
-                               .fill(.white)
-
-                HStack(spacing: 0) {
-                    Button(action: {
-                        selectedView = 0
-                    }, label: {
-                        Text("2D")
-                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 0)
-                    })
-                    .padding(.leading, 5)
-
-                    Spacer()
-
-                    Button(action: {
-                        selectedView = 1
-                    }, label: {
-                        Text("BQ")
-                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 1)
-                    })
-
-                    Spacer()
-
-                    Button(action: {
-                        selectedView = 2
-                    }, label: {
-                        Text("PHOTO")
-                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 2)
-                    })
-
-                    Spacer()
-
-                    Button(action: {
-                        selectedView = 3
-                    }, label: {
-                        Text("INFO")
-                            .redBackgroundWithRoundedCorners(isSelected: selectedView == 3)
-                    })
-                    .padding(.trailing, 5)
-                }
-            }
-            .frame(height: 60)
-            .frame(maxWidth: UIScreen.main.bounds.width*0.85)
+            TabsView(selectedView: $selectedView)
+                .frame(height: 60)
+                .frame(maxWidth: UIScreen.main.bounds.width*0.85)
 
         }
         .navigationBarHidden(true)

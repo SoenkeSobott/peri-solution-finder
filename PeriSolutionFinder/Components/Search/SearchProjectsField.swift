@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchField: View {
+struct SearchProjectsField: View {
     @EnvironmentObject var searchModel: SearchModel
     @State private var searchTerm: String = ""
 
@@ -20,7 +20,7 @@ struct SearchField: View {
                 .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
                 .background(Color.white)
                 .cornerRadius(50)
-                .shadow(color: .black.opacity(0.05), radius: 50)
+                .grayViewShadow()
                 .submitLabel(.done)
 
             NavigationLink(destination: ProjectListView()){
@@ -31,7 +31,7 @@ struct SearchField: View {
                     .foregroundColor(Color("PeriRed"))
                     .background(.white)
                     .clipShape(Circle())
-                    .shadow(color: Color("PeriRed").opacity(0.2), radius: 5)
+                    .redViewShadow()
                     .padding(.trailing, 10)
             }
         }
@@ -42,7 +42,7 @@ struct SearchField: View {
 
 struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
-        SearchField()
+        SearchProjectsField()
             .environmentObject(SearchModel())
     }
 }

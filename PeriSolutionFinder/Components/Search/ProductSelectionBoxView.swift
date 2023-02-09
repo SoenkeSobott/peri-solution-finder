@@ -33,7 +33,6 @@ struct ProductSelectionBoxView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: outerBoxCornerRadius)
                     .fill(isSelected() ? Color("PeriRed").opacity(0.1) : Color("PeriLightGray"))
-                    .shadow(color: .gray.opacity(isSelected() ? 0.5 : 0), radius: 10)
             }
             .frame(width: outerBoxWidth, height: outerBoxHeight)
 
@@ -42,7 +41,7 @@ struct ProductSelectionBoxView: View {
                     RoundedRectangle(cornerRadius: innerBoxCornerRadius)
                         .fill(.white)
                         .frame(width: innerBoxWidth, height: innerBoxHeight)
-                        .shadow(color: .gray.opacity(0.1), radius: 5, y: 5)
+                        .grayViewShadow()
 
                     Image(getImageNameForProduct(product: product))
                         .resizable()

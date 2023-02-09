@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-struct FooterItem: Hashable {
-    var name: String
-    var systemImageName: String
-}
-
 struct FooterView: View {
     @Binding var selectedIndex: Int
     @State private var showingFeatureNotImplementedAlert: Bool = false
@@ -22,12 +17,11 @@ struct FooterView: View {
 
     var body: some View {
         ZStack(alignment: .center) {
-            Image("")
+            Color("PeriRed")
+                .ignoresSafeArea(.all, edges: .bottom)
                 .frame(width: UIScreen.main.bounds.width, height: 65)
-                .background(Color("PeriRed").edgesIgnoringSafeArea(.all))
 
             HStack {
-
                 ForEach(Array(footerItems.enumerated()), id: \.offset) { index, item in
                     Button {
                         selectedIndex = index
@@ -44,9 +38,8 @@ struct FooterView: View {
                                 .frame(height: 20)
                                 .foregroundColor(.white)
                         }
-                        .opacity(isSelected(index: index) ? 1 : 0.7)
+                        .opacity(selectedIndex == index ? 1 : 0.7)
                         .frame(maxWidth: .infinity)
-
                     }
                 }
 
@@ -68,9 +61,6 @@ struct FooterView: View {
                 })
             }
         }
-    }
-    func isSelected(index: Int) -> Bool {
-        return selectedIndex == index
     }
 }
 

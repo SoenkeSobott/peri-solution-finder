@@ -9,12 +9,11 @@ import SwiftUI
 
 struct RootView: View {
     @StateObject var rootModel: RootModel = RootModel()
-    @State private var selectedIndex: Int = 0
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                switch selectedIndex {
+                switch rootModel.selectedIndex {
                 case 0:
                     SearchView()
                 case 1:
@@ -22,13 +21,13 @@ struct RootView: View {
                 default:
                     Spacer()
                     Button(action: {
-                        selectedIndex = 0
+                        rootModel.selectedIndex = 0
                     }, label: {
                         Text("Go Back")
                     })
                     Spacer()
                 }
-                FooterView(selectedIndex: $selectedIndex)
+                FooterView(selectedIndex: $rootModel.selectedIndex)
             }
             .ignoresSafeArea(.keyboard)
         }

@@ -8,10 +8,9 @@
 import SwiftUI
 
 class SearchModel: ObservableObject {
-    let identifier = UUID()
 
+    @Published var shouldExecuteSearch = true
     @Published var searchTerm: String = ""
-
     @Published var selectedCriteria: SearchCriteria = SearchCriteria.Product
 
     // Product

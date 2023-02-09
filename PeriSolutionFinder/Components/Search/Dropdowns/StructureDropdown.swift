@@ -32,7 +32,7 @@ struct StructureDropdown: View {
         .background(Color.white)
         .cornerRadius(15)
         .clipped()
-        .shadow(color: .gray.opacity(0.2), radius: 5, y: 5)
+        .grayViewShadow()
         .opacity(isOpen ? 1 : 0)
     }
 }

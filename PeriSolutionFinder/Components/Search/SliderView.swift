@@ -53,7 +53,7 @@ struct SliderView: View {
                         .fill(.white)
                         .frame(width: innerBoxWidth, height: innerBoxHeight)
                         .padding(.bottom, outerToInnerBoxPadding())
-                        .shadow(color: .gray.opacity(0.1), radius: 5)
+                        .grayViewShadow()
 
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {

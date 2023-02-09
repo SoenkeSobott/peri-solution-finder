@@ -11,6 +11,11 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
+
+    func grayViewShadow() -> some View {
+        self.shadow(color: .gray.opacity(0.2), radius: 5)
+    }
+
 }
 
 struct RoundedCorner: Shape {

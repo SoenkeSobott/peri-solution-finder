@@ -20,7 +20,7 @@ struct SearchProjectsField: View {
                 .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
                 .background(Color.white)
                 .cornerRadius(50)
-                .shadow(color: .black.opacity(0.05), radius: 50)
+                .grayViewShadow()
                 .submitLabel(.done)
 
             NavigationLink(destination: ProjectListView()){

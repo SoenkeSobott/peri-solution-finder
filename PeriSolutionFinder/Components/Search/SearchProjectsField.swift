@@ -31,7 +31,7 @@ struct SearchProjectsField: View {
                     .foregroundColor(Color("PeriRed"))
                     .background(.white)
                     .clipShape(Circle())
-                    .shadow(color: Color("PeriRed").opacity(0.2), radius: 5)
+                    .redViewShadow()
                     .padding(.trailing, 10)
             }
         }

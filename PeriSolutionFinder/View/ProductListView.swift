@@ -36,7 +36,7 @@ struct ProductListView: View {
                     .foregroundColor(Color("PeriRed"))
                     .background(.white)
                     .clipShape(Circle())
-                    .shadow(color: Color("PeriRed").opacity(0.2), radius: 5)
+                    .redViewShadow()
                     .padding(.trailing, 10)
             }
             .padding([.leading, .trailing], UIScreen.main.bounds.width*0.05)

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D0C40E32993DF2C00D087C4 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E22993DF2C00D087C4 /* ProductListView.swift */; };
+		2D0C40E32993DF2C00D087C4 /* ArticlesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E22993DF2C00D087C4 /* ArticlesListView.swift */; };
 		2D0C40E52993E07200D087C4 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E42993E07200D087C4 /* Article.swift */; };
 		2D0C40E72993E3B400D087C4 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E62993E3B400D087C4 /* RootModel.swift */; };
 		2D0C40E92995187700D087C4 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E82995187700D087C4 /* TabsView.swift */; };
@@ -94,7 +94,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D0C40E22993DF2C00D087C4 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
+		2D0C40E22993DF2C00D087C4 /* ArticlesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListView.swift; sourceTree = "<group>"; };
 		2D0C40E42993E07200D087C4 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		2D0C40E62993E3B400D087C4 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
 		2D0C40E82995187700D087C4 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
@@ -209,6 +209,7 @@
 		2D25097929506E9500F8D30A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2D25097729506E4200F8D30A /* ProjectListView.swift */,
 				2D6C2CD4297A4A2D009F8164 /* Project */,
 				2D31157B295C97150091D4A3 /* Search */,
 				2DEE53DB295B23C60055A550 /* Navigation */,
@@ -323,10 +324,8 @@
 			children = (
 				2D9294E72993DA7200DF033A /* RootView.swift */,
 				2DB1157F292C1AD30043872E /* SearchView.swift */,
-				2D25097729506E4200F8D30A /* ProjectListView.swift */,
-				2D2509812951B64500F8D30A /* ProjectView.swift */,
+				2D0C40E22993DF2C00D087C4 /* ArticlesListView.swift */,
 				2D92DCA0295DD97D002B9A9A /* AboutView.swift */,
-				2D0C40E22993DF2C00D087C4 /* ProductListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,6 +375,7 @@
 		2D6C2CD4297A4A2D009F8164 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				2D2509812951B64500F8D30A /* ProjectView.swift */,
 				2DBC02502993509C00D5E720 /* Tabs */,
 				2DB50EDD2988D9F40041CA11 /* Download */,
 				2D2509922958A04F00F8D30A /* BQListHeader.swift */,
@@ -630,7 +630,7 @@
 				2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */,
 				2D6C2CE0297CF3B9009F8164 /* SolutionTagResponse.swift in Sources */,
 				2D2509952958B92300F8D30A /* PageControl.swift in Sources */,
-				2D0C40E32993DF2C00D087C4 /* ProductListView.swift in Sources */,
+				2D0C40E32993DF2C00D087C4 /* ArticlesListView.swift in Sources */,
 				2D92DCB429643FD2002B9A9A /* NumberExtensions.swift in Sources */,
 				2DEE53D62959F0F90055A550 /* SearchProjectsField.swift in Sources */,
 				2D31158E295DB0290091D4A3 /* SearchModel.swift in Sources */,

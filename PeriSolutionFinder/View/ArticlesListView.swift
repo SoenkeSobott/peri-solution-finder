@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProductListView: View {
+struct ArticlesListView: View {
     @EnvironmentObject var network: Network
     @State private var searchText = ""
     var rootModel: RootModel
@@ -86,7 +86,7 @@ struct ProductListView: View {
 
 struct ProductsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(rootModel: RootModel())
+        ArticlesListView(rootModel: RootModel())
             .environmentObject(Network())
     }
 }

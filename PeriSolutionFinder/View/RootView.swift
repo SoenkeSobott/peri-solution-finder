@@ -18,7 +18,7 @@ struct RootView: View {
                 case 0:
                     SearchView()
                 case 1:
-                    ProductListView(rootModel: rootModel)
+                    ArticlesListView(rootModel: rootModel)
                 default:
                     Spacer()
                     Button(action: {

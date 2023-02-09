@@ -20,38 +20,38 @@ struct SearchCriteriaView: View {
 
                 HStack {
                     Button(action: {
-                        searchModel.selectedCriteria = SearchCriteria.Product
+                        searchModel.selectedCriteria = .Product
                         isStructureDropdownOpen = false
                         isSegmentDropdownOpen = false
                     }, label: {
                         Text("Product")
                             .searchCriteriaPillStyle(
-                                isSelected: isSelected(searchCriteria: SearchCriteria.Product),
+                                isSelected: isSelected(searchCriteria: .Product),
                                 isFilterSet: searchModel.isProductFilterSet(),
                                 height: 40)
                     })
                     .accessibilityIdentifier("productButton")
 
                     Button(action: {
-                        searchModel.selectedCriteria = SearchCriteria.Structure
+                        searchModel.selectedCriteria = .Structure
                         isSegmentDropdownOpen = false
                     }, label: {
                         ZStack(alignment: .trailing) {
                             Text("Structure")
                                 .searchCriteriaPillStyle(
-                                    isSelected: isSelected(searchCriteria: SearchCriteria.Structure),
+                                    isSelected: isSelected(searchCriteria: .Structure),
                                     isFilterSet: searchModel.isStructureFilterSet(),
                                     height: 40)
 
                             Button(action: {
-                                searchModel.selectedCriteria = SearchCriteria.Structure
+                                searchModel.selectedCriteria = .Structure
                                 isStructureDropdownOpen.toggle()
                                 isSegmentDropdownOpen = false
                             }, label: {
                                 Image(systemName: getDropdownImageName(
                                     isDropDownOpen: isStructureDropdownOpen, isFilterSet: searchModel.isStructureFilterSet()))
                                     .dropdownChevron(
-                                        isSelected: isSelected(searchCriteria: SearchCriteria.Structure),
+                                        isSelected: isSelected(searchCriteria: .Structure),
                                         isFilterSet: searchModel.isStructureFilterSet())
                             })
                         }
@@ -76,24 +76,24 @@ struct SearchCriteriaView: View {
 
                 HStack {
                     Button(action: {
-                        searchModel.selectedCriteria = SearchCriteria.Segment
+                        searchModel.selectedCriteria = .Segment
                         isStructureDropdownOpen = false
                     }, label: {
                         ZStack(alignment: .trailing) {
                             Text("Segment")
                                 .searchCriteriaPillStyle(
-                                    isSelected: isSelected(searchCriteria: SearchCriteria.Segment),
+                                    isSelected: isSelected(searchCriteria: .Segment),
                                     isFilterSet: searchModel.isSegmentFilterSet(),
                                     height: 40)
 
                             Button(action: {
-                                searchModel.selectedCriteria = SearchCriteria.Segment
+                                searchModel.selectedCriteria = .Segment
                                 isStructureDropdownOpen = false
                                 isSegmentDropdownOpen.toggle()
                             }, label: {
                                 Image(systemName: getDropdownImageName(isDropDownOpen: isSegmentDropdownOpen, isFilterSet: searchModel.isSegmentFilterSet()))
                                     .dropdownChevron(
-                                        isSelected: isSelected(searchCriteria: SearchCriteria.Segment),
+                                        isSelected: isSelected(searchCriteria: .Segment),
                                         isFilterSet: searchModel.isSegmentFilterSet())
                             })
                         }
@@ -108,13 +108,13 @@ struct SearchCriteriaView: View {
 
 
                     Button(action: {
-                        searchModel.selectedCriteria = SearchCriteria.Solution
+                        searchModel.selectedCriteria = .Solution
                         isStructureDropdownOpen = false
                         isSegmentDropdownOpen = false
                     }, label: {
                         Text("Solution")
                             .searchCriteriaPillStyle(
-                                isSelected: isSelected(searchCriteria: SearchCriteria.Solution),
+                                isSelected: isSelected(searchCriteria: .Solution),
                                 isFilterSet: searchModel.isSolutionFilterSet(),
                                 height: 40)
                     })

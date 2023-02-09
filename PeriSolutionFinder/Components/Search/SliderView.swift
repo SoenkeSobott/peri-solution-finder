@@ -19,10 +19,10 @@ struct SliderView: View {
     var step: Double
 
     private let outerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.9
-    private let outerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.35
+    private let outerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.4
 
     private let innerBoxWidth: CGFloat = UIScreen.main.bounds.width*0.85
-    private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.2
+    private let innerBoxHeight: CGFloat = UIScreen.main.bounds.width*0.25
 
     private func outerToInnerBoxPadding() -> CGFloat {
         return (outerBoxWidth-innerBoxWidth)/2

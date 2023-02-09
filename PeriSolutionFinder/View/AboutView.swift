@@ -30,8 +30,6 @@ struct AboutView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
 
-
-
             VStack(alignment: .leading, spacing: 10) {
                 Text("Feedback")
                     .headlineOne()

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ProjectListView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var searchModel: SearchModel
     @EnvironmentObject var network: Network
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var shouldExecuteSearch = true
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
 
     var body: some View {
@@ -67,22 +66,18 @@ struct ProjectListView: View {
                     .listStyle(.plain)
                     .opacity(network.projectsLoading ? 0 : 1)
                     .onAppear {
-                        if (shouldExecuteSearch) {
-                            loadProjects()
-                            shouldExecuteSearch = false
+                        if (searchModel.shouldExecuteSearch) {
+                            network.getProjects(searchModel: searchModel)
+                            searchModel.shouldExecuteSearch = false
                         }
                     }
                     .refreshable {
-                        loadProjects()
+                        network.getProjects(searchModel: searchModel)
                     }
                 }
             }
         }
         .navigationBarHidden(true)
-    }
-
-    private func loadProjects() {
-        network.getProjects(searchModel: searchModel)
     }
 }
 

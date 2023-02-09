@@ -9,4 +9,5 @@ import Foundation
 
 class RootModel: ObservableObject {
     @Published var shouldLoadArticles: Bool = true
+    @Published var selectedIndex: Int = 0
 }

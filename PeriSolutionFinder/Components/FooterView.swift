@@ -12,7 +12,7 @@ struct FooterView: View {
     @State private var showingFeatureNotImplementedAlert: Bool = false
     private let footerItems = [
         FooterItem(name: "Search", systemImageName: "magnifyingglass.circle.fill"),
-        FooterItem(name: "Articles", systemImageName: "magnifyingglass.circle.fill"),
+        FooterItem(name: "Articles", systemImageName: "square.stack.3d.up.fill"),
     ]
 
     var body: some View {

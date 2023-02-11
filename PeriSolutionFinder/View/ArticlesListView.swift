@@ -16,55 +16,71 @@ struct ArticlesListView: View {
         VStack(spacing: 0) {
             Text("Articles")
                 .headline()
-                .padding(10)
+                .padding(5)
+            VStack {
+                VStack {
+                    ZStack(alignment: .trailing) {
+                        TextField("Search Articles", text: $searchText)
+                            .font(Font.system(size: 18, weight: .medium, design: .default))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(height: 40)
+                            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
+                            .background(Color.white)
+                            .cornerRadius(50)
+                            .grayViewShadow()
+                            .submitLabel(.done)
 
-            ZStack(alignment: .trailing) {
-                TextField("Search Articles", text: $searchText)
-                    .font(Font.system(size: 18, weight: .medium, design: .default))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(height: 40)
-                    .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
-                    .background(Color.white)
-                    .cornerRadius(50)
-                    .grayViewShadow()
-                    .submitLabel(.done)
-
-                Image(systemName: "magnifyingglass.circle.fill")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 40, height: 40, alignment: .center)
-                    .foregroundColor(Color("PeriRed"))
-                    .background(.white)
-                    .clipShape(Circle())
-                    .redViewShadow()
-                    .padding(.trailing, 10)
-            }
-            .padding([.leading, .trailing], UIScreen.main.bounds.width*0.05)
-
-            ZStack {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
-                    .opacity(network.articlesLoading ? 1 : 0)
-
-                List(searchResults, id: \.articleNumber) { article in
-                    VStack {
-                        Text(article.articleNumber)
+                        Image(systemName: "magnifyingglass.circle.fill")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 40, alignment: .center)
+                            .foregroundColor(Color("PeriRed"))
+                            .background(.white)
+                            .clipShape(Circle())
+                            .redViewShadow()
+                            .padding(.trailing, 10)
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-                }
-                .scrollContentBackground(.hidden)
-                .listStyle(.plain)
-                .opacity(network.articlesLoading ? 0 : 1)
-                .onAppear {
-                    if (rootModel.shouldLoadArticles) {
-                        network.getAllArticles()
-                        rootModel.shouldLoadArticles = false
+                    .padding([.leading, .trailing, .top], UIScreen.main.bounds.width*0.05)
+
+                    VStack(spacing: 0) {
+                        ArticlesListHeader()
+
+                        if (network.articlesLoading) {
+                            Spacer()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
+                                .opacity(network.articlesLoading ? 1 : 0)
+                            Spacer()
+                        } else {
+                            HStack {
+                                Color("PeriRed")
+                                    .frame(width: UIScreen.main.bounds.width*0.2)
+                                    .cornerRadius(15, corners: [.topLeft, .bottomLeft])
+                                    .redViewShadow()
+                                Spacer()
+                            }
+                            .overlay {
+                                List(searchResults, id: \.articleNumber) { article in
+                                    ArticleListEntry(article: article)
+                                }
+                                .cornerRadius(15, corners: [.topLeft, .bottomLeft])
+                                .scrollContentBackground(.hidden)
+                                .listStyle(.plain)
+                                .opacity(network.articlesLoading ? 0 : 1)
+                                .onAppear {
+                                    if (rootModel.shouldLoadArticles) {
+                                        network.getAllArticles()
+                                        rootModel.shouldLoadArticles = false
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                .refreshable {
-                    network.getAllArticles()
-                }
+                .frame(width: UIScreen.main.bounds.width*0.8)
+                .background(Color("PeriLightGray"))
+                .cornerRadius(15)
+                .padding([.top, .bottom], UIScreen.main.bounds.width*0.05)
             }
             .frame(width: UIScreen.main.bounds.width*0.9)
             .background(.white)
@@ -72,6 +88,7 @@ struct ArticlesListView: View {
             .padding([.top, .bottom], UIScreen.main.bounds.width*0.05)
             .grayViewShadow()
         }
+        .frame(width: UIScreen.main.bounds.width)
         .background(Color("BackgroundGray"))
     }
 

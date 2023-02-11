@@ -12,6 +12,8 @@
 		2D0C40E72993E3B400D087C4 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E62993E3B400D087C4 /* RootModel.swift */; };
 		2D0C40E92995187700D087C4 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40E82995187700D087C4 /* TabsView.swift */; };
 		2D0C40ED2995205300D087C4 /* FooterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40EC2995205300D087C4 /* FooterItem.swift */; };
+		2D0C40F029973A6000D087C4 /* ArticlesListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40EF29973A6000D087C4 /* ArticlesListHeader.swift */; };
+		2D0C40F229973E7100D087C4 /* ArticleListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C40F129973E7100D087C4 /* ArticleListEntry.swift */; };
 		2D11D4D42970FB600022454D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D11D4D32970FB600022454D /* LaunchScreen.storyboard */; };
 		2D250976294C7DBB00F8D30A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D250975294C7DBB00F8D30A /* Project.swift */; };
 		2D25097829506E4200F8D30A /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25097729506E4200F8D30A /* ProjectListView.swift */; };
@@ -100,6 +102,8 @@
 		2D0C40E62993E3B400D087C4 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
 		2D0C40E82995187700D087C4 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		2D0C40EC2995205300D087C4 /* FooterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterItem.swift; sourceTree = "<group>"; };
+		2D0C40EF29973A6000D087C4 /* ArticlesListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesListHeader.swift; sourceTree = "<group>"; };
+		2D0C40F129973E7100D087C4 /* ArticleListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListEntry.swift; sourceTree = "<group>"; };
 		2D11D4D32970FB600022454D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D250975294C7DBB00F8D30A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		2D25097729506E4200F8D30A /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D0C40EE29973A4B00D087C4 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				2D0C40EF29973A6000D087C4 /* ArticlesListHeader.swift */,
+				2D0C40F129973E7100D087C4 /* ArticleListEntry.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
 		2D250974294C7DAD00F8D30A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +225,7 @@
 		2D25097929506E9500F8D30A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2D0C40EE29973A4B00D087C4 /* Article */,
 				2D25097729506E4200F8D30A /* ProjectListView.swift */,
 				2D6C2CD4297A4A2D009F8164 /* Project */,
 				2D31157B295C97150091D4A3 /* Search */,
@@ -631,6 +645,7 @@
 				2DB11582292C261B0043872E /* FooterView.swift in Sources */,
 				2DE910232973B76600465561 /* ResetButton.swift in Sources */,
 				2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */,
+				2D0C40F029973A6000D087C4 /* ArticlesListHeader.swift in Sources */,
 				2D6C2CE0297CF3B9009F8164 /* SolutionTagResponse.swift in Sources */,
 				2D2509952958B92300F8D30A /* PageControl.swift in Sources */,
 				2D0C40E32993DF2C00D087C4 /* ArticlesListView.swift in Sources */,
@@ -664,6 +679,7 @@
 				2D311576295C75EE0091D4A3 /* ProductSelectionBoxView.swift in Sources */,
 				2D31157F295CBEF00091D4A3 /* Enums.swift in Sources */,
 				2D92DCB929658AA9002B9A9A /* SegmentFiltersView.swift in Sources */,
+				2D0C40F229973E7100D087C4 /* ArticleListEntry.swift in Sources */,
 				2D2509822951B64500F8D30A /* ProjectView.swift in Sources */,
 				2DBC02542993514300D5E720 /* BQListEntryView.swift in Sources */,
 				2D9294E82993DA7200DF033A /* RootView.swift in Sources */,

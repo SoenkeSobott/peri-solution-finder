@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchProjectsField: View {
     @EnvironmentObject var searchModel: SearchModel
+    @EnvironmentObject var network: Network
     @State private var searchTerm: String = ""
 
     var body: some View {

@@ -20,7 +20,7 @@ struct AvailabilityLegendView: View {
 
             Image(systemName: "capsule.fill")
                 .font(.system(size: 15))
-                .foregroundColor(Color("OutOfStockYellow"))
+                .foregroundColor(Color("OutOfStockRed"))
 
             Text("Out Of Stock")
                 .text()

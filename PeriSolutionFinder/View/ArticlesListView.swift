@@ -85,7 +85,7 @@ struct ArticlesListView: View {
                                 .listStyle(.plain)
                                 .opacity(network.articlesLoading ? 0 : 1)
                                 .refreshable {
-                                    network.getAllArticles(searchTerm: searchText )
+                                    network.getAllArticles(searchTerm: searchText)
                                 }
                             }
                         }

@@ -10,6 +10,6 @@ import Foundation
 struct Article: Decodable, Hashable {
     var articleNumber: String
     var articleDescription: String
-    var listPrice: Float
-    var availability: Int
+    var listPrice: Float?
+    var availability: Int?
 }

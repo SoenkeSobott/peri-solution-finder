@@ -27,18 +27,18 @@ struct ArticleListEntry: View {
                 }
 
                 Group {
-                    Text(article.listPrice.description)
+                    Text(article.listPrice?.description ?? "-")
                         .text()
                         .padding([.leading, .trailing], 5)
                         .frame(width: UIScreen.main.bounds.width*0.15, alignment: .center)
                     Divider()
                     HStack(spacing: 0) {
-                        Text(article.availability.description)
+                        Text(article.availability?.description ?? "-")
                             .text()
                             .padding([.leading, .trailing], 5)
                         Image(systemName: "circle.fill")
                             .font(.system(size: 10))
-                            .foregroundColor(getAvailabilityColor(availability: article.availability))
+                            .foregroundColor(getAvailabilityColor(availability: article.availability ?? 0))
                     }
                     .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
 

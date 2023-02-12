@@ -129,10 +129,15 @@ class Network: ObservableObject {
         dataTask.resume()
     }
 
-    func getAllArticles() {
+    func getAllArticles(searchTerm: String?) {
         articlesLoading = true
         // Create URL
-        guard let url = URL(string: baseURL + "/warehouse/articles") else { fatalError("Missing URL") }
+        var urlQuery = ""
+        if (searchTerm != nil && !searchTerm!.isEmpty) {
+            urlQuery+="?searchTerm=\(searchTerm!)"
+        }
+
+        guard let url = URL(string: baseURL + "/warehouse/articles" + urlQuery) else { fatalError("Missing URL") }
         SharedLogger.shared().info("URL: \(url)")
 
         // Create Request

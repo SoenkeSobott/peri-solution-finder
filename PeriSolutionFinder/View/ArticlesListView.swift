@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ArticlesListView: View {
     @EnvironmentObject var network: Network
-    @State private var searchText = ""
     var rootModel: RootModel
+    @State private var searchText = ""
+    @FocusState private var isSearchTextFocused: Bool
 
     var body: some View {
         VStack(spacing: 0) {
@@ -27,18 +28,30 @@ struct ArticlesListView: View {
                             .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
                             .background(Color.white)
                             .cornerRadius(50)
+                            .focused($isSearchTextFocused)
                             .grayViewShadow()
-                            .submitLabel(.done)
+                            .submitLabel(.search)
+                            .onSubmit {
+                                network.getAllArticles(searchTerm: searchText)
+                            }
 
-                        Image(systemName: "magnifyingglass.circle.fill")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 40, height: 40, alignment: .center)
-                            .foregroundColor(Color("PeriRed"))
-                            .background(.white)
-                            .clipShape(Circle())
-                            .redViewShadow()
-                            .padding(.trailing, 10)
+                        Button(action: {
+                            network.getAllArticles(searchTerm: searchText)
+                            isSearchTextFocused = false
+                        }, label: {
+                            Image(systemName: "magnifyingglass.circle.fill")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(Color("PeriRed"))
+                                .background(.white)
+                                .clipShape(Circle())
+                                .redViewShadow()
+                                .padding(.trailing, 10)
+                        })
+                    }
+                    .onTapGesture {
+                        isSearchTextFocused = true
                     }
                     .padding([.leading, .trailing, .top], UIScreen.main.bounds.width*0.05)
 
@@ -51,6 +64,10 @@ struct ArticlesListView: View {
                                 .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
                                 .opacity(network.articlesLoading ? 1 : 0)
                             Spacer()
+                        } else if (!network.articlesLoading && network.articles.count == 0) {
+                            Spacer()
+                            Text("No Results")
+                            Spacer()
                         } else {
                             HStack {
                                 Color("PeriRed")
@@ -60,20 +77,20 @@ struct ArticlesListView: View {
                                 Spacer()
                             }
                             .overlay {
-                                List(searchResults, id: \.articleNumber) { article in
+                                List(network.articles, id: \.self) { article in
                                     ArticleListEntry(article: article)
                                 }
                                 .cornerRadius(15, corners: [.topLeft, .bottomLeft])
                                 .scrollContentBackground(.hidden)
                                 .listStyle(.plain)
                                 .opacity(network.articlesLoading ? 0 : 1)
-                                .onAppear {
-                                    if (rootModel.shouldLoadArticles) {
-                                        network.getAllArticles()
-                                        rootModel.shouldLoadArticles = false
-                                    }
-                                }
                             }
+                        }
+                    }
+                    .onAppear {
+                        if (rootModel.shouldLoadArticles) {
+                            network.getAllArticles(searchTerm: searchText)
+                            rootModel.shouldLoadArticles = false
                         }
                     }
                 }
@@ -90,14 +107,6 @@ struct ArticlesListView: View {
         }
         .frame(width: UIScreen.main.bounds.width)
         .background(Color("BackgroundGray"))
-    }
-
-    var searchResults: [Article] {
-        if searchText.isEmpty {
-            return network.articles
-        } else {
-            return network.articles.filter { $0.articleNumber.contains(searchText) }
-        }
     }
 }
 

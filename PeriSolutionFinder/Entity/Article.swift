@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Article: Decodable {
+struct Article: Decodable, Hashable {
     var articleNumber: String
     var articleDescription: String
     var listPrice: Float

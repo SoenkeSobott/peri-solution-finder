@@ -66,9 +66,9 @@ struct BQListEntryView: View {
             if (availability!.availability >= bqEntry.quantity ?? 0) {
                 return Color("InStockGreen")
             }
-            return Color("OutOfStockYellow")
+            return Color("OutOfStockRed")
         }
-        return Color("OutOfStockYellow")
+        return Color("OutOfStockRed")
     }
 }
 

@@ -37,6 +37,8 @@
 		2D31157D295CB0F00091D4A3 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31157C295CB0F00091D4A3 /* SliderView.swift */; };
 		2D31157F295CBEF00091D4A3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31157E295CBEF00091D4A3 /* Enums.swift */; };
 		2D31158E295DB0290091D4A3 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D31158D295DB0290091D4A3 /* SearchModel.swift */; };
+		2D38C8672999237C0074CA4F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2D38C8662999237C0074CA4F /* SDWebImageSwiftUI */; };
+		2D38C869299923880074CA4F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2D38C868299923880074CA4F /* SDWebImageSwiftUI */; };
 		2D430950299395B4009D10B0 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 2D43094F299395B4009D10B0 /* RangeUISlider */; };
 		2D57D53D29939C62003F4B2F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2D57D53C29939C62003F4B2F /* SDWebImageSwiftUI */; };
 		2D6C2CC62977F9CB009F8164 /* SearchModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C2CC52977F9CB009F8164 /* SearchModelTest.swift */; };
@@ -186,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D38C8672999237C0074CA4F /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D38C869299923880074CA4F /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +529,7 @@
 			);
 			name = PeriSolutionFinderTests;
 			packageProductDependencies = (
+				2D38C8662999237C0074CA4F /* SDWebImageSwiftUI */,
 			);
 			productName = PeriSolutionFinderTests;
 			productReference = 2D2CE73D291D14B500C369D4 /* PeriSolutionFinderTests.xctest */;
@@ -544,6 +549,9 @@
 				2D2CE749291D14B500C369D4 /* PBXTargetDependency */,
 			);
 			name = PeriSolutionFinderUITests;
+			packageProductDependencies = (
+				2D38C868299923880074CA4F /* SDWebImageSwiftUI */,
+			);
 			productName = PeriSolutionFinderUITests;
 			productReference = 2D2CE747291D14B500C369D4 /* PeriSolutionFinderUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -1050,6 +1058,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2D38C8662999237C0074CA4F /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D57D53B29939C62003F4B2F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		2D38C868299923880074CA4F /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D57D53B29939C62003F4B2F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		2D43094F299395B4009D10B0 /* RangeUISlider */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2D43094E299395B4009D10B0 /* XCRemoteSwiftPackageReference "RangeUISlider" */;

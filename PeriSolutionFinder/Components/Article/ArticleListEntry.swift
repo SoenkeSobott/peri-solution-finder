@@ -22,7 +22,7 @@ struct ArticleListEntry: View {
                     Text(article.articleDescription)
                         .text()
                         .padding([.leading, .trailing], 5)
-                        .frame(width: UIScreen.main.bounds.width*0.3, alignment: .center)
+                        .frame(width: UIScreen.main.bounds.width*0.25, alignment: .center)
                     Divider()
                 }
 
@@ -40,7 +40,7 @@ struct ArticleListEntry: View {
                             .font(.system(size: 10))
                             .foregroundColor(getAvailabilityColor(availability: article.availability))
                     }
-                    .frame(width: UIScreen.main.bounds.width*0.15, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
 
                 }
             }

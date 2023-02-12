@@ -14,13 +14,13 @@ struct ArticlesListHeader: View {
                 .frame(width: UIScreen.main.bounds.width*0.2)
 
             Text("Description")
-                .frame(width: UIScreen.main.bounds.width*0.3)
+                .frame(width: UIScreen.main.bounds.width*0.25)
 
             Text("LP-1")
                 .frame(width: UIScreen.main.bounds.width*0.15)
 
             Text("Qty")
-                .frame(width: UIScreen.main.bounds.width*0.15)
+                .frame(width: UIScreen.main.bounds.width*0.2)
         }
         .font(.system(size: 12))
         .frame(height: 40)

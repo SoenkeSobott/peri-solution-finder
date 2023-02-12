@@ -84,6 +84,9 @@ struct ArticlesListView: View {
                                 .scrollContentBackground(.hidden)
                                 .listStyle(.plain)
                                 .opacity(network.articlesLoading ? 0 : 1)
+                                .refreshable {
+                                    network.getAllArticles(searchTerm: searchText )
+                                }
                             }
                         }
                     }

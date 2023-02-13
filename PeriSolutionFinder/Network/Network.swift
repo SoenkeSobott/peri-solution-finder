@@ -134,7 +134,8 @@ class Network: ObservableObject {
         // Create URL
         var urlQuery = ""
         if (searchTerm != nil && !searchTerm!.isEmpty) {
-            urlQuery+="?searchTerm=\(searchTerm!)"
+            urlQuery+="?searchTerm=\(searchTerm!.trimmingCharacters(in: .whitespacesAndNewlines))"
+            urlQuery = urlQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         }
 
         guard let url = URL(string: baseURL + "/warehouse/articles" + urlQuery) else { fatalError("Missing URL") }

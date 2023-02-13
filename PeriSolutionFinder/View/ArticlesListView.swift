@@ -71,7 +71,7 @@ struct ArticlesListView: View {
                         } else {
                             HStack {
                                 Color("PeriRed")
-                                    .frame(width: UIScreen.main.bounds.width*0.2)
+                                    .frame(width: UIScreen.main.bounds.width*0.17)
                                     .cornerRadius(15, corners: [.topLeft, .bottomLeft])
                                     .redViewShadow()
                                 Spacer()

@@ -10,14 +10,14 @@ import SwiftUI
 struct ArticlesListHeader: View {
     var body: some View {
         HStack(spacing: 0) {
-            Text("Article No.")
-                .frame(width: UIScreen.main.bounds.width*0.2)
+            Text("Art. No.")
+                .frame(width: UIScreen.main.bounds.width*0.17)
 
             Text("Description")
                 .frame(width: UIScreen.main.bounds.width*0.25)
 
-            Text("LP-1")
-                .frame(width: UIScreen.main.bounds.width*0.15)
+            Text("LP-1 (HKD)")
+                .frame(width: UIScreen.main.bounds.width*0.18)
 
             Text("Qty")
                 .frame(width: UIScreen.main.bounds.width*0.2)

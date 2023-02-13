@@ -43,6 +43,7 @@ struct Project: Identifiable, Decodable, Hashable {
     var segmentLevelTwo: String?
     var segmentLevelThree: String?
     var solutionTags: [String]?
+    var projectPrice: Float?
 }
 
 struct BillOffQuantityEntry: Identifiable, Decodable {

@@ -18,11 +18,13 @@ class Network: ObservableObject {
 
     // URLS
     let baseURL = "https://solutionx-project-service.azurewebsites.net"
+    let projectRessource = "/projects"
+    let articleRessource = "/warehouse/articles"
 
     func getProjects(searchModel: SearchModel) {
         projectsLoading = true
         // Create URL
-        guard let url = URL(string: baseURL + "/projects") else { fatalError("Missing URL") }
+        guard let url = URL(string: baseURL + projectRessource) else { fatalError("Missing URL") }
         SharedLogger.shared().info("URL: \(url)")
 
         // Create Request
@@ -75,7 +77,7 @@ class Network: ObservableObject {
     func getSolutionTags(searchModel: SearchModel) {
         solutionTagsLoading = true
         // Create URL
-        guard let url = URL(string: baseURL + "/projects/solution-tags") else { fatalError("Missing URL") }
+        guard let url = URL(string: baseURL + projectRessource + "/solution-tags") else { fatalError("Missing URL") }
         SharedLogger.shared().info("URL: \(url)")
 
         // Create Request
@@ -138,7 +140,7 @@ class Network: ObservableObject {
             urlQuery = urlQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         }
 
-        guard let url = URL(string: baseURL + "/warehouse/articles" + urlQuery) else { fatalError("Missing URL") }
+        guard let url = URL(string: baseURL + articleRessource + urlQuery) else { fatalError("Missing URL") }
         SharedLogger.shared().info("URL: \(url)")
 
         // Create Request
@@ -184,7 +186,7 @@ class Network: ObservableObject {
     func getAvailabilityForArticles(articleNumbers: [String], _ completion: @escaping (([ArticleAvailability]) -> Void)) {
         articlesAvailabilityLoading = true
         // Create URL
-        let urlString = baseURL + "/warehouse/articles/availability?articleNumbers=" + articleNumbers.joined(separator: ",")
+        let urlString = baseURL + articleRessource + "/availability?articleNumbers=" + articleNumbers.joined(separator: ",")
         guard let url = URL(string: urlString) else { fatalError("Missing URL") }
         SharedLogger.shared().info("URL: \(url)")
 
@@ -221,42 +223,6 @@ class Network: ObservableObject {
                 DispatchQueue.main.async {
                     self.articlesAvailabilityLoading = false
                 }
-            }
-        }
-
-        dataTask.resume()
-    }
-
-    func getPriceForProject(projectNumber: String, _ completion: @escaping ((ProjectPrice) -> Void)) {
-        // Create URL
-        guard let url = URL(string: baseURL + "/projects/\(projectNumber)/price") else { fatalError("Missing URL") }
-        SharedLogger.shared().info("URL: \(url)")
-
-        // Create Request
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-
-        // Send Request
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                SharedLogger.shared().error("Request error: \(error)")
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse else { return }
-
-            if response.statusCode == 200 {
-                guard let data = data else { return }
-                DispatchQueue.main.async {
-                    do {
-                        let projectPrice = try JSONDecoder().decode(ProjectPrice.self, from: data)
-                        completion(projectPrice)
-                    } catch let error {
-                        SharedLogger.shared().error("Error decoding: \(error)")
-                    }
-                }
-            } else {
-                SharedLogger.shared().error("Request error: \(response.statusCode)")
             }
         }
 

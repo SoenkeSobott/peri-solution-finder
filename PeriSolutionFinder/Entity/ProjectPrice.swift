@@ -9,7 +9,7 @@ import Foundation
 
 
 struct ProjectPrice: Decodable {
-    var price: Float
-    var currency: String
-    var unit: String
+    var price: Float?
+    var currency: String?
+    var unit: String?
 }

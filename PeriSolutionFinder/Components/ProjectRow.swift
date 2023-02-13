@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProjectRow : View {
+    @EnvironmentObject var network: Network
     @State private var isSelected: Bool = false
     let project: Project
 
@@ -33,9 +34,8 @@ struct ProjectRow : View {
                 Text(project.projectName)
                     .headlineTwo()
                 Spacer()
-                Image(systemName: "ellipsis")
-                    .foregroundColor(.gray)
-                    .frame(width: 40, height: 40, alignment: .center)
+                Text(formatPrice(project: project))
+                    .text()
                     .padding(.trailing, 10)
             }
         }

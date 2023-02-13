@@ -28,7 +28,7 @@ struct ArticleListEntry: View {
                 }
 
                 Group {
-                    Text(article.listPrice?.description ?? "-")
+                    Text(formatNumber(number: article.listPrice))
                         .text()
                         .padding([.leading, .trailing], 5)
                         .frame(width: UIScreen.main.bounds.width*0.18, alignment: .center)

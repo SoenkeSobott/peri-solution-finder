@@ -23,6 +23,7 @@ struct ProjectListView: View {
 
                 HStack {
                     Button(action: {
+                        searchModel.shouldExecuteSearch = true
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         NavigationButton(systemName: "arrow.left")

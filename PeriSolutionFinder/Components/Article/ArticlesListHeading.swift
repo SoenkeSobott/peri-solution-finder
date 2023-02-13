@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ArticlesListHeader: View {
+struct ArticlesListHeading: View {
     var body: some View {
         HStack(spacing: 0) {
             Text("Art. No.")
@@ -30,6 +30,6 @@ struct ArticlesListHeader: View {
 
 struct ArticlesListHeader_Previews: PreviewProvider {
     static var previews: some View {
-        ArticlesListHeader()
+        ArticlesListHeading()
     }
 }

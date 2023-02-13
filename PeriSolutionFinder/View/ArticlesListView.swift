@@ -15,9 +15,8 @@ struct ArticlesListView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("Articles")
-                .headline()
-                .padding(5)
+            ArticleListHeader()
+
             VStack {
                 VStack {
                     ZStack(alignment: .trailing) {
@@ -56,7 +55,7 @@ struct ArticlesListView: View {
                     .padding([.leading, .trailing, .top], UIScreen.main.bounds.width*0.05)
 
                     VStack(spacing: 0) {
-                        ArticlesListHeader()
+                        ArticlesListHeading()
 
                         if (network.articlesLoading) {
                             Spacer()

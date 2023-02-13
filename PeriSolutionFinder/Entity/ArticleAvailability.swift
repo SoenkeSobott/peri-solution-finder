@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct ArticleAvailability: Decodable {
     var articleNumber: String
     var availability: Int

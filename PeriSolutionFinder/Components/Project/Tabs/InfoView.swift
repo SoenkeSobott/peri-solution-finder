@@ -56,16 +56,7 @@ struct InfoView: View {
         .frame(width: UIScreen.main.bounds.width*0.9)
         .cornerRadius(20)
     }
-
-    private func formatNumber(number: Float?) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 0;
-        if (number != nil) {
-            return formatter.string(from: number! as NSNumber) ?? "-"
-        }
-        return "-"
-    }
+    
 }
 
 struct InfoView_Previews: PreviewProvider {

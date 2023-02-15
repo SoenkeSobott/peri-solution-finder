@@ -11,7 +11,10 @@ struct ProjectListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var searchModel: SearchModel
     @EnvironmentObject var network: Network
+    @StateObject var priceFilterModel: PriceFilterModel = PriceFilterModel()
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
+    @State private var minValue: Float = 0
+    @State private var maxValue: Float = 100
 
     var body: some View {
         VStack() {
@@ -41,6 +44,12 @@ struct ProjectListView: View {
 
                     Spacer()
 
+                    if (network.projects.count > 0) {
+                        PriceFilterView(priceFilterModel: priceFilterModel, minValue: $minValue, maxValue: $maxValue)
+                    }
+
+                    Spacer()
+
                     Text("Projects List")
                         .headlineOne()
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -53,7 +62,7 @@ struct ProjectListView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
                         .opacity(network.projectsLoading ? 1 : 0)
 
-                    List(network.projects, id: \.projectNumber) { project in
+                    List(filteredProjects, id: \.projectNumber) { project in
                         ZStack {
                             NavigationLink(destination: ProjectView(project: project)) {
                                 EmptyView()
@@ -79,6 +88,17 @@ struct ProjectListView: View {
             }
         }
         .navigationBarHidden(true)
+        .onChange(of: network.projects) { _ in
+            priceFilterModel.setStartValue(projects: network.projects)
+            priceFilterModel.setMedian(projects: network.projects)
+            priceFilterModel.setEndValue(projects: network.projects)
+        }
+    }
+
+    var filteredProjects: [Project] {
+        return network.projects.filter {
+            $0.projectPricePerUnit ?? 0 >= minValue && $0.projectPricePerUnit ?? 0 <= maxValue
+        }
     }
 }
 

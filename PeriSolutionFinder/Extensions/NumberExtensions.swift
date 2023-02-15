@@ -12,3 +12,15 @@ extension Float {
         String(self.formatted(.number.precision(.fractionLength(nbr))))
     }
 }
+
+extension CGFloat {
+    func toFloat() -> Float {
+        Float(self)
+    }
+}
+
+extension Float {
+    func toCGFloat() -> CGFloat {
+        CGFloat(self)
+    }
+}

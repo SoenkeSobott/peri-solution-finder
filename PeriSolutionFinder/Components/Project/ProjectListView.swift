@@ -97,7 +97,7 @@ struct ProjectListView: View {
 
     var filteredProjects: [Project] {
         return network.projects.filter {
-            $0.projectPricePerUnit ?? 0 >= minValue && $0.projectPricePerUnit ?? 0 <= maxValue
+            ($0.projectPricePerUnit ?? 0 >= minValue && $0.projectPricePerUnit ?? 0 <= maxValue) || $0.projectPricePerUnit == nil
         }
     }
 }

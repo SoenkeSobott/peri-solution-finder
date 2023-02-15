@@ -22,6 +22,7 @@ struct BasicRangeSlider: View {
 
             HStack(alignment: .bottom, spacing: 8) {
                 ForEach(0...model.amountOfIndicators-1, id: \.self) {
+
                     RoundedRectangle(cornerRadius: 5)
                         .fill(model.isIndicatorSelected(indicatorIndex: $0) ? Color("PeriRed") : .gray.opacity(0.2))
                         .frame(height: model.calcIndicatorHeight(indicator: $0))
@@ -100,7 +101,7 @@ struct BasicRangeSlider: View {
 struct Slider_Previews: PreviewProvider {
     static var previews: some View {
         let model = BasicRangeSliderModel(totalWidth: UIScreen.main.bounds.width*0.7,
-                                          entries: [2, 4, 6, 7, 8, 8, 9, 10, 23, 33, 40, 45, 34, 35, 35, 35, 35, 36, 37, 37, 60, 70, 85, 100, 180, 181, 181, 182, 183, 185, 200, 300, 310, 310, 310, 310, 3, 360, 420])
+                                          entries: [-20, 6, 9, 9, 9, 8, 8, 9, 10, 23, 33, 40, 45, 34, 35, 35, 35, 35, 36, 37, 37, 60, 70, 85, 100, 180, 181, 181, 182, 183, 185, 200, 300, 310, 310, 310, 310, 3, 360, 420])
         BasicRangeSlider(model: model,
                          initialMinValue: .constant(0),
                          initialMaxValue: .constant((100)),

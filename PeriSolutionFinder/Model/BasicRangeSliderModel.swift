@@ -59,7 +59,7 @@ class BasicRangeSliderModel: ObservableObject {
             let minRange = minEntry+(partOfRange*Float(indicatorIndex))
             let maxRange = minEntry+(partOfRange*(Float(indicatorIndex+1)))
             let valuesBetween = entries.filter {
-                $0 >= minRange && $0 < maxRange
+                $0 >= minRange && $0 <= maxRange // This can produce anamolies -> value can be in both
             }
             valuesBetweenPartsOfRange.append(valuesBetween.count)
             if (indicatorIndex == indicator) {

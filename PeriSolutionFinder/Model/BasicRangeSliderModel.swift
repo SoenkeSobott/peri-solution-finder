@@ -55,7 +55,7 @@ class BasicRangeSliderModel: ObservableObject {
 
         var valuesBetweenPartsOfRange: [Int] = []
         var amountValuesBetweenPartOfRangeForIndicator: Int = 0
-        for indicatorIndex in 0...amountOfIndicators {
+        for indicatorIndex in 0...amountOfIndicators-1 {
             let minRange = minEntry+(partOfRange*Float(indicatorIndex))
             let maxRange = minEntry+(partOfRange*(Float(indicatorIndex+1)))
             let valuesBetween = entries.filter {
@@ -72,6 +72,13 @@ class BasicRangeSliderModel: ObservableObject {
             return ((Float(amountValuesBetweenPartOfRangeForIndicator)/Float(maxInBetweens))*50).toCGFloat()
         }
         return 0
+    }
+
+    func isIndicatorSelected(indicatorIndex: Int) -> Bool {
+        let minKnob = min
+        let maxKnob = max
+        let indicatorPosition = (Float(indicatorIndex)/Float(amountOfIndicators))+0.025
+        return minKnob <= indicatorPosition && indicatorPosition <= maxKnob
     }
 
 }

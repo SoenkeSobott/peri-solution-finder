@@ -68,14 +68,13 @@ struct PriceFilterView: View {
                 .frame(width: UIScreen.main.bounds.width*0.2)
             }
 
-            Text("Min: \(String(format: "%.2f", minValue)) Max: \(String(format: "%.2f", maxValue))")
-
             BasicRangeSlider(model: BasicRangeSliderModel(
-                totalWidth: UIScreen.main.bounds.width*0.7, entries: network.projects.map { $0.projectPricePerUnit ?? 0 }),
+                totalWidth: UIScreen.main.bounds.width*0.7,
+                entries: network.projects.map { $0.projectPricePerUnit ?? 0 }),
                              initialMinValue: $priceFilterModel.startValue,
                             initialMaxValue: $priceFilterModel.endValue,
                             minValue: $minValue, maxValue: $maxValue)
-                .padding()
+            .padding([.top, .bottom], 5)
 
         }
         .frame(width: UIScreen.main.bounds.width*0.9)

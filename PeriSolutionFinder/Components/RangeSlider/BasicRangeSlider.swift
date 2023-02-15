@@ -21,19 +21,19 @@ struct BasicRangeSlider: View {
         VStack(spacing: 0) {
 
             HStack(alignment: .bottom, spacing: 8) {
-                ForEach(0...model.amountOfIndicators, id: \.self) {
+                ForEach(0...model.amountOfIndicators-1, id: \.self) {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(Color("PeriRed"))
+                        .fill(model.isIndicatorSelected(indicatorIndex: $0) ? Color("PeriRed") : .gray.opacity(0.2))
                         .frame(height: model.calcIndicatorHeight(indicator: $0))
                         .frame(maxWidth: .infinity)
                 }
             }
-            .frame(width: model.totalWidth-10)
+            .frame(width: model.totalWidth)
             .offset(y: (model.knobWidth/2)-(model.height/2))
 
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.black.opacity(0.2))
+                    .fill(.gray.opacity(0.2))
                     .frame(width: model.totalWidth, height: model.height)
 
                 Rectangle()
@@ -71,19 +71,20 @@ struct BasicRangeSlider: View {
                         )
                 }
             }
-            .padding(0)
         }
         .onChange(of: model.min) { newMin in
-            if (newMin < 0.03) {
+            if (newMin < 0.02) {
                 minValue = initialMinValue
+                model.min = 0
             } else {
                 let spaceBetween = initialMaxValue-initialMinValue
                 minValue = initialMinValue+(spaceBetween*newMin)
             }
         }
         .onChange(of: model.max) { newMax in
-            if (newMax > 0.97) {
+            if (newMax > 0.98) {
                 maxValue = initialMaxValue
+                model.max = 1
             } else {
                 let spaceBetween = initialMaxValue-initialMinValue
                 maxValue = initialMinValue+(spaceBetween*newMax)

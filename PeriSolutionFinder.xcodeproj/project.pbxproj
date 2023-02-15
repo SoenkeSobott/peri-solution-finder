@@ -42,7 +42,11 @@
 		2D38C86B2999C2C60074CA4F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C86A2999C2C60074CA4F /* Formatters.swift */; };
 		2D38C86D2999D1790074CA4F /* ProjectPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C86C2999D1790074CA4F /* ProjectPrice.swift */; };
 		2D38C86F2999FAE50074CA4F /* ArticleListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C86E2999FAE50074CA4F /* ArticleListHeader.swift */; };
+		2D38C877299B2BC20074CA4F /* PriceFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C876299B2BC20074CA4F /* PriceFilterView.swift */; };
+		2D38C879299B3CE80074CA4F /* PriceFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C878299B3CE80074CA4F /* PriceFilterModel.swift */; };
+		2D38C87B299B63720074CA4F /* BasicRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38C87A299B63720074CA4F /* BasicRangeSlider.swift */; };
 		2D430950299395B4009D10B0 /* RangeUISlider in Frameworks */ = {isa = PBXBuildFile; productRef = 2D43094F299395B4009D10B0 /* RangeUISlider */; };
+		2D48E351299C8AEB0035B056 /* BasicRangeSliderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48E350299C8AEB0035B056 /* BasicRangeSliderModel.swift */; };
 		2D57D53D29939C62003F4B2F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2D57D53C29939C62003F4B2F /* SDWebImageSwiftUI */; };
 		2D6C2CC62977F9CB009F8164 /* SearchModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C2CC52977F9CB009F8164 /* SearchModelTest.swift */; };
 		2D6C2CCD29780FC1009F8164 /* SearchViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C2CCC29780FC1009F8164 /* SearchViewUITest.swift */; };
@@ -140,6 +144,10 @@
 		2D38C86A2999C2C60074CA4F /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		2D38C86C2999D1790074CA4F /* ProjectPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPrice.swift; sourceTree = "<group>"; };
 		2D38C86E2999FAE50074CA4F /* ArticleListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListHeader.swift; sourceTree = "<group>"; };
+		2D38C876299B2BC20074CA4F /* PriceFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFilterView.swift; sourceTree = "<group>"; };
+		2D38C878299B3CE80074CA4F /* PriceFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFilterModel.swift; sourceTree = "<group>"; };
+		2D38C87A299B63720074CA4F /* BasicRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRangeSlider.swift; sourceTree = "<group>"; };
+		2D48E350299C8AEB0035B056 /* BasicRangeSliderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRangeSliderModel.swift; sourceTree = "<group>"; };
 		2D6C2CC52977F9CB009F8164 /* SearchModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelTest.swift; sourceTree = "<group>"; };
 		2D6C2CCC29780FC1009F8164 /* SearchViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewUITest.swift; sourceTree = "<group>"; };
 		2D6C2CD029781317009F8164 /* SearchCriteriaViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteriaViewUITest.swift; sourceTree = "<group>"; };
@@ -237,8 +245,8 @@
 		2D25097929506E9500F8D30A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2D38C87E299C89B20074CA4F /* RangeSlider */,
 				2D0C40EE29973A4B00D087C4 /* Article */,
-				2D25097729506E4200F8D30A /* ProjectListView.swift */,
 				2D6C2CD4297A4A2D009F8164 /* Project */,
 				2D31157B295C97150091D4A3 /* Search */,
 				2DEE53DB295B23C60055A550 /* Navigation */,
@@ -373,8 +381,28 @@
 				2D31158D295DB0290091D4A3 /* SearchModel.swift */,
 				2DBC02572993564F00D5E720 /* ProjectModel.swift */,
 				2D0C40E62993E3B400D087C4 /* RootModel.swift */,
+				2D38C878299B3CE80074CA4F /* PriceFilterModel.swift */,
+				2D48E350299C8AEB0035B056 /* BasicRangeSliderModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2D38C875299B2B9C0074CA4F /* BQ */ = {
+			isa = PBXGroup;
+			children = (
+				2D2509922958A04F00F8D30A /* BQListHeader.swift */,
+				2DBC02532993514300D5E720 /* BQListEntryView.swift */,
+				2DBC02552993560100D5E720 /* AvailabilityLegendView.swift */,
+			);
+			path = BQ;
+			sourceTree = "<group>";
+		};
+		2D38C87E299C89B20074CA4F /* RangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				2D38C87A299B63720074CA4F /* BasicRangeSlider.swift */,
+			);
+			path = RangeSlider;
 			sourceTree = "<group>";
 		};
 		2D6C2CC72977FD5A009F8164 /* Frameworks */ = {
@@ -404,15 +432,14 @@
 		2D6C2CD4297A4A2D009F8164 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				2D2509812951B64500F8D30A /* ProjectView.swift */,
 				2DBC02502993509C00D5E720 /* Tabs */,
 				2DB50EDD2988D9F40041CA11 /* Download */,
-				2D2509922958A04F00F8D30A /* BQListHeader.swift */,
+				2D25097729506E4200F8D30A /* ProjectListView.swift */,
+				2D2509812951B64500F8D30A /* ProjectView.swift */,
 				2D6C2CD7297A6664009F8164 /* InfoRowView.swift */,
 				2DBC0251299350BF00D5E720 /* NoDataView.swift */,
-				2DBC02532993514300D5E720 /* BQListEntryView.swift */,
-				2DBC02552993560100D5E720 /* AvailabilityLegendView.swift */,
 				2D0C40E82995187700D087C4 /* TabsView.swift */,
+				2D38C876299B2BC20074CA4F /* PriceFilterView.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -469,6 +496,7 @@
 		2DBC02502993509C00D5E720 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				2D38C875299B2B9C0074CA4F /* BQ */,
 				2D250983295305B600F8D30A /* TwoDView.swift */,
 				2D25098E2954BF4D00F8D30A /* BQView.swift */,
 				2D2509902954BF6800F8D30A /* PhotoView.swift */,
@@ -662,6 +690,7 @@
 				2DB11582292C261B0043872E /* FooterView.swift in Sources */,
 				2DE910232973B76600465561 /* ResetButton.swift in Sources */,
 				2D38C86B2999C2C60074CA4F /* Formatters.swift in Sources */,
+				2D38C879299B3CE80074CA4F /* PriceFilterModel.swift in Sources */,
 				2D25097D29506EFB00F8D30A /* ProjectRow.swift in Sources */,
 				2D0C40F029973A6000D087C4 /* ArticlesListHeading.swift in Sources */,
 				2D38C86D2999D1790074CA4F /* ProjectPrice.swift in Sources */,
@@ -683,11 +712,13 @@
 				2DE4449F298212A000EA3610 /* SolutionTag.swift in Sources */,
 				2D92DCA3295DDCC2002B9A9A /* Alerts.swift in Sources */,
 				2DB50EE32988FE260041CA11 /* CSVFile.swift in Sources */,
+				2D48E351299C8AEB0035B056 /* BasicRangeSliderModel.swift in Sources */,
 				2D250976294C7DBB00F8D30A /* Project.swift in Sources */,
 				2D38C86F2999FAE50074CA4F /* ArticleListHeader.swift in Sources */,
 				2DBC024F2992235C00D5E720 /* ArticleAvailability.swift in Sources */,
 				2D25097829506E4200F8D30A /* ProjectListView.swift in Sources */,
 				2D92DCB029643730002B9A9A /* WallFiltersView.swift in Sources */,
+				2D38C877299B2BC20074CA4F /* PriceFilterView.swift in Sources */,
 				2D2509932958A04F00F8D30A /* BQListHeader.swift in Sources */,
 				2D9C33C4296C6A4400E196FC /* InfrastructureLowLevelFilterView.swift in Sources */,
 				2D311572295C5C6E0091D4A3 /* ViewExtension.swift in Sources */,
@@ -696,6 +727,7 @@
 				2D2509802951AC9400F8D30A /* Network.swift in Sources */,
 				2DB50EDC2988D8FD0041CA11 /* DownloadButton.swift in Sources */,
 				2D6C2CD6297A4A52009F8164 /* InfoView.swift in Sources */,
+				2D38C87B299B63720074CA4F /* BasicRangeSlider.swift in Sources */,
 				2D311576295C75EE0091D4A3 /* ProductSelectionBoxView.swift in Sources */,
 				2D31157F295CBEF00091D4A3 /* Enums.swift in Sources */,
 				2D92DCB929658AA9002B9A9A /* SegmentFiltersView.swift in Sources */,

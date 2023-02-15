@@ -44,6 +44,7 @@ struct Project: Identifiable, Decodable, Hashable {
     var segmentLevelThree: String?
     var solutionTags: [String]?
     var projectPrice: Float?
+    var projectPricePerUnit: Float?
 }
 
 struct BillOffQuantityEntry: Identifiable, Decodable {

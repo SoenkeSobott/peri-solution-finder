@@ -30,7 +30,7 @@ func formatPrice(project: Project) -> String {
     }
 
     // Price
-    var formattedPrice = "-"
+    var formattedPrice = "$ 0/"+unit
     let projectPricePerUnit = project.projectPricePerUnit
     if (projectPricePerUnit != nil) {
         formattedPrice = "$ " + formatter.string(from: projectPricePerUnit! as NSNumber)! + "/" +  unit

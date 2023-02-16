@@ -9,8 +9,8 @@ import SwiftUI
 
 struct BasicRangeSlider: View {
     @StateObject var model: BasicRangeSliderModel
-    @Binding var initialMinValue: Float
-    @Binding var initialMaxValue: Float
+    @State var initialMinValue: Float = 0
+    @State var initialMaxValue: Float = 100
     @Binding var minValue: Float
     @Binding var maxValue: Float
 
@@ -22,7 +22,6 @@ struct BasicRangeSlider: View {
 
             HStack(alignment: .bottom, spacing: 8) {
                 ForEach(0...model.amountOfIndicators-1, id: \.self) {
-
                     RoundedRectangle(cornerRadius: 5)
                         .fill(model.isIndicatorSelected(indicatorIndex: $0) ? Color("PeriRed") : .gray.opacity(0.2))
                         .frame(height: model.calcIndicatorHeight(indicator: $0))
@@ -92,8 +91,16 @@ struct BasicRangeSlider: View {
             }
         }
         .onAppear {
-            minValue = initialMinValue
-            maxValue = initialMaxValue
+            if (!model.entries.isEmpty) {
+                let sortedEntries = model.entries.sorted()
+                self.initialMinValue = sortedEntries.first!
+                self.initialMaxValue = sortedEntries.last!
+                minValue = initialMinValue
+                maxValue = initialMaxValue
+            } else {
+                SharedLogger.shared().error("Entries empty: \(model.entries)")
+            }
+
         }
     }
 }
@@ -103,8 +110,6 @@ struct Slider_Previews: PreviewProvider {
         let model = BasicRangeSliderModel(totalWidth: UIScreen.main.bounds.width*0.7,
                                           entries: [-20, 6, 9, 9, 9, 8, 8, 9, 10, 23, 33, 40, 45, 34, 35, 35, 35, 35, 36, 37, 37, 60, 70, 85, 100, 180, 181, 181, 182, 183, 185, 200, 300, 310, 310, 310, 310, 3, 360, 420])
         BasicRangeSlider(model: model,
-                         initialMinValue: .constant(0),
-                         initialMaxValue: .constant((100)),
                          minValue: .constant(0),
                          maxValue: .constant(100))
     }

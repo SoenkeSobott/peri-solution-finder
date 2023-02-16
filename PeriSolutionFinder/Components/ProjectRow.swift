@@ -33,7 +33,7 @@ struct ProjectRow : View {
                 Text(project.projectName)
                     .headlineThree()
                 Spacer()
-                Text(formatPrice(project: project))
+                Text(getPriceText())
                     .text()
                     .frame(width: UIScreen.main.bounds.width*0.25, alignment: .trailing)
                     .padding(.trailing, 10)
@@ -41,6 +41,13 @@ struct ProjectRow : View {
         }
         .frame(width: UIScreen.main.bounds.width*0.9)
         .listRowSeparator(.hidden)
+    }
+
+    func getPriceText() -> String {
+        if (project.billOfQuantity != nil) {
+            return "$ " + formatPrice(project: project)
+        }
+        return "No BQ"
     }
 }
 

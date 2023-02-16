@@ -18,8 +18,8 @@ struct InfoView: View {
                     InfoRowView(name: "Project Number", value: project.projectNumber)
                     InfoRowView(name: "Product", value: project.product ?? "-")
                     InfoRowView(name: "Main Structure", value: project.mainStructure?.description ?? "-")
-                    InfoRowView(name: "Price", value:  formatNumber(number: project.projectPrice))
-                    InfoRowView(name: "Price/Unit", value: formatPrice(project: project))
+                    InfoRowView(name: "Price (HK$ LP1)", value: formatNumber(number: project.projectPrice))
+                    InfoRowView(name: "Price/Unit (HK$ LP1)", value: formatPrice(project: project))
                 }
 
                 if (project.product != nil && project.product == Product.DUO.rawValue) {

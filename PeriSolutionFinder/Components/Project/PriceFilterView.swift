@@ -17,7 +17,7 @@ struct PriceFilterView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Price Range ($)")
+                Text("Price Range (HK$ LP1)")
                     .headlineTwo()
                 Spacer()
             }

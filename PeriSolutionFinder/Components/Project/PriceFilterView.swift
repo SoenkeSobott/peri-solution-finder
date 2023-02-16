@@ -71,8 +71,6 @@ struct PriceFilterView: View {
             BasicRangeSlider(model: BasicRangeSliderModel(
                 totalWidth: UIScreen.main.bounds.width*0.7,
                 entries: network.projects.map { $0.projectPricePerUnit ?? 0 }),
-                             initialMinValue: $priceFilterModel.startValue,
-                            initialMaxValue: $priceFilterModel.endValue,
                             minValue: $minValue, maxValue: $maxValue)
             .padding([.top, .bottom], 5)
 

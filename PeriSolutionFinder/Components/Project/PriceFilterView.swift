@@ -10,7 +10,7 @@ import RangeUISlider
 
 struct PriceFilterView: View {
     @EnvironmentObject var network: Network
-    @StateObject var priceFilterModel: PriceFilterModel
+    @StateObject var priceFilterModel: PriceFilterModel = PriceFilterModel()
     @Binding var minValue: Float
     @Binding var maxValue: Float
 
@@ -76,13 +76,18 @@ struct PriceFilterView: View {
 
         }
         .frame(width: UIScreen.main.bounds.width*0.9)
+        .onAppear { 
+            priceFilterModel.setStartValue(projects: network.projects)
+            priceFilterModel.setMedian(projects: network.projects)
+            priceFilterModel.setEndValue(projects: network.projects)
+        }
     }
 }
 
 struct PriceFilterView_Previews: PreviewProvider {
     static var previews: some View {
         let network = Network()
-        PriceFilterView(priceFilterModel: PriceFilterModel(), minValue: .constant(0), maxValue: .constant(1))
+        PriceFilterView(minValue: .constant(0), maxValue: .constant(1))
             .environmentObject(network)
     }
 }

@@ -11,7 +11,6 @@ struct ProjectListView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var searchModel: SearchModel
     @EnvironmentObject var network: Network
-    @StateObject var priceFilterModel: PriceFilterModel = PriceFilterModel()
     private let headingViewHeight: CGFloat = UIScreen.main.bounds.height*0.15
     @State private var minValue: Float = 0
     @State private var maxValue: Float = 100
@@ -44,8 +43,8 @@ struct ProjectListView: View {
 
                     Spacer()
 
-                    if (network.projects.count > 0) {
-                        PriceFilterView(priceFilterModel: priceFilterModel, minValue: $minValue, maxValue: $maxValue)
+                    if (network.projects.count > 0 && !network.projectsLoading) {
+                        PriceFilterView(minValue: $minValue, maxValue: $maxValue)
                     }
 
                     Spacer()
@@ -88,11 +87,6 @@ struct ProjectListView: View {
             }
         }
         .navigationBarHidden(true)
-        .onChange(of: network.projects) { _ in
-            priceFilterModel.setStartValue(projects: network.projects)
-            priceFilterModel.setMedian(projects: network.projects)
-            priceFilterModel.setEndValue(projects: network.projects)
-        }
     }
 
     var filteredProjects: [Project] {

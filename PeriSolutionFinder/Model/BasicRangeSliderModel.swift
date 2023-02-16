@@ -13,40 +13,33 @@ class BasicRangeSliderModel: ObservableObject {
     let height: CGFloat = 5
     let amountOfIndicators: Int = 20
     let knobWidth: CGFloat = 30
-    let totalWidth: CGFloat
-    let entries: [Float]
 
-    init(totalWidth: CGFloat, entries: [Float]) {
-        self.totalWidth = totalWidth
-        self.entries = entries
-    }
-
-    func getWidth() -> Double {
+    func getWidth(totalWidth: CGFloat) -> Double {
         let width = (knobWidth+15)
         return (totalWidth-width)
     }
 
-    func calcMinWidth() -> CGFloat {
+    func calcMinWidth(totalWidth: CGFloat) -> CGFloat {
         let val = min.toCGFloat()*totalWidth
         return val-15
     }
 
-    func calcMaxWidth() -> CGFloat {
+    func calcMaxWidth(totalWidth: CGFloat) -> CGFloat {
         let val = max.toCGFloat()*totalWidth
         return val-45
     }
 
-    func calcMinValue(x: CGFloat) -> Float {
+    func calcMinValue(x: CGFloat, totalWidth: CGFloat) -> Float {
         let val = (x+15)/totalWidth
         return val.toFloat()
     }
 
-    func calcMaxValue(x: CGFloat) -> Float {
+    func calcMaxValue(x: CGFloat, totalWidth: CGFloat) -> Float {
         let val = (x+45)/totalWidth
         return val.toFloat()
     }
 
-    func calcIndicatorHeight(indicator: Int) -> CGFloat {
+    func calcIndicatorHeight(indicator: Int, entries: [Float]) -> CGFloat {
         let minEntry = entries.sorted().first!
         let maxEntry = entries.sorted().last!
         let range = maxEntry-minEntry

@@ -9,8 +9,8 @@ import SwiftUI
 import RangeUISlider
 
 struct PriceFilterView: View {
-    @EnvironmentObject var network: Network
     @StateObject var priceFilterModel: PriceFilterModel = PriceFilterModel()
+    @EnvironmentObject var network: Network
     @Binding var minValue: Float
     @Binding var maxValue: Float
 
@@ -68,10 +68,10 @@ struct PriceFilterView: View {
                 .frame(width: UIScreen.main.bounds.width*0.2)
             }
 
-            BasicRangeSlider(model: BasicRangeSliderModel(
-                totalWidth: UIScreen.main.bounds.width*0.7,
-                entries: network.projects.map { $0.projectPricePerUnit ?? 0 }),
-                            minValue: $minValue, maxValue: $maxValue)
+            BasicRangeSlider(minValue: $minValue,
+                             maxValue: $maxValue,
+                             totalWidth: UIScreen.main.bounds.width*0.7,
+                             entries: network.projects.map { $0.projectPricePerUnit ?? 0 })
             .padding([.top, .bottom], 5)
 
         }

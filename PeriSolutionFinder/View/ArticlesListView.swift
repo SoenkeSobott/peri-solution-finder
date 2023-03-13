@@ -11,7 +11,6 @@ struct ArticlesListView: View {
     @EnvironmentObject var network: Network
     var rootModel: RootModel
     @State private var searchText = ""
-    @FocusState private var isSearchTextFocused: Bool
 
     var body: some View {
         VStack(spacing: 0) {
@@ -19,40 +18,9 @@ struct ArticlesListView: View {
 
             VStack {
                 VStack {
-                    ZStack(alignment: .trailing) {
-                        TextField("Search Articles", text: $searchText)
-                            .font(Font.system(size: 18, weight: .medium, design: .default))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .frame(height: 40)
-                            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 55))
-                            .background(Color.white)
-                            .cornerRadius(50)
-                            .focused($isSearchTextFocused)
-                            .grayViewShadow()
-                            .submitLabel(.search)
-                            .onSubmit {
-                                network.getAllArticles(searchTerm: searchText)
-                            }
-
-                        Button(action: {
-                            network.getAllArticles(searchTerm: searchText)
-                            isSearchTextFocused = false
-                        }, label: {
-                            Image(systemName: "magnifyingglass.circle.fill")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 40, height: 40, alignment: .center)
-                                .foregroundColor(Color("PeriRed"))
-                                .background(.white)
-                                .clipShape(Circle())
-                                .redViewShadow()
-                                .padding(.trailing, 10)
-                        })
-                    }
-                    .onTapGesture {
-                        isSearchTextFocused = true
-                    }
-                    .padding([.leading, .trailing, .top], UIScreen.main.bounds.width*0.05)
+                    ArticleListSearch(searchText: $searchText)
+                        .padding(.top, UIScreen.main.bounds.width*0.05)
+                        .zIndex(10)
 
                     VStack(spacing: 0) {
                         ArticlesListHeading()

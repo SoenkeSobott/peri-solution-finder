@@ -15,14 +15,14 @@ class PriceFilterModel: ObservableObject {
     func setStartValue(projects: [Project]) {
         if (projects.count > 0) {
             let sorted = projects.compactMap { $0.projectPricePerUnit }.sorted()
-            self.startValue = sorted.first!
+            self.startValue = sorted.first ?? 0
         }
     }
 
     func setEndValue(projects: [Project]) {
         if (projects.count > 0) {
             let sorted = projects.compactMap { $0.projectPricePerUnit }.sorted()
-            self.endValue = sorted.last!
+            self.endValue = sorted.last ?? 1
         }
     }
 

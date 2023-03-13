@@ -63,7 +63,7 @@ struct ArticleListSearch: View {
                     isInfoButtonPressed.toggle()
                 }
 
-        }.overlay {
+        }.overlay(alignment: .trailing) {
             GeometryReader { geometry in
                 Text("Available quantity is only an indication and may not be up to date. It includes the material in stock, less confirmed customer orders. Customer returns, goods in transit and offers (regardless of probability) are not considered. Please confirm the quantity with your operations team before making commitments.")
                     .text()
@@ -79,7 +79,7 @@ struct ArticleListSearch: View {
                         )
             }
             .frame(width: UIScreen.main.bounds.width*0.7)
-            .offset(x: 10, y: (infoTextHeight/2)+40)
+            .offset(y: (infoTextHeight/2)+40)
             .opacity(isInfoButtonPressed ? 1 : 0)
         }
     }

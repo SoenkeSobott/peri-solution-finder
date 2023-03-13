@@ -17,6 +17,16 @@ func formatNumber(number: Float?) -> String {
     return "-"
 }
 
+func formatPriceNumber(number: Float?) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 2;
+    if (number != nil) {
+        return formatter.string(from: number! as NSNumber) ?? "-"
+    }
+    return "-"
+}
+
 func formatPrice(project: Project) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal

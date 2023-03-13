@@ -11,9 +11,19 @@ struct Bubble: Shape {
     private let radius: CGFloat
     private let tailSize: CGFloat
 
-    init(radius: CGFloat = 10) {
+    let tipDownDistanceFromRight: CGFloat
+    let tipUpDistanceFromRight: CGFloat
+    let tipDownAgainDistanceFromRight: CGFloat
+
+    init(radius: CGFloat = 10,
+         tipDownDistanceFromRight: CGFloat = 50,
+         tipUpDistanceFromRight: CGFloat = 40,
+         tipDownAgainDistanceFromRight: CGFloat = 30) {
         self.radius = radius
-        tailSize = 20
+        self.tailSize = 20
+        self.tipDownDistanceFromRight = tipDownDistanceFromRight
+        self.tipUpDistanceFromRight = tipUpDistanceFromRight
+        self.tipDownAgainDistanceFromRight = tipDownAgainDistanceFromRight
     }
 
     func path(in rect: CGRect) -> Path {
@@ -26,9 +36,9 @@ struct Bubble: Shape {
                 endAngle: Angle(degrees: 270),
                 clockwise: false
             )
-            path.addLine(to: CGPoint(x: rect.maxX-50, y: rect.minY))
-            path.addLine(to: CGPoint(x: rect.maxX-40, y: rect.minY-10))
-            path.addLine(to: CGPoint(x: rect.maxX-30, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.maxX-tipDownAgainDistanceFromRight, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.maxX-tipUpDistanceFromRight, y: rect.minY-10))
+            path.addLine(to: CGPoint(x: rect.maxX-tipDownDistanceFromRight, y: rect.minY))
             path.addArc(
                 center: CGPoint(x: rect.maxX - radius, y: rect.minY + radius),
                 radius: radius,

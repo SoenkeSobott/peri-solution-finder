@@ -55,7 +55,7 @@ struct ArticleListSearch: View {
                 isSearchTextFocused = true
             }
 
-            Image(systemName: "info.circle.fill")
+            Image(systemName: "info.circle")
                 .font(.system(size: 20))
                 .padding(.trailing, padding)
                 .foregroundColor(.black)

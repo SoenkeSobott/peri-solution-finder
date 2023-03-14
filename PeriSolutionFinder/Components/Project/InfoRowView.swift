@@ -33,6 +33,6 @@ struct InfoRowView: View {
 
 struct InfoRowView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoRowView(name: "Solution", value: "one, two, three, foureerere")
+        InfoRowView(name: "Solution", value: "one, two, three, four")
     }
 }

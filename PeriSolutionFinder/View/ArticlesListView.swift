@@ -1,5 +1,5 @@
 //
-//  ProductsView.swift
+//  ArticlesListView.swift
 //  PeriSolutionFinder
 //
 //  Created by Sönke Sobott on 08.02.23.
@@ -9,14 +9,17 @@ import SwiftUI
 
 struct ArticlesListView: View {
     @EnvironmentObject var network: Network
-    var rootModel: RootModel
     @State private var searchText = ""
+    var rootModel: RootModel
 
     var body: some View {
         VStack(spacing: 0) {
             ArticleListHeader()
 
-            VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(.white)
+
                 VStack {
                     ArticleListSearch(searchText: $searchText)
                         .padding(.top, UIScreen.main.bounds.width*0.05)
@@ -70,8 +73,6 @@ struct ArticlesListView: View {
                 .padding([.top, .bottom], UIScreen.main.bounds.width*0.05)
             }
             .frame(width: UIScreen.main.bounds.width*0.9)
-            .background(.white)
-            .cornerRadius(25)
             .padding([.top, .bottom], UIScreen.main.bounds.width*0.05)
             .grayViewShadow()
         }

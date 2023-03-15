@@ -10,6 +10,7 @@ import SwiftUI
 struct ArticlesListView: View {
     @EnvironmentObject var network: Network
     @State private var searchText = ""
+    @State var selectedArticle: String = ""
     var rootModel: RootModel
 
     var body: some View {
@@ -48,7 +49,8 @@ struct ArticlesListView: View {
                             }
                             .overlay {
                                 List(network.articles, id: \.self) { article in
-                                    ArticleListEntry(article: article)
+                                    ArticleListEntry(article: article,
+                                                     selectedArticle: $selectedArticle)
                                 }
                                 .cornerRadius(15, corners: [.topLeft, .bottomLeft])
                                 .scrollContentBackground(.hidden)

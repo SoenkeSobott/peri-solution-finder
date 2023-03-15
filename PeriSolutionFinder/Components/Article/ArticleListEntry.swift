@@ -66,8 +66,10 @@ struct ArticleListEntry: View {
                         }
                         .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
                         .onTapGesture {
-                            if (childArticlesPresent()) {
+                            if (childArticlesPresent() && selectedArticle != article.articleNumber) {
                                 selectedArticle = article.articleNumber
+                            } else {
+                                selectedArticle = ""
                             }
                         }
                     }

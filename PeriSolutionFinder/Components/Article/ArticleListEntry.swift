@@ -56,17 +56,17 @@ struct ArticleListEntry: View {
                             ZStack {
                                 Image(systemName: "circle")
                                     .font(.system(size: 14))
-                                    .foregroundColor(getAvailabilityColor(availability: article.availability ?? 0))
-                                    .opacity(childArticlesPresent() ? 1 : 0)
+                                    .foregroundColor(getAvailabilityColor(article: article))
+                                    .opacity(substituteArticlesPresent() ? 1 : 0)
                                 Image(systemName: "circle.fill")
-                                    .font(.system(size: childArticlesPresent() ? 8 : 14))
-                                    .foregroundColor(getAvailabilityColor(availability: article.availability ?? 0))
+                                    .font(.system(size: substituteArticlesPresent() ? 8 : 14))
+                                    .foregroundColor(getAvailabilityColor(article: article))
                             }
                             .frame(width: UIScreen.main.bounds.width*0.06, alignment: .center)
                         }
                         .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
                         .onTapGesture {
-                            if (childArticlesPresent() && selectedArticle != article.articleNumber) {
+                            if (substituteArticlesPresent() && selectedArticle != article.articleNumber) {
                                 selectedArticle = article.articleNumber
                             } else {
                                 selectedArticle = ""
@@ -88,15 +88,26 @@ struct ArticleListEntry: View {
         }
     }
 
-    func getAvailabilityColor(availability: Int) -> Color {
-        if (availability > 0) {
+    private func getAvailabilityColor(article: Article) -> Color {
+        if (article.availability ?? 0 > 0) {
+            return Color("InStockGreen")
+        } else if (substituteArticlesPresent() && anySubstituteArticleHasAvailability()) {
             return Color("InStockGreen")
         }
         return Color("OutOfStockRed")
     }
 
-    private func childArticlesPresent() -> Bool {
+    private func substituteArticlesPresent() -> Bool {
         return article.substituteArticles?.count ?? 0 > 1
+    }
+
+    private func anySubstituteArticleHasAvailability() -> Bool {
+        for substituteArticle in article.substituteArticles ?? [] {
+            if (substituteArticle.availability ?? 0 > 0) {
+                return true
+            }
+        }
+        return false
     }
 }
 

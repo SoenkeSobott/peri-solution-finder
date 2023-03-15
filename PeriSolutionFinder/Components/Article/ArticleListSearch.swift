@@ -58,7 +58,7 @@ struct ArticleListSearch: View {
             Image(systemName: "info.circle")
                 .font(.system(size: 20))
                 .padding(.trailing, padding)
-                .foregroundColor(.black)
+                .foregroundColor(.black.opacity(0.5))
                 .onTapGesture {
                     isInfoButtonPressed.toggle()
                 }

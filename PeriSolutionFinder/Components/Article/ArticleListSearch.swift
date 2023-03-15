@@ -65,18 +65,22 @@ struct ArticleListSearch: View {
 
         }.overlay(alignment: .trailing) {
             GeometryReader { geometry in
-                Text("Available quantity is only an indication and may not be up to date. It includes the material in stock, less confirmed customer orders. Customer returns, goods in transit and offers (regardless of probability) are not considered. Please confirm the quantity with your operations team before making commitments.")
-                    .text()
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(5)
-                    .background(
-                        Bubble(tipDownDistanceFromRight: 10, tipUpDistanceFromRight:  10, tipDownAgainDistanceFromRight: 30)
-                            .fill(.white)
-                            .grayViewShadow()
-                            .onAppear {
-                                infoTextHeight = geometry.size.height
-                            }
-                        )
+                VStack {
+                    Text("Available quantity is only an indication and may not be up to date. It includes the material in stock, less confirmed customer orders. Customer returns, goods in transit and offers (regardless of probability) are not considered. Please confirm the quantity with your operations team before making commitments.")
+                        .text()
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    ArticleAvailabilityLegend()
+                }
+                .padding(5)
+                .background(
+                    Bubble(tipDownDistanceFromRight: 10, tipUpDistanceFromRight:  10, tipDownAgainDistanceFromRight: 30)
+                        .fill(.white)
+                        .grayViewShadow()
+                        .onAppear {
+                            infoTextHeight = geometry.size.height
+                        }
+                    )
             }
             .frame(width: UIScreen.main.bounds.width*0.7)
             .offset(y: (infoTextHeight/2)+40)

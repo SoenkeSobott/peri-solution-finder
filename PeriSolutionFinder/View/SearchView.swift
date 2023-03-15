@@ -14,8 +14,8 @@ struct SearchView: View {
     var body: some View {
         ZStack {
             Color("PeriLightGray").edgesIgnoringSafeArea(.top)
-
             Color.white
+            
             VStack(spacing: 0) {
                 ScrollView {
                     ZStack(alignment: .top) {

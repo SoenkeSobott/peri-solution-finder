@@ -18,7 +18,7 @@ struct ArticleListEntry: View {
                 content: {
                     HStack {
                         Spacer()
-                        ArticleAvailabilityDropdown(isOpen: $isDropdownOpen, entries: article.childArticles ?? [])
+                        ArticleAvailabilityDropdown(isOpen: $isDropdownOpen, entries: article.substituteArticles ?? [])
                     }
                     .frame(width: UIScreen.main.bounds.width*0.8)
                 }
@@ -84,7 +84,7 @@ struct ArticleListEntry: View {
     }
 
     private func childArticlesPresent() -> Bool {
-        return article.childArticles?.count ?? 0 > 1
+        return article.substituteArticles?.count ?? 0 > 1
     }
 }
 
@@ -94,9 +94,9 @@ struct ArticleListEntry_Previews: PreviewProvider {
                                           articleDescription: "Test Description 1234",
                                           listPrice: 12.33,
                                           availability: 122,
-                                          childArticles: [
-                                            ChildArticle(articleNumber: "1234", availability: 1234),
-                                            ChildArticle(articleNumber: "3453", availability: 2412)
+                                          substituteArticles: [
+                                            SubstituteArticle(articleNumber: "1234", availability: 1234),
+                                            SubstituteArticle(articleNumber: "3453", availability: 2412)
                                           ]))
     }
 }

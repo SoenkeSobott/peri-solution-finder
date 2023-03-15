@@ -68,8 +68,7 @@ struct AboutView: View {
                 Text("[RangeUISlider](https://github.com/chicio/RangeUISlider)")
             }
             .padding(.top, 10)
-            .padding(.leading, UIScreen.main.bounds.width*0.05)
-            .padding(.trailing, UIScreen.main.bounds.width*0.05)
+            .padding([.leading, .trailing], UIScreen.main.bounds.width*0.05)
 
             Spacer()
         }

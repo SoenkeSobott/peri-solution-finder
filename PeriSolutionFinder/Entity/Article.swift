@@ -12,10 +12,10 @@ struct Article: Decodable, Hashable {
     var articleDescription: String
     var listPrice: Float?
     var availability: Int?
-    var childArticles: [ChildArticle]?
+    var substituteArticles: [SubstituteArticle]?
 }
 
-struct ChildArticle: Decodable, Hashable {
+struct SubstituteArticle: Decodable, Hashable {
     var articleNumber: String
     var availability: Int?
 }

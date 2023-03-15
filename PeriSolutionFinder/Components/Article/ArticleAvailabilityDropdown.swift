@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArticleAvailabilityDropdown: View {
     @Binding var isOpen: Bool
-    let entries: [ChildArticle]
+    let entries: [SubstituteArticle]
     @State private var totalAvailability: Int = 0
     var body: some View {
         VStack(spacing: 0) {
@@ -67,8 +67,8 @@ struct ArticleAvailabilityDropdown: View {
 struct ArticleAvailabilityDropdown_Previews: PreviewProvider {
     static var previews: some View {
         ArticleAvailabilityDropdown(isOpen: .constant(true), entries: [
-            ChildArticle(articleNumber: "1234", availability: 1234),
-            ChildArticle(articleNumber: "3453", availability: 2412)
+            SubstituteArticle(articleNumber: "1234", availability: 1234),
+            SubstituteArticle(articleNumber: "3453", availability: 2412)
         ])
 
     }

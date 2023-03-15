@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ArticleListEntry: View {
     let article: Article
-    @State var isDropdownOpen = false
+    @State private var isDropdownOpen = false
+    @Binding var selectedArticle: String
 
     var body: some View {
         VStack(spacing: 0) {
@@ -46,22 +47,28 @@ struct ArticleListEntry: View {
                             .padding([.leading, .trailing], 5)
                             .frame(width: UIScreen.main.bounds.width*0.18, alignment: .center)
                         Divider()
-                        VStack {
-                            HStack(spacing: 0) {
-                                Text(formatNumber(number: Float(article.availability ?? 0)))
-                                    .text()
-                                    .padding([.leading, .trailing], 5)
 
+                        HStack(spacing: 0) {
+                            Text(formatNumber(number: Float(article.availability ?? 0)))
+                                .text()
+                                .frame(width: UIScreen.main.bounds.width*0.14, alignment: .center)
+
+                            ZStack {
+                                Image(systemName: "circle")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(getAvailabilityColor(availability: article.availability ?? 0))
+                                    .opacity(childArticlesPresent() ? 1 : 0)
                                 Image(systemName: "circle.fill")
-                                    .font(.system(size: 10))
+                                    .font(.system(size: childArticlesPresent() ? 8 : 14))
                                     .foregroundColor(getAvailabilityColor(availability: article.availability ?? 0))
                             }
-                            .onTapGesture {
-                                if (childArticlesPresent()) {
-                                    isDropdownOpen.toggle()
-                                }
+                            .frame(width: UIScreen.main.bounds.width*0.06, alignment: .center)
+                        }
+                        .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
+                        .onTapGesture {
+                            if (childArticlesPresent()) {
+                                selectedArticle = article.articleNumber
                             }
-                            .frame(width: UIScreen.main.bounds.width*0.2, alignment: .center)
                         }
                     }
                 }
@@ -74,6 +81,9 @@ struct ArticleListEntry: View {
         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         .listRowSeparator(.hidden)
         .listRowBackground(Color.clear)
+        .onChange(of: selectedArticle) { newValue in
+            isDropdownOpen = selectedArticle == article.articleNumber
+        }
     }
 
     func getAvailabilityColor(availability: Int) -> Color {
@@ -97,6 +107,6 @@ struct ArticleListEntry_Previews: PreviewProvider {
                                           substituteArticles: [
                                             SubstituteArticle(articleNumber: "1234", availability: 1234),
                                             SubstituteArticle(articleNumber: "3453", availability: 2412)
-                                          ]))
+                                          ]), selectedArticle: .constant("12345"))
     }
 }

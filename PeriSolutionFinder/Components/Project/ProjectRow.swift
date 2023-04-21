@@ -33,10 +33,10 @@ struct ProjectRow : View {
                 Text(project.projectName)
                     .headlineThree()
                 Spacer()
-                Text(getPriceText())
+                /*Text(getPriceText())
                     .text()
                     .frame(width: UIScreen.main.bounds.width*0.25, alignment: .trailing)
-                    .padding(.trailing, 10)
+                    .padding(.trailing, 10)*/
             }
         }
         .frame(width: UIScreen.main.bounds.width*0.9)

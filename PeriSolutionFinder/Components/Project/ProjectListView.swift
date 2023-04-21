@@ -43,11 +43,11 @@ struct ProjectListView: View {
 
                     Spacer()
 
-                    if (network.projects.count > 0 && !network.projectsLoading) {
+                    /*if (network.projects.count > 0 && !network.projectsLoading) {
                         PriceFilterView(minValue: $minValue, maxValue: $maxValue)
                     }
 
-                    Spacer()
+                    Spacer()*/
 
                     Text("Projects List")
                         .headlineOne()
@@ -61,7 +61,7 @@ struct ProjectListView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: Color("PeriRed")))
                         .opacity(network.projectsLoading ? 1 : 0)
 
-                    List(filteredProjects, id: \.projectNumber) { project in
+                    List(network.projects, id: \.projectNumber) { project in
                         ZStack {
                             NavigationLink(destination: ProjectView(project: project)) {
                                 EmptyView()
@@ -89,11 +89,11 @@ struct ProjectListView: View {
         .navigationBarHidden(true)
     }
 
-    var filteredProjects: [Project] {
+    /*var filteredProjects: [Project] {
         return network.projects.filter {
             ($0.projectPricePerUnit ?? 0 >= minValue && $0.projectPricePerUnit ?? 0 <= maxValue) || $0.projectPricePerUnit == nil
         }
-    }
+    }*/
 }
 
 struct ProjectListView_Previews: PreviewProvider {

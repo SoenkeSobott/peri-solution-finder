@@ -33,7 +33,7 @@ struct ArticleListEntry: View {
                             .frame(width: UIScreen.main.bounds.width*0.17, alignment: .center)
                             .foregroundColor(.white)
                         Divider()
-                        Text(article.articleDescription)
+                        Text(article.articleDescription ?? "")
                             .text()
                             .padding([.leading, .trailing], 5)
                             .multilineTextAlignment(.leading)
